@@ -1,0 +1,2 @@
+hexapod_master:newtwo
+-DCATKIN_DEVEL_PREFIX=/home/lcc/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/lcc/ros_ws/install -G Unix Makefiles

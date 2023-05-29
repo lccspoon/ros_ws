@@ -1,0 +1,8 @@
+<launch>
+  
+  <include file="$(find newtwo)/launch/Touquecontroller.launch"/>
+  
+  <include file="$(find newtwo)/launch/gazebo.launch"/>
+  
+</launch>
+

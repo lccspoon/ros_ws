@@ -1,0 +1,19 @@
+<launch>
+  <rosparam file="$(find newtwo)/config/Positioncotroller.yaml" command="load" ns="/newtwo" />
+  
+  <node name="control_spawner" pkg="controller_manager" type="spawner"
+             respawn="false" output="screen"  ns="/newtwo"
+             args="joint_state_controller
+                  L1_1_jointcc L1_2_jointcc L1_3_jointcc 
+                  L2_1_jointcc L2_2_jointcc L2_3_jointcc 
+                  L3_1_jointcc L3_2_jointcc L3_3_jointcc 
+                  R1_1_jointcc R1_2_jointcc R1_3_jointcc 
+                  R2_1_jointcc R2_2_jointcc R2_3_jointcc 
+                  R3_1_jointcc R3_2_jointcc R3_3_jointcc  
+                   "/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+             respawn="false" output="screen"  >
+    <remap from="/joint_state" to="/newtwo/joint_states"/>
+  </node>
+  
+</launch>

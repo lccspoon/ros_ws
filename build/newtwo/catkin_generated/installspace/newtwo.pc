@@ -1,0 +1,8 @@
+prefix=/home/lcc/ros_ws/install
+
+Name: newtwo
+Description: Description of newtwo
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
