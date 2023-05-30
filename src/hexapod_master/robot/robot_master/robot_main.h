@@ -39,7 +39,7 @@
 #define HARD_WARE 2  // 1：开硬件，不开gazebo 2：关硬件;开gazebo  
 #define SEQ_CHOKE 2  // 1:开启时序阻塞，如果接收消息的时序不更新，那么就会让线程死在 Hexapod::recData()中等待时序更新  2：不开启时序阻塞
 #define DEBUG 0  // 1 在调试   ； 0 不调试
-#define ADAPTIV_FLAG 0  // 自适应控制算法　0 关   ； 1 开
+#define ADAPTIV_FLAG 1  // 自适应控制算法　0 关   ； 1 开
 
 #define SIM_CTRL_MODE 1   // 仿真算法：1 -> position control  2-> pd control
 #define SIM_PROTECT 2 // 1:开启保护　　２：不保护

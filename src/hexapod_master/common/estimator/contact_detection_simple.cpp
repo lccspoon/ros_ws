@@ -54,13 +54,13 @@ Eigen::Matrix<double,1,6> contact_detection_simple::swingphase_contact_est(Eigen
     //lcc 20230519:触地估计
     for(int i=0;i<6;i++)
     {       
-            if(plan_touch_down_scheduler(i)==0 && contact_estimate_schedual(i)==0)
+            if(plan_touch_down_scheduler(i)==0 && contact_estimate_schedual(i)==0)//如果contact_estimate_schedual=0即表示触碰物体　&&　cpg=0即表示支撑态
             {       
-                leg_suportingphase_contact_est(i)=1;   //表示触地
+                leg_suportingphase_contact_est(i)=1;   //1表示触地
             } 
             else if(plan_touch_down_scheduler(i)==1)  //lcc 如果cpg处于摆动相, 只有到达摆动态，腿的触地信号才会重置
             {
-                leg_suportingphase_contact_est(i)=0;   //表示bu触地
+                leg_suportingphase_contact_est(i)=0;   //0表示bu触地
             }
     }
 

@@ -57,9 +57,9 @@ void Hexapod::adaptive_control(void)
                 Eigen::Vector3d temp1, temp2;
                 temp1=leg_root.foot_swing_traj.block<3,1>(0,0);
                 temp2=leg_root.foot_swing_traj.block<3,1>(0,1);
-                if( ContactSimple.leg_suportingphase_contact_est(i)==0 && cpg_touch_down_scheduler(i)==0 ) //lcc 
+                if( ContactSimple.leg_suportingphase_contact_est(i)==0 && cpg_touch_down_scheduler(i)==0 ) //如果cpg支撑态&&leg_suportingphase_contact_est不是支撑态 
                 {
-                    if( temp1(2)>=0.5*0.01 || temp2(2)>=0.5*0.01 ) // 如果其中任意一条腿已经抬高了　xxxx　厘米
+                    if( temp1(2)>=0.5*0.01 || temp2(2)>=0.5*0.01 ) // 如果其中任意一条腿已经抬高了　xxxx*0.01　厘米
                     {
                         suporting_slip_leg_number(i)=1;
                         printf("leg(%d) touch dowm silp!!\n ",i);

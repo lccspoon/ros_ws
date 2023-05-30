@@ -83,7 +83,6 @@ void Hexapod::run(int argc, char *argv[])
                 robot_force.open("./robot_force.txt", ios::out | ios::trunc);
                 robot_velocity.open("./robot_velocity.txt", ios::out | ios::trunc);
                 robot_postion.open("./robot_postion.txt", ios::out | ios::trunc);
-
         #endif
 
         #if HARD_WARE==1
