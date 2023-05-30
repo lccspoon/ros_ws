@@ -49,10 +49,11 @@ void Hexapod::adaptive_control(void)
             //     }
             // }
 
-            std::cout<<"leg_root.foot_swing_traj: "<<std::endl;
-            std::cout<<leg_root.foot_swing_traj<<std::endl;
+            // std::cout<<"leg_root.foot_swing_traj: "<<std::endl;
+            // std::cout<<leg_root.foot_swing_traj<<std::endl;
 
-            for (int i = 0; i < 1; i++)
+            // for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Eigen::Vector3d temp1, temp2;
                 temp1=leg_root.foot_swing_traj.block<3,1>(0,0);
@@ -62,43 +63,37 @@ void Hexapod::adaptive_control(void)
                     if( temp1(2)>=0.5*0.01 || temp2(2)>=0.5*0.01 ) // 如果其中任意一条腿已经抬高了　xxxx*0.01　厘米
                     {
                         suporting_slip_leg_number(i)=1;
-                        printf("leg(%d) touch dowm silp!!\n ",i);
-                        exit(0);
+                        // printf("leg(%d) touch dowm silp!!\n ",i);
+                        // exit(0);
                     }
                 }
-                // if(suporting_slip_leg_number(i)==1) 
-                // {   
-                //     _Cpg.cpg_stop_flag=1;
-                //     leg_root.foot_dowmward_traj.block<3,1>(0,i)= foot_dowm_traj.block<3,1>(0,i)+
-                //         _LagrangeInterpolator[i].liftLegOne_cm(0.0001, -0.05, _SimpleScheduler[i].retSimpleScheduler(1, 0.5) );
 
-                //     leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
+                if(suporting_slip_leg_number(i)==1) 
+                {   
+                    _Cpg.cpg_stop_flag=1;
+                    leg_root.foot_dowmward_traj.block<3,1>(0,i)= foot_dowm_traj.block<3,1>(0,i)+
+                                            _LagrangeInterpolator[i].liftLegOne_cm(0.00001, -0.2, _SimpleScheduler[i].retSimpleScheduler(1, 0.1) );
 
-                //     if(_SimpleScheduler[i].retTime()==1)
-                //     {   
-                //         foot_dowm_traj.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i);  
-                //         leg_root.foot_ditch_deepth_est(i)=foot_dowm_traj(2,i);  
+                    leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
+
+                    if(_SimpleScheduler[i].retTime()==1)
+                    {   
+                        foot_dowm_traj.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i);  
+                        leg_root.foot_ditch_deepth_est(i)=foot_dowm_traj(2,i);  
                         
-                //         _SimpleScheduler[i].reSet();
-                //         suporting_slip_leg_number(i)=0;
-                //         _Cpg.cpg_stop_flag=0;
-                //     }
-                //     printf(" inininin\n ");
-                // }
-                // else 
+                        _SimpleScheduler[i].reSet();
+                        suporting_slip_leg_number(i)=0;
+                        _Cpg.cpg_stop_flag=0;
+                    }
+                    // printf(" inininin\n ");
+                }
+                else 
                 {   
                     // printf(" outoutout\n ");
-                    // leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-                    leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_swing_traj.block<3,1>(0,i); 
+                    leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
+                    // leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_swing_traj.block<3,1>(0,i); 
                 } 
-
             }
-
-            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5);
 }
 
 void Hexapod::trajectoryPlaning(void) 
@@ -112,14 +107,14 @@ void Hexapod::trajectoryPlaning(void)
 
         #if ADAPTIV_FLAG==1
           adaptive_control();
+        #else
+            leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
+            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
+            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
+            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
+            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
+            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
         #endif
-
-        leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
-        leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-        leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-        leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-        leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-        leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5);
 
         _FooBodAdjMap[0].setInitEndEfforeAndPBias
         (leg_root.foot_static_pos.block<3,1>(0,0),NULL, fuselage_length/2,fuselage_width/2);

@@ -104,6 +104,9 @@ class LagrangeInterpolator
             Vector3d retPos;
             retPos<< xi( std::round( (numPoints-1)*dt) ), 0, yi( std::round( (numPoints-1)*dt) );
 
+            // std::cout<<"retPos"<< std::endl;
+            // std::cout<<retPos.transpose()<< std::endl;
+
             return retPos;
         }
 

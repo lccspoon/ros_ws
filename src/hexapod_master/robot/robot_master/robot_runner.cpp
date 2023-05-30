@@ -642,7 +642,6 @@ void Hexapod::parSeting(void)
                         if(set_roll>=35) set_roll=35;
                         else if(set_roll<=-35) set_roll=-35;
 
-
                         if(-body_root.eulerAngle(1)*_RAD2>=10) pitch=10*_RAD1;
                         else if(-body_root.eulerAngle(1)*_RAD2<=-10) pitch=-10*_RAD1;
                         else    pitch=-body_root.eulerAngle(1);
@@ -653,22 +652,23 @@ void Hexapod::parSeting(void)
                         if(set_pitch>=35) set_pitch=35;
                         else if(set_pitch<=-35) set_pitch=-35;
                 }
-                std::cout<<"set_pitch*_RAD2"<<std::endl;
-                std::cout<<set_pitch*_RAD2<<std::endl;
-                std::cout<<"body_root.eulerAngle(1)*_RAD2"<<std::endl;
-                std::cout<<body_root.eulerAngle(1)*_RAD2<<std::endl;
-                std::cout<<"set_roll*_RAD2"<<std::endl;
-                std::cout<<set_roll*_RAD2<<std::endl;
-                std::cout<<"body_root.eulerAngle(2)*_RAD2"<<std::endl;
-                std::cout<<body_root.eulerAngle(2)*_RAD2<<std::endl;
+                // std::cout<<"set_pitch*_RAD2"<<std::endl;
+                // std::cout<<set_pitch*_RAD2<<std::endl;
+                // std::cout<<"body_root.eulerAngle(1)*_RAD2"<<std::endl;
+                // std::cout<<body_root.eulerAngle(1)*_RAD2<<std::endl;
+                // std::cout<<"set_roll*_RAD2"<<std::endl;
+                // std::cout<<set_roll*_RAD2<<std::endl;
+                // std::cout<<"body_root.eulerAngle(2)*_RAD2"<<std::endl;
+                // std::cout<<body_root.eulerAngle(2)*_RAD2<<std::endl;
 
                 // leg_root.foot_cross_object_est=foot_cross_hight.sort(leg_root.foot_cross_object_est);
                 // std::cout<<"leg_root.foot_cross_object_est"<<std::endl;
                 // std::cout<<leg_root.foot_cross_object_est<<std::endl;
-                Eigen::Matrix<double, 1, 6> temp_hight;
+                Eigen::Matrix<double, 1, 6> temp_hight, temp_deepth;
                 temp_hight=foot_cross_hight.sort(leg_root.foot_cross_object_est);  //lcc 20230519:通过冒泡排序，将跨越高度提出来，将来用做机身高度调节
+                temp_deepth=foot_ditch_deepth.sort(leg_root.foot_ditch_deepth_est);  
                 // std::cout<<"foot_cross_hight.sort(leg_root.foot_cross_object_est)"<<std::endl;
-                // std::cout<<temp_hight<<std::endl;
+                std::cout<<temp_deepth<<std::endl;
 
 
                 set_z_deviation=deviation_conver[2].linearConvert(set_z_deviation, temp_hight(5), 10);
@@ -679,6 +679,7 @@ void Hexapod::parSeting(void)
                 FooTipAndBodAdjMap::fuselageDeviCtrl(set_x_deviation, set_y_deviation, set_z_deviation);
 
         #else
+                //lcc 这一块是手动控制模式，所有有姿态的调整接口;上面那一块是自适应控制模式;
                 //  lcc 20230330:机器人yaw,roll,pitch姿态的调整
                 _FooBodAdjMap[5].rrr_yaw=_FooBodAdjMap[5].YawLinTran.linearConvert(_FooBodAdjMap[5].rrr_yaw,set_yaw,120);
                 _FooBodAdjMap[5].rrr_roll=_FooBodAdjMap[5].RolLinTran.linearConvert(_FooBodAdjMap[5].rrr_roll,set_roll,120);

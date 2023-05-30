@@ -64,14 +64,14 @@ Eigen::Matrix<double,1,6> contact_detection_simple::swingphase_contact_est(Eigen
             }
     }
 
-    std::cout<<"footend_force"<<std::endl;
-    std::cout<<footend_force<<std::endl;
-    std::cout<<"plan_touch_down_scheduler"<<std::endl;
-    std::cout<<plan_touch_down_scheduler<<std::endl;
-    std::cout<<"contact_estimate_schedual"<<std::endl;
-    std::cout<<contact_estimate_schedual<<std::endl;
-    std::cout<<"leg_suportingphase_contact_est"<<std::endl;
-    std::cout<<leg_suportingphase_contact_est<<std::endl;
+    // std::cout<<"footend_force"<<std::endl;
+    // std::cout<<footend_force<<std::endl;
+    // std::cout<<"plan_touch_down_scheduler"<<std::endl;
+    // std::cout<<plan_touch_down_scheduler<<std::endl;
+    // std::cout<<"contact_estimate_schedual"<<std::endl;
+    // std::cout<<contact_estimate_schedual<<std::endl;
+    // std::cout<<"leg_suportingphase_contact_est"<<std::endl;
+    // std::cout<<leg_suportingphase_contact_est<<std::endl;
 
     // std::cout<<"leg_swingphase_contact_est"<<std::endl;
     // std::cout<<leg_swingphase_contact_est<<std::endl;

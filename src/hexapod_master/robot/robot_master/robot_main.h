@@ -113,7 +113,7 @@ class Hexapod:public RobotParam
         linear_trans attitude_conver[3];
         linear_trans deviation_conver[3];
 
-        BubbleSort foot_cross_hight;
+        BubbleSort foot_cross_hight, foot_ditch_deepth;
     public:
 
         /**
