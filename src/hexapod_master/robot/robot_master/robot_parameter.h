@@ -72,6 +72,8 @@ class RobotParam  //robot_param
             Eigen::Matrix<double,3,6> foot_dowmward_traj;      //　下探轨迹
             Eigen::Matrix<double,1,6> foot_cross_object_est;    //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
             Eigen::Matrix<double,1,6> foot_ditch_deepth_est;    //　
+            Eigen::Matrix<double,3,6> foot_lift_traj;    //　
+            Eigen::Matrix<double,3,6> foot_dowm_traj;    //　
 
             Eigen::Matrix<double,3,6> foot_trajectory;
             Eigen::Matrix<double,3,6> foot_traj_mapping_to_body;

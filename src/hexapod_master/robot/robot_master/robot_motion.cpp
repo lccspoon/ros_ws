@@ -39,43 +39,43 @@ void Hexapod::robHexapodWalk()
 Eigen::Vector3d static_pos;
 void Hexapod::setStandPose(void)
 {
-    // #if HARD_WARE==1
+    #if HARD_WARE==1
+        static_pos<< 6.5*0.01, 9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
+
+        static_pos<< 3.75*0.01, 9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
+
+        static_pos<< 1.5*0.01, 9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
+
+        static_pos<< 6.5*0.01, -9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
+
+        static_pos<< 3.75*0.01, -9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
+
+        static_pos<< 1.5*0.01, -9*0.01, -13.5*0.01;
+        leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
+    #elif HARD_WARE==2
         static_pos<< 6.5*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
 
         static_pos<< 4.25*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
 
-        static_pos<< 2*0.01, 9.5*0.01, -13.5*0.01;
+        static_pos<< 2*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
 
-        static_pos<< 6.5*0.01, -9.5*0.01, -13.5*0.01;
+        static_pos<< 6.5*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
 
-        static_pos<< 4.25*0.01, -10*0.01, -13.5*0.01;
+        static_pos<< 4.25*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
 
-        static_pos<< 2*0.01, -10*0.01, -13.5*0.01;
+        static_pos<< 2*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
-    // #elif HARD_WARE==2
-        // static_pos<< 6.5*0.01, 9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
-
-        // static_pos<< 4.25*0.01, 9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
-
-        // static_pos<< 2*0.01, 9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
-
-        // static_pos<< 6.5*0.01, -9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
-
-        // static_pos<< 4.25*0.01, -9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
-
-        // static_pos<< 2*0.01, -9*0.01, -13.5*0.01;
-        // leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
-    // #endif
+    #endif
     // test 
     // float x=7.3, y=18, z=17;
 

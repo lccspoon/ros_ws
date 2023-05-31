@@ -117,6 +117,38 @@ class linear_trans
             return data_;
         }
 
+        // Eigen::Matrix<double, 1, 6> linearConvert_Matrix_1_6(Eigen::Matrix<double, 1, 6> data_, Eigen::Matrix<double, 1, 6> set_,int cycle)
+        // {   
+        //     for (int i = 0; i < 6; i++)
+        //     {
+
+        //         if(_set_arr_last[i]!=set_(i))
+        //         {
+        //             _add_count_arr[i]=0;
+        //             _set_arr_last[i]=set_(i);
+        //         }
+
+        //         if(data_(i)!=set_(i))
+        //         {
+        //             if(_add_count_arr[i]==0)
+        //                 _last_arr[i]=data_(i);
+
+        //             data_(i)=_last_arr[i]+(set_(i)-_last_arr[i])*_add_count_arr[i]/cycle;
+        //             _add_count_arr[i]++;
+        //             _conver_done_flag=false;
+        //             if(_add_count_arr[i]==cycle)
+        //             {
+        //                 data_(i)=_last_arr[i]=set_(i);
+        //                 _add_count_arr[i]=0;
+        //                  _conver_done_flag=true;
+        //                 // printf("%d _data_last:%f data:%f set:%f \n",_add_count_arr[i],_last_arr[i],data_(i),set_(i));
+        //             }
+        //         }
+        //     }
+
+        //     return data_;
+        // }
+
         /**
         * @brief 
         * @author lcc

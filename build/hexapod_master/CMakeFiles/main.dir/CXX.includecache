@@ -230,6 +230,14 @@ iostream
 Eigen/Dense
 -
 
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.cpp
+robot_controller.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.h
+
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.h
+robot_main.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
+
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_kinematic.h
 robot_parameter.h
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
@@ -283,14 +291,6 @@ robot_parameter.h
 /home/lcc/ros_ws/src/hexapod_master/robot/hardware/hardware_bridge.h
 ../simulation/simulation_bridge.h
 /home/lcc/ros_ws/src/hexapod_master/robot/simulation/simulation_bridge.h
-
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.cpp
-robot_motion.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.h
-
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.h
-robot_main.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
 
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
 iostream

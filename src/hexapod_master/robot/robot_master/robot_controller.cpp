@@ -12,50 +12,139 @@
 Eigen::Matrix<double,3,6>  joi_des_pos_vice;
 Eigen::Matrix<double,1,6>  swing_touch_leg_number;//
 Eigen::Matrix<double,1,6>  suporting_slip_leg_number;//
-Eigen::Matrix<double,3,6>  foot_lift_traj;
-Eigen::Matrix<double,3,6>  foot_dowm_traj;
+// Eigen::Matrix<double,3,6>  foot_lift_traj;
+// Eigen::Matrix<double,3,6>  foot_dowm_traj;
+
 int down_stage_flag=0;
 int down_stage_switching_flag=0;
 int down_stage_count=0;
-linear_trans foot_dowmward_traj_res[6];
-void Hexapod::adaptive_control(void)
+linear_trans foot_dowmward_traj_res[6],ditch_res[6];
+
+int lift_stage_flag=0;
+int lift_stage_switching_flag=0;
+int lift_stage_count=0;
+linear_trans lift_dowmward_traj_res[6],object_res[6],foot_lift_traj_res[6];
+
+void Hexapod::liftReaction(void)
 {
     //----  以下是抬升反应 ----//
-    // for (int i = 0; i < 6; i++)
-    // {
-    //     if(ContactSimple.leg_swingphase_contact_est(i)==1)  //lcc 
-    //     {
-    //         swing_touch_leg_number(i)=1;
-    //     }
-    //     if(swing_touch_leg_number(i)==1) 
-    //     {     
-    //         // printf("swing_touch_leg_number:%d   inininini\n",swing_touch_leg_number(0));
-    //         _Cpg.cpg_stop_flag=1;
+    for (int i = 0; i < 6; i++)
+    {
+        if(ContactSimple.leg_swingphase_contact_est(i)==1)  //lcc 
+        {
+            swing_touch_leg_number(i)=1;
+        }
+        if(swing_touch_leg_number(i)==1  && lift_stage_switching_flag==0) 
+        {  
+            // printf("swing_touch_leg_number:%d   inininini\n",swing_touch_leg_number(0));
+            _Cpg.cpg_stop_flag=1;
 
-    //         leg_root.foot_cross_traj.block<3,1>(0,i)= foot_lift_traj.block<3,1>(0,i)+
-    //                             _LagrangeInterpolator[i].liftLegOne_cm(0.001, 0.25, _SimpleScheduler[i].retSimpleScheduler(1, 0.1) );
+            leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
+                                _LagrangeInterpolator[i].liftLegOne_cm(0.01, 0.5, _SimpleScheduler[i].retSimpleScheduler(1, 0.05) );
 
-    //         leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
+            leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
 
-    //         if(_SimpleScheduler[i].retTime()==1)
-    //         {   
-    //             foot_lift_traj.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i);  // 这个变量用于累加腿的抬升高度
-    //             leg_root.foot_cross_object_est(i)=foot_lift_traj(2,i);  //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
+            if(_SimpleScheduler[i].retTime()==1)
+            {   
+                leg_root.foot_lift_traj.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i);  // 这个变量用于累加腿的抬升高度
+                leg_root.foot_cross_object_est(i)=leg_root.foot_lift_traj(2,i);  //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
                 
-    //             _SimpleScheduler[i].reSet();
-    //             swing_touch_leg_number(i)=0;
-    //             _Cpg.cpg_stop_flag=0;
-    //         }
-    //     }
-    //     else 
-    //     {   
-    //         leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-    //     }
-    // }
+                _SimpleScheduler[i].reSet();
+                swing_touch_leg_number(i)=0;
+                _Cpg.cpg_stop_flag=0;
+            }
 
-    // std::cout<<"leg_root.foot_swing_traj: "<<std::endl;
-    // std::cout<<leg_root.foot_swing_traj<<std::endl;
+            //调整摆动轨迹，去跨过去障碍
+            // lamdaX=[10, -20, 10, 10, 10, 10, 10, 10, 40];
+            // lamdaY=[10, 10, 1, 30, 30, 10, 60, 30, 10];
+            // for (int i = 0; i < 6; i++)
+            // {
+                // neur_bezier[i].lamdaX(0)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(0), 10, 50);
+                // neur_bezier[i].lamdaX(1)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(1), -20, 50);
+                // neur_bezier[i].lamdaX(2)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(2), 10, 50);
+                // neur_bezier[i].lamdaX(3)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(3), 10, 50);
+                // neur_bezier[i].lamdaX(4)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(4), 10, 50);
+                // neur_bezier[i].lamdaX(5)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(5), 10, 50);
+                // neur_bezier[i].lamdaX(6)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(6), 10, 50);
+                // neur_bezier[i].lamdaX(7)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(7), 10, 50);
+                // neur_bezier[i].lamdaX(8)=neur_bezier[i].lamdaX_conver.linearConvert( neur_bezier[i].lamdaX(8), 40, 50);
 
+                // neur_bezier[i].lamdaY(0)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(0), 10, 50);
+                // neur_bezier[i].lamdaY(1)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(1), 10, 50);
+                // neur_bezier[i].lamdaY(2)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(2), 1, 50);
+                // neur_bezier[i].lamdaY(3)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(3), 30, 50);
+                // neur_bezier[i].lamdaY(4)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(4), 30, 50);
+                // neur_bezier[i].lamdaY(5)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(5), 10, 50);
+                // neur_bezier[i].lamdaY(6)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(6), 60, 50);
+                // neur_bezier[i].lamdaY(7)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(7), 30, 50);
+                // neur_bezier[i].lamdaY(8)=neur_bezier[i].lamdaY_conver.linearConvert( neur_bezier[i].lamdaY(8), 10, 50);
+            // }
+            
+        }
+        else 
+        {   
+            leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
+        }
+    }
+
+    //　int lift_stage_flag=0;
+    // int lift_stage_switching_flag=0;
+    // int lift_stage_count=0;　
+    // linear_trans lift_dowmward_traj_res[6];
+    // 如果所有腿抬高都超过了2cm
+    if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01 &&  fabs( leg_root.foot_cross_traj(2,1) )>1*0.01 && fabs( leg_root.foot_cross_traj(2,2) )>1*0.01 &&
+        fabs( leg_root.foot_cross_traj(2,3) )>1*0.01 &&  fabs( leg_root.foot_cross_traj(2,4) )>1*0.01 && fabs( leg_root.foot_cross_traj(2,5) )>1*0.01 )
+    {
+        lift_stage_count++;
+        if(lift_stage_count>= int(1/set_cpg_ctrl_cycle)*2  ) //如果在运行超过1个周期
+        {
+            lift_stage_flag=1; // 那么 down_stage_flag=1 即考虑让所有腿的　foot_dowmward_traj　都变回0;
+            lift_stage_count=0;
+        }
+        printf("lift_stage_count:%d\n",lift_stage_count);
+    }
+
+    if(lift_stage_flag==1) // 让所有腿的　foot_dowmward_traj　都变回0
+    {   
+        Eigen::Vector3d Zero;
+        Zero.setZero();
+        // Eigen::Matrix<double, 1, 6> ZZero;
+        // ZZero.setZero();
+        for(int i=0; i<6; i++)
+        {
+            lift_stage_switching_flag=1;
+
+            leg_root.foot_cross_traj.block<3,1>(0,i)=
+                        lift_dowmward_traj_res[i].linearConvert(leg_root.foot_cross_traj.block<3,1>(0,i),Zero, int(1/set_cpg_ctrl_cycle));
+
+            leg_root.foot_lift_traj.block<3,1>(0,i)=
+                        foot_lift_traj_res[i].linearConvert(leg_root.foot_lift_traj.block<3,1>(0,i), Zero, int(1/set_cpg_ctrl_cycle));
+
+            leg_root.foot_cross_object_est(i)=object_res[i].linearConvert(leg_root.foot_cross_object_est(i), 0, int(1/set_cpg_ctrl_cycle));
+
+            if( lift_dowmward_traj_res[0].retConvDoneFlag()==true && lift_dowmward_traj_res[1].retConvDoneFlag()==true &&
+            lift_dowmward_traj_res[2].retConvDoneFlag()==true && lift_dowmward_traj_res[3].retConvDoneFlag()==true &&
+            lift_dowmward_traj_res[4].retConvDoneFlag()==true && lift_dowmward_traj_res[5].retConvDoneFlag()==true )
+            {
+                lift_stage_switching_flag=0;
+                lift_stage_flag=0;
+                printf("  done! \n");
+
+            }
+        }
+
+        std::cout<<"leg_root.foot_cross_traj*100"<<std::endl;
+        std::cout<<leg_root.foot_cross_traj*100<<std::endl;
+
+        std::cout<<"leg_root.foot_cross_object_est*100"<<std::endl;
+        std::cout<<leg_root.foot_cross_object_est*100<<std::endl;
+
+    }
+
+}
+
+void Hexapod::dowmwardReaction(void)
+{
     //----  以下是下探反应 ----//
     for (int i = 0; i < 6; i++)
     {
@@ -75,15 +164,15 @@ void Hexapod::adaptive_control(void)
         if(suporting_slip_leg_number(i)==1 && down_stage_switching_flag==0) 
         {   
             _Cpg.cpg_stop_flag=1;
-            leg_root.foot_dowmward_traj.block<3,1>(0,i)= foot_dowm_traj.block<3,1>(0,i)+
+            leg_root.foot_dowmward_traj.block<3,1>(0,i)= leg_root.foot_dowm_traj.block<3,1>(0,i)+
                                     _LagrangeInterpolator[i].liftLegOne_cm(0.00001, -0.25, _SimpleScheduler[i].retSimpleScheduler(1, 0.1) );
 
             leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
 
             if(_SimpleScheduler[i].retTime()==1)
             {   
-                foot_dowm_traj.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i);  
-                leg_root.foot_ditch_deepth_est(i)=foot_dowm_traj(2,i);  
+                leg_root.foot_dowm_traj.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i);  
+                leg_root.foot_ditch_deepth_est(i)=leg_root.foot_dowm_traj(2,i);  
                 
                 _SimpleScheduler[i].reSet();
                 suporting_slip_leg_number(i)=0;
@@ -131,7 +220,7 @@ void Hexapod::adaptive_control(void)
             down_stage_switching_flag=1;
             leg_root.foot_dowmward_traj.block<3,1>(0,i)=
                         foot_dowmward_traj_res[i].linearConvert(leg_root.foot_dowmward_traj.block<3,1>(0,i),Zero, int(1/set_cpg_ctrl_cycle));
-            foot_dowm_traj.setZero();
+            leg_root.foot_dowm_traj.setZero();
             leg_root.foot_ditch_deepth_est.setZero();
 
             std::cout<<"leg_root.foot_dowmward_traj*100"<<std::endl;
@@ -150,24 +239,42 @@ void Hexapod::adaptive_control(void)
     }
 }
 
+void Hexapod::adaptive_control(void)
+{
+    // std::cout<<"leg_root.foot_swing_traj: "<<std::endl;
+    // std::cout<<leg_root.foot_swing_traj<<std::endl;
+    liftReaction();
+    // dowmwardReaction();
+}
+
 void Hexapod::trajectoryPlaning(void) 
 {
+    #if ONLY_Quadruped==1  //机器人不不可切换步态，仅仅可用四足步态
+        _Cpg.gait=_Cpg.GaitLinTran.linearConvert(_Cpg.gait,0.666,100); 
+        leg_root.foot_swing_traj.block<3,1>(0,0)=neur_bezier[0].bezierCurve(cpg_scheduler(0,4),cpg_scheduler(1,4) )*_FooBodAdjMap[0].step_amplitude;  
+        leg_root.foot_swing_traj.block<3,1>(0,1)=neur_bezier[1].bezierCurve(cpg_scheduler(0,3),cpg_scheduler(1,3) )*_FooBodAdjMap[1].step_amplitude;  
+        leg_root.foot_swing_traj.block<3,1>(0,2)=neur_bezier[2].bezierCurve(cpg_scheduler(0,5),cpg_scheduler(1,5) )*_FooBodAdjMap[2].step_amplitude;
+        leg_root.foot_swing_traj.block<3,1>(0,3)=neur_bezier[3].bezierCurve(cpg_scheduler(0,2),cpg_scheduler(1,2) )*_FooBodAdjMap[3].step_amplitude; 
+        leg_root.foot_swing_traj.block<3,1>(0,4)=neur_bezier[4].bezierCurve(cpg_scheduler(0,1),cpg_scheduler(1,1) )*_FooBodAdjMap[4].step_amplitude;
+        leg_root.foot_swing_traj.block<3,1>(0,5)=neur_bezier[5].bezierCurve(cpg_scheduler(0,0),cpg_scheduler(1,0) )*_FooBodAdjMap[5].step_amplitude;
+    #elif ONLY_Quadruped==0
         leg_root.foot_swing_traj.block<3,1>(0,0)=neur_bezier[0].bezierCurve(cpg_scheduler(0,3),cpg_scheduler(1,3) )*_FooBodAdjMap[0].step_amplitude;  
         leg_root.foot_swing_traj.block<3,1>(0,1)=neur_bezier[1].bezierCurve(cpg_scheduler(0,4),cpg_scheduler(1,4) )*_FooBodAdjMap[1].step_amplitude;  
         leg_root.foot_swing_traj.block<3,1>(0,2)=neur_bezier[2].bezierCurve(cpg_scheduler(0,5),cpg_scheduler(1,5) )*_FooBodAdjMap[2].step_amplitude;
         leg_root.foot_swing_traj.block<3,1>(0,3)=neur_bezier[3].bezierCurve(cpg_scheduler(0,2),cpg_scheduler(1,2) )*_FooBodAdjMap[3].step_amplitude; 
         leg_root.foot_swing_traj.block<3,1>(0,4)=neur_bezier[4].bezierCurve(cpg_scheduler(0,1),cpg_scheduler(1,1) )*_FooBodAdjMap[4].step_amplitude;
         leg_root.foot_swing_traj.block<3,1>(0,5)=neur_bezier[5].bezierCurve(cpg_scheduler(0,0),cpg_scheduler(1,0) )*_FooBodAdjMap[5].step_amplitude;
+    #endif
 
         // #if ADAPTIV_FLAG==1
-        //   adaptive_control();
+          adaptive_control();
         // #else
-            leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
-            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
+            // leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
+            // leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
+            // leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
+            // leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
+            // leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
+            // leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
         // #endif
 
         _FooBodAdjMap[0].setInitEndEfforeAndPBias

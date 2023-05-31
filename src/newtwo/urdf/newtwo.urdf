@@ -1943,12 +1943,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>
+            <mu2>5.0</mu2>
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>
+            <friction2>5.0</friction2>
           </bullet>
         </friction>
         <contact>
@@ -1977,12 +1977,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>
+            <mu2>5.0</mu2>
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>
+            <friction2>5.0</friction2>
           </bullet>
         </friction>
         <contact>
@@ -2011,12 +2011,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>
+            <mu2>5.0</mu2>
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>
+            <friction2>5.0</friction2>
           </bullet>
         </friction>
         <contact>
@@ -2045,12 +2045,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>
+            <mu2>5.0</mu2>
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>
+            <friction2>5.0</friction2>
           </bullet>
         </friction>
         <contact>
@@ -2079,12 +2079,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>
+            <mu2>5.0</mu2>
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>
+            <friction2>5.0</friction2>
           </bullet>
         </friction>
         <contact>
@@ -2100,6 +2100,7 @@
       </surface>
     </collision>
   </gazebo>
+  
   <gazebo reference="L3_4">
     <material>Gazebo/Black</material>
     <collision>
@@ -2113,12 +2114,12 @@
             <coefficient>0.3</coefficient>
           </torsional>
           <ode>
-            <mu>100.0</mu>
-            <mu2>50.0</mu2>
+            <mu>10.0</mu>   <!-- lcc 20230531: 调小了１０倍  -->
+            <mu2>5.0</mu2>   <!-- lcc 20230531: 调小了１０倍  -->
           </ode>
           <bullet>
-            <rolling_friction>0.3</rolling_friction>
-            <friction2>50.0</friction2>
+            <rolling_friction>0.03</rolling_friction>   <!-- lcc 20230531: 调小了１０倍  -->
+            <friction2>5.0</friction2>   <!-- lcc 20230531: 调小了１０倍  -->
           </bullet>
         </friction>
         <contact>
