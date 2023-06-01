@@ -21,13 +21,11 @@ class neural_bezier_curve
         int n=9;   //%% 控制点数 n  
         int layerNum=n-1;   //% n层神经网络能够控制n个位置点，n-1段曲线，所以有n-1个可控制参数
 
-        // double  Set_PX[9]={-3 , -2.5 , -1.5 , -0.5 , 0 , 0.5 , 1.5 , 2.5 , 3 };  //%%初始的轨迹图数据1
+        // double  Set_PX[9]={-3 , -2.5 , -1.5 , -0.5 , 0 , 0.5 , 1.5 , 2.5 , 3 };  //　之前一直用的轨迹
         // double  Set_PY[9]={0*2 , 1.5*2 , 2.5*2 , 3.5*2 , 4.5*2 , 3.5*2 , 2.5*2 , 1.5*2 , 0*2 };
 
-        double  Set_PX[9]={-3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3};  //%%初始的轨迹图数据1
+        double  Set_PX[9]={-3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3};  //可调整的轨迹
         double  Set_PY[9]={0 , 3 , 5 , 7 , 9 , 7 , 5 , 3 , 0 };
-        //   PX=[-3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3];  %%初始的轨迹图数据1
-        //   PY=[0 , 3 , 5 , 7 , 9 , 7 , 5 , 3 , 0 ];
 
         // double  Set_PX[9]={-3.75 ,-2.5, -2.3, 0, 1.25, 2.7, 3.75, 5.0, 3.75};  //论文轨迹
         // double  Set_PY[9]={0,4,8,7.5,4,8,6,2,0};
@@ -61,7 +59,7 @@ class neural_bezier_curve
         double height_k=1.3,length_k=1;
         double height_k_last=0,length_k_last=0;
 
-        linear_trans lamdaX_conver,lamdaY_conver;
+        linear_trans lamdaX_conver[9],lamdaY_conver[9];
 
         Eigen::Vector3d  bezierCurve(double _Cpg,double phase);
         

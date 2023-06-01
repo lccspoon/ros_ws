@@ -634,7 +634,7 @@ void Hexapod::parSeting(void)
 
         // std::cout<<"cpg_touch_down_scheduler"<<std::endl;
         // std::cout<<cpg_touch_down_scheduler<<std::endl;
-        if(t_test_key==1)
+        if(t_test_key==1 )
         {       
                 // 姿态控制,pid实现闭环姿态控制.
                 double roll, pitch;
@@ -651,7 +651,6 @@ void Hexapod::parSeting(void)
                 // if(set_roll>=35) set_roll=35;
                 // else if(set_roll<=-35) set_roll=-35;
 
-
                 // -- 以下是y轴转角的调整 --//
                 if(-body_root.eulerAngle(1)*_RAD2>=10) pitch=10*_RAD1;
                 else if(-body_root.eulerAngle(1)*_RAD2<=-10) pitch=-10*_RAD1;
@@ -663,23 +662,18 @@ void Hexapod::parSeting(void)
                 // if(set_pitch>=35) set_pitch=35;
                 // else if(set_pitch<=-35) set_pitch=-35;
 
-                Eigen::Matrix<double, 1, 6> temp_hight, temp_deepth;
-                temp_hight=foot_cross_hight.sort(leg_root.foot_cross_object_est);  //lcc 20230519:通过冒泡排序，将跨越高度提出来，将来用做机身高度调节
-                temp_deepth=foot_ditch_deepth.sort(leg_root.foot_ditch_deepth_est);  
-
-                set_z_deviation=deviation_conver[2].linearConvert(set_z_deviation, temp_hight(5)/2, 10);
-
-                std::cout<<"temp_hight"<<std::endl;
-                std::cout<<temp_hight<<std::endl;
-
-                // std::cout<<"temp_hight.sum()/3"<<std::endl;
-                // std::cout<<temp_hight.sum()/3<<std::endl;
-
                 for(int i=0; i<6; i++)
                 {
                         // if( cpg_touch_down_scheduler(i)==0 )  // cpg_touch_down_scheduler = 0 表示cpg_scheduler触地; 触地腿才可以参与姿态控制
                         {
+                                _FooBodAdjMap[i].rrr_yaw=_FooBodAdjMap[i].YawLinTran.linearConvert(_FooBodAdjMap[i].rrr_yaw,set_yaw,1);
+                                _FooBodAdjMap[i].rrr_roll=_FooBodAdjMap[i].RolLinTran.linearConvert(_FooBodAdjMap[i].rrr_roll,set_roll,1);
+                                _FooBodAdjMap[i].rrr_pitch=_FooBodAdjMap[i].PitLinTran.linearConvert(_FooBodAdjMap[i].rrr_pitch,set_pitch,1);
                                 _FooBodAdjMap[i].fuselageAttiuCtrl(set_yaw, set_roll, set_pitch);
+
+                                _FooBodAdjMap[i].x_deviation=_FooBodAdjMap[i].XdeLinTran.linearConvert(_FooBodAdjMap[i].x_deviation,set_x_deviation,1);
+                                _FooBodAdjMap[i].y_deviation=_FooBodAdjMap[i].YdeLinTran.linearConvert(_FooBodAdjMap[i].y_deviation,set_y_deviation,1);
+                                _FooBodAdjMap[i].z_deviation=_FooBodAdjMap[i].ZdeLinTran.linearConvert(_FooBodAdjMap[i].z_deviation,set_z_deviation,1);
                                 _FooBodAdjMap[i].fuselageDeviCtrl(set_x_deviation,set_y_deviation,set_z_deviation);    
                         }
                 }
@@ -703,6 +697,9 @@ void Hexapod::parSeting(void)
                         _FooBodAdjMap[i].fuselageDeviCtrl(_FooBodAdjMap[i].x_deviation,_FooBodAdjMap[i].y_deviation,_FooBodAdjMap[i].z_deviation);
                 }
         }
+
+        std::cout<<"set_z_deviation"<<std::endl;
+        std::cout<<set_z_deviation<<std::endl;
 
         // std::cout<<"set_pitch*_RAD2"<<std::endl;
         // std::cout<<set_pitch*_RAD2<<std::endl;

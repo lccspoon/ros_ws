@@ -44,6 +44,7 @@ class RobotParam  //robot_param
         double des_pos=0;
         
         int movement_mode;  //lcc 用不同的整数来表示机器人的运动模式
+        int adaptiv_init_flag=0;  //lcc 用不同的整数来表示机器人的运动模式
 
         Eigen::Matrix<double,2,6> cpg_scheduler;  //lcc 20230513: 第一行为x  ;第二行为y
         Eigen::Matrix<double,1,6> cpg_touch_down_scheduler;  //lcc 20230513: 其实就是cpg的y值

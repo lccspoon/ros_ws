@@ -58,23 +58,43 @@ void Hexapod::setStandPose(void)
         static_pos<< 1.5*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
     #elif HARD_WARE==2
+    
+        // static_pos<< 6.5*0.01, 9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
+
+        // static_pos<< 4.25*0.01, 9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
+
+        // static_pos<< 2*0.01, 9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
+
+        // static_pos<< 6.5*0.01, -9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
+
+        // static_pos<< 4.25*0.01, -9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
+
+        // static_pos<< 2*0.01, -9*0.01, -13.5*0.01;
+        // leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
+
         static_pos<< 6.5*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
 
-        static_pos<< 4.25*0.01, 9*0.01, -13.5*0.01;
+        static_pos<< 3.75*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
 
-        static_pos<< 2*0.01, 9*0.01, -13.5*0.01;
+        static_pos<< 1.5*0.01, 9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
 
         static_pos<< 6.5*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
 
-        static_pos<< 4.25*0.01, -9*0.01, -13.5*0.01;
+        static_pos<< 3.75*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
 
-        static_pos<< 2*0.01, -9*0.01, -13.5*0.01;
+        static_pos<< 1.5*0.01, -9*0.01, -13.5*0.01;
         leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
+
     #endif
     // test 
     // float x=7.3, y=18, z=17;
@@ -507,6 +527,13 @@ void Hexapod::keyBoardControl(int key_value)
                                 set_para_init_flag=1;
                                 KEYBOARD_CONTINUE_MODE=0;
                                 // printf("\n ------------------------- \n");
+                            }
+                            break;
+                    case '`':
+                            {  
+                                adaptiv_init_flag=1;//lcc 20230601
+                                KEYBOARD_CONTINUE_MODE=0;   //lcc : =0 表示只发送一次
+                                // printf("\n ------------------------- \n");,./
                             }
                             break;
                     default:{  
