@@ -531,7 +531,8 @@ void Hexapod::keyBoardControl(int key_value)
                             break;
                     case '`':
                             {  
-                                adaptiv_init_flag=1;//lcc 20230601
+                                lift_adaptiv_init_flag=1;//lcc 20230601
+                                dowm_adaptiv_init_flag=1;//lcc 20230601
                                 KEYBOARD_CONTINUE_MODE=0;   //lcc : =0 表示只发送一次
                                 // printf("\n ------------------------- \n");,./
                             }

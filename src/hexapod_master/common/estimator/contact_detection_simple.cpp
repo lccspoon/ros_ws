@@ -40,7 +40,7 @@ Eigen::Matrix<double,1,6> contact_detection_simple::swingphase_contact_est(Eigen
 
             //如果在cpg_touch_down_scheduler=1中认为腿摆动, 且contact_estimate_schedual=0即认为腿触碰，　
             //                                          且摆动轨迹的高度大于３cm　－＞  则认为摆动触碰，令leg_swingphase_contact_est＝１;
-            if(plan_touch_down_scheduler(i)==1 && contact_estimate_schedual(i)==0 && temp(2)>=2*0.01)
+            if(plan_touch_down_scheduler(i)==1 && contact_estimate_schedual(i)==0 && temp(2)>=3*0.01)
             {       
                     // printf("\n");
                     // printf("cpg_touch_down_scheduler(%d):%f contact_est_scheduler(%d):%f temp(2):%f \n",

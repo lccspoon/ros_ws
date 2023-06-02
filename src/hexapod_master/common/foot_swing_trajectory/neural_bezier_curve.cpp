@@ -127,7 +127,7 @@ Eigen::Vector3d  neural_bezier_curve::bezierCurve(double _Cpg,double phase)
         Postion[2]=YCOM_BM_*phase*1;
 
     // printf("Postion[0]:%f   Postion[2]:%f   _Cpg:%f  phase:%f  XCOM_BM_:%f  YCOM_BM_:%f  \n"
-                // ,Postion[0],Postion[2],_Cpg,phase,XCOM_BM_,YCOM_BM_);
+    //             ,Postion[0],Postion[2],_Cpg,phase,XCOM_BM_,YCOM_BM_);
     for (int i = 0; i < 3; i++)
     {
         Pos(i)=Postion[i];

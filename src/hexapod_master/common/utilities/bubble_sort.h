@@ -8,29 +8,48 @@ using namespace Eigen;
 
 class BubbleSort 
 {
-public:
-        MatrixXd sort(MatrixXd matrix) 
-        {
-            int rows = matrix.rows();
-            int cols = matrix.cols();
 
-            for (int i = 0; i < rows; ++i) {
-                
-                
-                for (int j = 0; j < cols - 1; ++j) {
-                    for (int k = 0; k < cols - j - 1; ++k) {
-                        if (matrix(i, k) > matrix(i, k + 1)) {
-                            std::swap(matrix(i, k), matrix(i, k + 1));
+    private:
+    double data_record=0;
+
+    public:
+
+    MatrixXd sort(MatrixXd matrix) //lcc  传入一个固定维度的矩阵，返回排序后的矩阵
+    {
+        int rows = matrix.rows();
+        int cols = matrix.cols();
+
+        for (int i = 0; i < rows; ++i) {
+            
+            
+            for (int j = 0; j < cols - 1; ++j) {
+                for (int k = 0; k < cols - j - 1; ++k) {
+                    if (matrix(i, k) > matrix(i, k + 1)) {
+                        std::swap(matrix(i, k), matrix(i, k + 1));
 
 
-                            
-                        }
+                        
                     }
                 }
             }
-
-            return matrix;
         }
+        return matrix;
+    }
+
+    double sort_continuet(double data_in)  //lcc 一直传入数据，返回最大的数
+    {
+        if(data_record>=data_in) 
+        {
+            data_record=data_record;
+        }
+        else
+        {
+            data_record=data_in;
+        }
+
+        return data_record;       
+    }
+
 };
 
 // int main() {

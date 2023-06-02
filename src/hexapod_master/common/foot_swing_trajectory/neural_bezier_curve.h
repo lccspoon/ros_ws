@@ -21,15 +21,6 @@ class neural_bezier_curve
         int n=9;   //%% 控制点数 n  
         int layerNum=n-1;   //% n层神经网络能够控制n个位置点，n-1段曲线，所以有n-1个可控制参数
 
-        // double  Set_PX[9]={-3 , -2.5 , -1.5 , -0.5 , 0 , 0.5 , 1.5 , 2.5 , 3 };  //　之前一直用的轨迹
-        // double  Set_PY[9]={0*2 , 1.5*2 , 2.5*2 , 3.5*2 , 4.5*2 , 3.5*2 , 2.5*2 , 1.5*2 , 0*2 };
-
-        double  Set_PX[9]={-3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3};  //可调整的轨迹
-        double  Set_PY[9]={0 , 3 , 5 , 7 , 9 , 7 , 5 , 3 , 0 };
-
-        // double  Set_PX[9]={-3.75 ,-2.5, -2.3, 0, 1.25, 2.7, 3.75, 5.0, 3.75};  //论文轨迹
-        // double  Set_PY[9]={0,4,8,7.5,4,8,6,2,0};
-
         double  PX[9]={0};
         double  PY[9]={0};
         
@@ -55,6 +46,18 @@ class neural_bezier_curve
 
         double comb(double n,double m);
     public:
+
+        // double  Set_PX[9]={-3 , -2.5 , -1.5 , -0.5 , 0 , 0.5 , 1.5 , 2.5 , 3 };  //　之前一直用的轨迹
+        // double  Set_PY[9]={0*2 , 1.5*2 , 2.5*2 , 3.5*2 , 4.5*2 , 3.5*2 , 2.5*2 , 1.5*2 , 0*2 };
+
+
+        Matrix<double,1,9> Set_PX,Set_PY;
+        // double  Set_PX[9]={-3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3};  //可调整的轨迹
+        // double  Set_PY[9]={0 , 3 , 5 , 7 , 9 , 7 , 5 , 3 , 0 };
+
+        // double  Set_PX[9]={-3.75 ,-2.5, -2.3, 0, 1.25, 2.7, 3.75, 5.0, 3.75};  //论文轨迹
+        // double  Set_PY[9]={0,4,8,7.5,4,8,6,2,0};
+
         MatrixXd lamdaX,lamdaY;
         double height_k=1.3,length_k=1;
         double height_k_last=0,length_k_last=0;
@@ -70,7 +73,7 @@ class neural_bezier_curve
                  
                 for(int i=0;i<n;i++)
                 {
-                    PY[i]=Set_PY[i]*height_k;
+                    PY[i]=Set_PY(i)*height_k;
                     // printf("PY:%f ",PY[i]);
                 }
                 height_k_last=height_k;  
@@ -83,7 +86,7 @@ class neural_bezier_curve
             if(length_k_last!=length_k)
             {
                 for(int i=0;i<n;i++)
-                    PX[i]=Set_PX[i]*length_k;   
+                    PX[i]=Set_PX(i)*length_k;   
                 length_k_last=length_k;    
             }
         }
@@ -91,10 +94,13 @@ class neural_bezier_curve
         neural_bezier_curve()
         {
 
-            for(int i=0;i<n;i++)
+            Set_PX<< -3 ,-2.5, -2.3, -0.5, 1, 2.7, 3, 4.0, 3;  //输入单位cm
+            Set_PY<< 0 , 3 , 5 , 7 , 9 , 7 , 5 , 3 , 0 ;
+
+            for(int i=0;i<n;i++) //cm转m
             {
-                Set_PX[i]=Set_PX[i]*0.01;
-                Set_PY[i]=Set_PY[i]*0.01;
+                Set_PX(i)=Set_PX(i)*0.01;
+                Set_PY(i)=Set_PY(i)*0.01;
             }
 
             kX.resize(1,n);

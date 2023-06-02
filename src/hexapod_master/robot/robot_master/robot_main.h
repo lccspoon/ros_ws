@@ -40,7 +40,7 @@
 #define SEQ_CHOKE 2  // 1:开启时序阻塞，如果接收消息的时序不更新，那么就会让线程死在 Hexapod::recData()中等待时序更新  2：不开启时序阻塞
 #define DEBUG 0  // 1 在调试   ； 0 不调试
 #define ADAPTIV_FLAG 1  // 自适应控制算法　0 关   ； 1 开
-#define ONLY_Quadruped 1  // 只能用四足步态　0 关   ； 1 开
+#define ONLY_Quadruped 0  // 只能用四足步态　0 关   ； 1 开
 
 #define SIM_CTRL_MODE 1   // 仿真算法：1 -> position control  2-> pd control
 #define SIM_PROTECT 2 // 1:开启保护　　２：不保护
@@ -114,7 +114,10 @@ class Hexapod:public RobotParam
         linear_trans attitude_conver[3];
         linear_trans deviation_conver[3];
 
-        BubbleSort foot_cross_hight, foot_ditch_deepth;
+        BubbleSort foot_cross_hight_sort, foot_ditch_deepth_sort;
+        BubbleSort swing_traj_hight_sort[6], swing_traj_length_sort[6];
+
+        neural_bezier_curve neur_bezier_lift_curve[6];
     public:
 
         /**

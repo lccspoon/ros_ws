@@ -15,7 +15,7 @@ class simple_scheduler
         int flag1=0;
         int flag_stop=0;
     public:
-        double retSimpleScheduler(double T=1, double dt=0.01)
+        double retSimpleScheduler(double T=1, double dt=0.01)   //返回 0~T
         {
             if(flag_stop==0)
             {
@@ -52,9 +52,6 @@ class simple_scheduler
         }
         // simple_scheduler(/* args */);
         // ~simple_scheduler();
-
-
-
 
 };
 

@@ -299,6 +299,10 @@ void Hexapod::run(int argc, char *argv[])
                 pubMsgTopicName vel_ekf_pub("vel_ekf");
                 pubMsgTopicName pos_ekf_pub("pos_ekf");
 
+                //lcc 20230603
+                pubMsgTopicName foot_traj("foot_traj");
+                pubMsgTopicName cpg_pub("cpg_pub");
+
                 // ros::Rate rate(250);
         #endif  
 
@@ -380,9 +384,18 @@ void Hexapod::run(int argc, char *argv[])
                         staest_pos.msgPubRun(state.root_pos);
 
                         //xzb230512
-                        vel_legodom_pub.msgPubRun(vel_legodom);
-                        vel_ekf_pub.msgPubRun(vel_ekf);
-                        pos_ekf_pub.msgPubRun(pos_ekf);
+                        // vel_legodom_pub.msgPubRun(vel_legodom);
+                        // vel_ekf_pub.msgPubRun(vel_ekf);
+                        // pos_ekf_pub.msgPubRun(pos_ekf);
+
+                        //lcc 20230602
+                        Eigen::Vector3d teeempt;
+                        teeempt=leg_root.foot_trajectory.block<3,1>(0,0) ;
+                        foot_traj.msgPubRun( teeempt );
+
+                        Eigen::Vector3d cpg_temp;
+                        cpg_temp<< cpg_scheduler(0,0),cpg_scheduler(1,0),0;
+                        cpg_pub.msgPubRun(cpg_temp);
                 #endif
 
                 if(start_thread_flag)
@@ -601,6 +614,17 @@ void Hexapod::parSeting(void)
 
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人
 
+        // //lcc 得到轨迹的步高步长
+        for(int i=0; i<6; i++)
+        {
+                leg_root.step_hight(i)=swing_traj_hight_sort[i].sort_continuet( leg_root.foot_swing_traj(2,i) );
+                leg_root.step_length(i)=swing_traj_length_sort[i].sort_continuet( leg_root.foot_swing_traj(0,i) );
+        }
+        // std::cout<<"leg_root.step_hight"<<std::endl;      
+        // std::cout<<leg_root.step_hight<<std::endl;
+        // std::cout<<"leg_root.step_length"<<std::endl;      
+        // std::cout<<leg_root.step_length<<std::endl;
+
         if(set_para_init_flag==1)   //lcc 初始设置步长和步高的ｋ值
         {
                 set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
@@ -698,8 +722,8 @@ void Hexapod::parSeting(void)
                 }
         }
 
-        std::cout<<"set_z_deviation"<<std::endl;
-        std::cout<<set_z_deviation<<std::endl;
+        // std::cout<<"set_z_deviation"<<std::endl;
+        // std::cout<<set_z_deviation<<std::endl;
 
         // std::cout<<"set_pitch*_RAD2"<<std::endl;
         // std::cout<<set_pitch*_RAD2<<std::endl;

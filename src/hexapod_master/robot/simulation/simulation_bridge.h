@@ -93,6 +93,12 @@ class pubMsgTopicName
         msgPub.publish(msgTempArray);
     }
     
+    // void msgPubRun(double msg)
+    // {
+    //     msgTemp.data=msg;
+    //     msgPub.publish(msg);
+    // }
+
     void msgPubRun(Eigen::Matrix<double,3,1> msg_matrix)
     {
         msgTempArray.data={msg_matrix(0),msg_matrix(1),msg_matrix(2)};
