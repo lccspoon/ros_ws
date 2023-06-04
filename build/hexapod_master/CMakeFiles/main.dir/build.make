@@ -213,9 +213,22 @@ hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.s"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_utilities.cpp -o CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.s
 
+hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
+hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o: /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o"
+	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp
+
+hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.i"
+	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp > CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.i
+
+hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.s"
+	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp -o CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.s
+
 hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/scheduler/cpg_scheduler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/scheduler/cpg_scheduler.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.i: cmake_force
@@ -228,7 +241,7 @@ hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.s: cmake_f
 
 hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/scheduler/simple_scheduler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/scheduler/simple_scheduler.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.i: cmake_force
@@ -241,7 +254,7 @@ hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.s: cmak
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/neural_bezier_curve.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/neural_bezier_curve.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.i: cmake_force
@@ -254,7 +267,7 @@ hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_cu
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/lagrange_interpolator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/lagrange_interpolator.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpolator.cpp.i: cmake_force
@@ -267,7 +280,7 @@ hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/lagrange_interpo
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_and_map.cpp.i: cmake_force
@@ -280,7 +293,7 @@ hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/foo_and_bod_adj_
 
 hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.o: /home/lcc/ros_ws/src/hexapod_master/user/remote_monitor/keyboard_ctrl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/user/remote_monitor/keyboard_ctrl.cpp
 
 hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.i: cmake_force
@@ -293,7 +306,7 @@ hexapod_master/CMakeFiles/main.dir/user/remote_monitor/keyboard_ctrl.cpp.s: cmak
 
 hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.o: /home/lcc/ros_ws/src/hexapod_master/user/pd/pd_ctrl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/user/pd/pd_ctrl.cpp
 
 hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.i: cmake_force
@@ -306,7 +319,7 @@ hexapod_master/CMakeFiles/main.dir/user/pd/pd_ctrl.cpp.s: cmake_force
 
 hexapod_master/CMakeFiles/main.dir/user/main.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/user/main.cpp.o: /home/lcc/ros_ws/src/hexapod_master/user/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/main.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/user/main.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/user/main.cpp
 
 hexapod_master/CMakeFiles/main.dir/user/main.cpp.i: cmake_force
@@ -319,7 +332,7 @@ hexapod_master/CMakeFiles/main.dir/user/main.cpp.s: cmake_force
 
 hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o: /home/lcc/ros_ws/src/hexapod_master/user/ada_control/ada_control.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/user/ada_control/ada_control.cpp
 
 hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.i: cmake_force
@@ -332,7 +345,7 @@ hexapod_master/CMakeFiles/main.dir/user/ada_control/ada_control.cpp.s: cmake_for
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/utilities/protection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/utilities/protection.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/utilities/protection.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.i: cmake_force
@@ -345,7 +358,7 @@ hexapod_master/CMakeFiles/main.dir/common/utilities/protection.cpp.s: cmake_forc
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/utilities/linear_trans.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/utilities/linear_trans.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/utilities/linear_trans.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.i: cmake_force
@@ -358,7 +371,7 @@ hexapod_master/CMakeFiles/main.dir/common/utilities/linear_trans.cpp.s: cmake_fo
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/utilities/timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/utilities/timer.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/utilities/timer.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.i: cmake_force
@@ -371,7 +384,7 @@ hexapod_master/CMakeFiles/main.dir/common/utilities/timer.cpp.s: cmake_force
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/utilities/pid_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/utilities/pid_controller.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/utilities/pid_controller.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.i: cmake_force
@@ -384,7 +397,7 @@ hexapod_master/CMakeFiles/main.dir/common/utilities/pid_controller.cpp.s: cmake_
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/utilities/bubble_sort.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/utilities/bubble_sort.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.i: cmake_force
@@ -397,7 +410,7 @@ hexapod_master/CMakeFiles/main.dir/common/utilities/bubble_sort.cpp.s: cmake_for
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/estimator/state_estimator_yxy.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/estimator/state_estimator_yxy.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.i: cmake_force
@@ -410,7 +423,7 @@ hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_yxy.cpp.s: c
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/estimator/state_estimator_simple.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/estimator/state_estimator_simple.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.i: cmake_force
@@ -423,7 +436,7 @@ hexapod_master/CMakeFiles/main.dir/common/estimator/state_estimator_simple.cpp.s
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/estimator/contact_detection_simple.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/estimator/contact_detection_simple.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp.i: cmake_force
@@ -436,7 +449,7 @@ hexapod_master/CMakeFiles/main.dir/common/estimator/contact_detection_simple.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.o: hexapod_master/CMakeFiles/main.dir/flags.make
 hexapod_master/CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.o: /home/lcc/ros_ws/src/hexapod_master/common/estimator/xzb_leg_odometer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object hexapod_master/CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.o"
 	cd /home/lcc/ros_ws/build/hexapod_master && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.o -c /home/lcc/ros_ws/src/hexapod_master/common/estimator/xzb_leg_odometer.cpp
 
 hexapod_master/CMakeFiles/main.dir/common/estimator/xzb_leg_odometer.cpp.i: cmake_force
@@ -461,6 +474,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/robot/robot_master/robot_main.cpp.o" \
 "CMakeFiles/main.dir/robot/robot_master/robot_motion.cpp.o" \
 "CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.o" \
+"CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o" \
 "CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o" \
 "CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o" \
 "CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o" \
@@ -495,6 +509,7 @@ main_EXTERNAL_OBJECTS =
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_main.cpp.o
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_motion.cpp.o
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.o
+/home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/common/scheduler/cpg_scheduler.cpp.o
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/common/scheduler/simple_scheduler.cpp.o
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/common/foot_swing_trajectory/neural_bezier_curve.cpp.o
@@ -533,7 +548,7 @@ main_EXTERNAL_OBJECTS =
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/lcc/ros_ws/devel/lib/hexapod_master/main: hexapod_master/CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable /home/lcc/ros_ws/devel/lib/hexapod_master/main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lcc/ros_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Linking CXX executable /home/lcc/ros_ws/devel/lib/hexapod_master/main"
 	cd /home/lcc/ros_ws/build/hexapod_master && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

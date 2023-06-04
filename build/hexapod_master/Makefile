@@ -1472,6 +1472,33 @@ robot/robot_master/robot_kinematic.cpp.s:
 	cd /home/lcc/ros_ws/build && $(MAKE) -f hexapod_master/CMakeFiles/main.dir/build.make hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_kinematic.cpp.s
 .PHONY : robot/robot_master/robot_kinematic.cpp.s
 
+robot/robot_master/robot_lift_dowm_relex.o: robot/robot_master/robot_lift_dowm_relex.cpp.o
+
+.PHONY : robot/robot_master/robot_lift_dowm_relex.o
+
+# target to build an object file
+robot/robot_master/robot_lift_dowm_relex.cpp.o:
+	cd /home/lcc/ros_ws/build && $(MAKE) -f hexapod_master/CMakeFiles/main.dir/build.make hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o
+.PHONY : robot/robot_master/robot_lift_dowm_relex.cpp.o
+
+robot/robot_master/robot_lift_dowm_relex.i: robot/robot_master/robot_lift_dowm_relex.cpp.i
+
+.PHONY : robot/robot_master/robot_lift_dowm_relex.i
+
+# target to preprocess a source file
+robot/robot_master/robot_lift_dowm_relex.cpp.i:
+	cd /home/lcc/ros_ws/build && $(MAKE) -f hexapod_master/CMakeFiles/main.dir/build.make hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.i
+.PHONY : robot/robot_master/robot_lift_dowm_relex.cpp.i
+
+robot/robot_master/robot_lift_dowm_relex.s: robot/robot_master/robot_lift_dowm_relex.cpp.s
+
+.PHONY : robot/robot_master/robot_lift_dowm_relex.s
+
+# target to generate assembly for a file
+robot/robot_master/robot_lift_dowm_relex.cpp.s:
+	cd /home/lcc/ros_ws/build && $(MAKE) -f hexapod_master/CMakeFiles/main.dir/build.make hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.s
+.PHONY : robot/robot_master/robot_lift_dowm_relex.cpp.s
+
 robot/robot_master/robot_main.o: robot/robot_master/robot_main.cpp.o
 
 .PHONY : robot/robot_master/robot_main.o
@@ -1866,6 +1893,9 @@ help:
 	@echo "... robot/robot_master/robot_kinematic.o"
 	@echo "... robot/robot_master/robot_kinematic.i"
 	@echo "... robot/robot_master/robot_kinematic.s"
+	@echo "... robot/robot_master/robot_lift_dowm_relex.o"
+	@echo "... robot/robot_master/robot_lift_dowm_relex.i"
+	@echo "... robot/robot_master/robot_lift_dowm_relex.s"
 	@echo "... robot/robot_master/robot_main.o"
 	@echo "... robot/robot_master/robot_main.i"
 	@echo "... robot/robot_master/robot_main.s"

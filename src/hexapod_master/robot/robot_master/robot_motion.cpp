@@ -237,7 +237,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robGoAhead(0.45);
+                                            robGoAhead(1);
                                         // movement_mode=1;   //
                                         KEYBOARD_CONTINUE_MODE=1;
                                         // printf("\n wwwwwwwwwwwwwwwwwwwwww \n");
@@ -251,7 +251,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robGoBack(0.45);
+                                            robGoBack(1);
                                         KEYBOARD_CONTINUE_MODE=1;
                                         // printf("\n ssssssssssssssssssssssssssssss \n");
                                         
@@ -265,7 +265,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robGoLeft(0.45);
+                                            robGoLeft(1);
                                         KEYBOARD_CONTINUE_MODE=1;
                                         // printf("\n ssssssssssssssssssssssssssssss \n");
                             }
@@ -278,7 +278,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robGoRight(0.45);
+                                            robGoRight(1);
                                         KEYBOARD_CONTINUE_MODE=1;
                                         
                             }
@@ -291,7 +291,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robTurnRightAround(0.45);
+                                            robTurnRightAround(1);
                                         KEYBOARD_CONTINUE_MODE=1;
                             }
                             break;
@@ -303,7 +303,7 @@ void Hexapod::keyBoardControl(int key_value)
                                         _set_static_pos_conver[3].retConvDoneFlag() && 
                                         _set_static_pos_conver[4].retConvDoneFlag() && 
                                         _set_static_pos_conver[5].retConvDoneFlag() && stand_done_flag )
-                                            robTurnLeftAround(0.45);
+                                            robTurnLeftAround(1);
                                         KEYBOARD_CONTINUE_MODE=1;
                             }
                             break;
@@ -389,34 +389,71 @@ void Hexapod::keyBoardControl(int key_value)
 
                     case 'h':
                             {  
-                                set_step_hight_k=set_step_hight_k+0.1;
-                                if(set_step_hight_k<=0) set_step_hight_k=0;
-                                printf("set_step_hight_k:%f\n",set_step_hight_k);
+                                Eigen::Matrix<double,1,6> one;
+                                one.setOnes();
+                                leg_root.step_set_hight=leg_root.step_set_hight+one*0.25;
+                                for(int i=0; i<6; i++)
+                                {
+                                    if( leg_root.step_set_hight(i)<=0 )
+                                        leg_root.step_set_hight(i)=0;
+                                }
+
+                                // set_step_hight_k=set_step_hight_k+0.1;
+                                // if(set_step_hight_k<=0) set_step_hight_k=0;
+                                // printf("set_step_hight_k:%f\n",set_step_hight_k);
                                 KEYBOARD_CONTINUE_MODE=0;    //lcc : =0 表示只发送一次
                             }
                             break;
                     case 'j':
                             {  
-                                set_step_hight_k=set_step_hight_k-0.1;
-                                if(set_step_hight_k<=0) set_step_hight_k=0;
-                                printf("set_step_hight_k:%f\n",set_step_hight_k);
+
+                                Eigen::Matrix<double,1,6> one;
+                                one.setOnes();
+                                leg_root.step_set_hight=leg_root.step_set_hight-one*0.25;
+                                for(int i=0; i<6; i++)
+                                {
+                                    if( leg_root.step_set_hight(i)<=0 )
+                                        leg_root.step_set_hight(i)=0;
+                                }
+
+                                // set_step_hight_k=set_step_hight_k-0.1;
+                                // if(set_step_hight_k<=0) set_step_hight_k=0;
+                                // printf("set_step_hight_k:%f\n",set_step_hight_k);
                                 KEYBOARD_CONTINUE_MODE=0;    //lcc : =0 表示只发送一次
                             }
                             break;
 
                     case 'n':
-                            {  
-                                set_step_length_k=set_step_length_k+0.1;
-                                if(set_step_length_k<=0) set_step_length_k=0;
-                                printf("set_step_length_k:%f\n",set_step_length_k);
+                            {
+                                Eigen::Matrix<double,1,6> one;
+                                one.setOnes();
+                                leg_root.step_set_length=leg_root.step_set_length+one*0.25;
+                                for(int i=0; i<6; i++)
+                                {
+                                    if( leg_root.step_set_length(i)<=0 )
+                                        leg_root.step_set_length(i)=0;
+                                }
+
+                                // set_step_length_k=set_step_length_k+0.1;
+                                // if(set_step_length_k<=0) set_step_length_k=0;
+                                // printf("set_step_length_k:%f\n",set_step_length_k);
                                 KEYBOARD_CONTINUE_MODE=0;    //lcc : =0 表示只发送一次
                             }
                             break;
                     case 'm':
                             {  
-                                set_step_length_k=set_step_length_k-0.1;
-                                if(set_step_length_k<=0) set_step_length_k=0;
-                                printf("set_step_length_k:%f\n",set_step_length_k);
+
+                                Eigen::Matrix<double,1,6> one;
+                                one.setOnes();
+                                leg_root.step_set_length=leg_root.step_set_length-one*0.25;
+                                for(int i=0; i<6; i++)
+                                {
+                                    if( leg_root.step_set_length(i)<=0 )
+                                        leg_root.step_set_length(i)=0;
+                                }
+                                // set_step_length_k=set_step_length_k-0.1;
+                                // if(set_step_length_k<=0) set_step_length_k=0;
+                                // printf("set_step_length_k:%f\n",set_step_length_k);
                                 KEYBOARD_CONTINUE_MODE=0;    //lcc : =0 表示只发送一次
                             }
                             break;

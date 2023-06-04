@@ -115,7 +115,8 @@ class Hexapod:public RobotParam
         linear_trans deviation_conver[3];
 
         BubbleSort foot_cross_hight_sort, foot_ditch_deepth_sort;
-        BubbleSort swing_traj_hight_sort[6], swing_traj_length_sort[6];
+        BubbleSort get_original_step_higtt_sort[6], get_original_step_length_sort[6];
+        BubbleSort get_des_step_hight_sort[6], get_des_step_length_sort[6];
 
         neural_bezier_curve neur_bezier_lift_curve[6];
     public:
@@ -128,12 +129,20 @@ class Hexapod:public RobotParam
         int  joint_pos_run_count=0,motor_pos_set_count=0,motor_pos_ach_count_flag=0;
         int  t_test_key=0;
         void run(int argc, char *argv[]);
-        void parSeting(void);
         void recData();
         void recDataHandling(void);
         void msgShow(void);
         void simMsgPub(void);
         void realRobMsgPub(void);
+
+        /**
+        * @brief 以下接口声明了机器人的参数设置函数
+        * @author lcc
+        */
+        void parSeting(void);
+        void parInit(void);
+        void setStepSize();
+
 
         /**
         * @brief 以下接口声明了机器人的控制函数

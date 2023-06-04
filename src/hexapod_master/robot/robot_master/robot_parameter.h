@@ -35,7 +35,8 @@ class RobotParam  //robot_param
 
         double set_x_deviation=0, set_y_deviation=0, set_z_deviation=0; 
         double set_yaw=0, set_roll=0, set_pitch=0;
-        double set_step_length_k=0,set_step_hight_k=0;
+        Eigen::Matrix<double,1,6> set_step_hight_k;
+        Eigen::Matrix<double,1,6> set_step_length_k;
         double set_cpg_ctrl_cycle=0;
         double set_para_init_flag=1;
         double step_length=0;
@@ -80,8 +81,12 @@ class RobotParam  //robot_param
             Eigen::Matrix<double,3,6> foot_trajectory;
             Eigen::Matrix<double,3,6> foot_traj_mapping_to_body;
 
-            Eigen::Matrix<double,1,6> step_length; 
-            Eigen::Matrix<double,1,6> step_hight; 
+            Eigen::Matrix<double,1,6> step_set_length; 
+            Eigen::Matrix<double,1,6> step_set_hight; 
+            // Eigen::Matrix<double,1,6> step_des_length; 
+            // Eigen::Matrix<double,1,6> step_des_hight; 
+            Eigen::Matrix<double,1,6> step_original_length; 
+            Eigen::Matrix<double,1,6> step_original_hight; 
         }leg_root;
 
         struct body_root

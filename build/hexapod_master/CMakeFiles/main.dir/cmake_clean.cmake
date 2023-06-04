@@ -21,6 +21,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/robot/main_helper.cpp.o"
   "CMakeFiles/main.dir/robot/robot_master/robot_controller.cpp.o"
   "CMakeFiles/main.dir/robot/robot_master/robot_kinematic.cpp.o"
+  "CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o"
   "CMakeFiles/main.dir/robot/robot_master/robot_main.cpp.o"
   "CMakeFiles/main.dir/robot/robot_master/robot_motion.cpp.o"
   "CMakeFiles/main.dir/robot/robot_master/robot_parameter.cpp.o"

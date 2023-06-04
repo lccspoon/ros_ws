@@ -11,6 +11,7 @@ class BubbleSort
 
     private:
     double data_record=0;
+    int count=0;
 
     public:
 
@@ -38,17 +39,36 @@ class BubbleSort
 
     double sort_continuet(double data_in)  //lcc 一直传入数据，返回最大的数
     {
-        if(data_record>=data_in) 
+
+        // if( fabs(data_record-data_in)<=0.1 * 0.01 ) 
+        // {
+        //     data_record=data_record;
+        //     // count++;
+        // }
+        // else 
+        if(data_record>data_in) 
         {
             data_record=data_record;
+            // count=0;
         }
         else
         {
             data_record=data_in;
+            // count=0;
         }
-
+        // printf("count:%d\n",count);
         return data_record;       
     }
+
+    // int ret_sort_continuet_max_flag(void)
+    // {
+    //     int fff=0;
+    //     if(count>=20)
+    //     {
+    //         fff=1;
+    //     }    
+    //     return fff;
+    // }
 
 };
 

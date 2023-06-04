@@ -59,7 +59,7 @@ class neural_bezier_curve
         // double  Set_PY[9]={0,4,8,7.5,4,8,6,2,0};
 
         MatrixXd lamdaX,lamdaY;
-        double height_k=1.3,length_k=1;
+        double height_k=1,length_k=1;
         double height_k_last=0,length_k_last=0;
 
         linear_trans lamdaX_conver[9],lamdaY_conver[9];

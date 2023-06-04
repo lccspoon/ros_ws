@@ -196,6 +196,7 @@ robot/robot_master/robot_controller.cpp
 robot/robot_master/robot_main.cpp 
 robot/robot_master/robot_motion.cpp     
 robot/robot_master/robot_utilities.cpp 
+robot/robot_master/robot_lift_dowm_relex.cpp 
 
 common/scheduler/cpg_scheduler.cpp
 common/scheduler/simple_scheduler.cpp

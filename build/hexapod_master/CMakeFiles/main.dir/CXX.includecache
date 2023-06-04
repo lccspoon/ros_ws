@@ -230,14 +230,6 @@ iostream
 Eigen/Dense
 -
 
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.cpp
-robot_controller.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.h
-
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.h
-robot_main.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
-
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_kinematic.h
 robot_parameter.h
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
@@ -292,6 +284,12 @@ robot_parameter.h
 ../simulation/simulation_bridge.h
 /home/lcc/ros_ws/src/hexapod_master/robot/simulation/simulation_bridge.h
 
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.cpp
+robot_parameter.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
+robot_main.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
+
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
 iostream
 -
@@ -307,6 +305,24 @@ Eigen/Dense
 /home/lcc/ros_ws/src/hexapod_master/common/foot_swing_trajectory/foo_and_bod_adj_and_map.h
 ../../user/remote_monitor/keyboard_ctrl.h
 /home/lcc/ros_ws/src/hexapod_master/user/remote_monitor/keyboard_ctrl.h
+
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_runner.cpp
+robot_runner.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_runner.h
+iostream
+-
+fstream
+-
+iomanip
+-
+eigen3/Eigen/Core
+-
+Eigen/Dense
+-
+
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_runner.h
+robot_main.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
 
 /home/lcc/ros_ws/src/hexapod_master/robot/simulation/simulation_bridge.h
 ros/ros.h

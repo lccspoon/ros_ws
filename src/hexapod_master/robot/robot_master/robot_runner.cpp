@@ -606,58 +606,14 @@ void Hexapod::parSeting(void)
 
         #if HARD_WARE==1
                 _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数
-                _Cpg.T=_Cpg.TLinTran.linearConvert(_Cpg.T,1,180);
         #elif HARD_WARE==2
                 _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
         #endif
-        //  std::cout<<_Cpg.control_cycle<<std::endl;
 
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人
+        parInit();
+        setStepSize();  // 设置步长和步高
 
-        // //lcc 得到轨迹的步高步长
-        for(int i=0; i<6; i++)
-        {
-                leg_root.step_hight(i)=swing_traj_hight_sort[i].sort_continuet( leg_root.foot_swing_traj(2,i) );
-                leg_root.step_length(i)=swing_traj_length_sort[i].sort_continuet( leg_root.foot_swing_traj(0,i) );
-        }
-        // std::cout<<"leg_root.step_hight"<<std::endl;      
-        // std::cout<<leg_root.step_hight<<std::endl;
-        // std::cout<<"leg_root.step_length"<<std::endl;      
-        // std::cout<<leg_root.step_length<<std::endl;
-
-        if(set_para_init_flag==1)   //lcc 初始设置步长和步高的ｋ值
-        {
-                set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
-                set_yaw=0; set_roll=0; set_pitch=0;
-                set_step_length_k=1.1;
-                set_step_hight_k=1.3;
-                set_para_init_flag=0;
-                #if HARD_WARE==1
-                        set_cpg_ctrl_cycle=0.0025;
-                #elif HARD_WARE==2
-                        set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
-                #endif
-                printf("init\n");
-
-                cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
-        }
-        
-        neur_bezier[0].length_k=_step_length_k_conver[0].linearConvert(neur_bezier[0].length_k,set_step_length_k,60);
-        neur_bezier[1].length_k=_step_length_k_conver[1].linearConvert(neur_bezier[1].length_k,set_step_length_k,60);
-        neur_bezier[2].length_k=_step_length_k_conver[2].linearConvert(neur_bezier[2].length_k,set_step_length_k,60);
-        neur_bezier[3].length_k=_step_length_k_conver[3].linearConvert(neur_bezier[3].length_k,set_step_length_k,60);
-        neur_bezier[4].length_k=_step_length_k_conver[4].linearConvert(neur_bezier[4].length_k,set_step_length_k,60);
-        neur_bezier[5].length_k=_step_length_k_conver[5].linearConvert(neur_bezier[5].length_k,set_step_length_k,60);
-
-        neur_bezier[0].height_k=_step_hight_k_conver[0].linearConvert(neur_bezier[0].height_k,set_step_hight_k,60);
-        neur_bezier[1].height_k=_step_hight_k_conver[1].linearConvert(neur_bezier[1].height_k,set_step_hight_k,60);
-        neur_bezier[2].height_k=_step_hight_k_conver[2].linearConvert(neur_bezier[2].height_k,set_step_hight_k,60);
-        neur_bezier[3].height_k=_step_hight_k_conver[3].linearConvert(neur_bezier[3].height_k,set_step_hight_k,60);
-        neur_bezier[4].height_k=_step_hight_k_conver[4].linearConvert(neur_bezier[4].height_k,set_step_hight_k,60);
-        neur_bezier[5].height_k=_step_hight_k_conver[5].linearConvert(neur_bezier[5].height_k,set_step_hight_k,60);
-
-        // std::cout<<"cpg_touch_down_scheduler"<<std::endl;
-        // std::cout<<cpg_touch_down_scheduler<<std::endl;
         if(t_test_key==1 )
         {       
                 // 姿态控制,pid实现闭环姿态控制.
