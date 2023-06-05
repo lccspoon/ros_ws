@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="new"  xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- Import all Gazebo elements -->
+  <!-- <xacro:include filename="$(find new)/xacro/const.xacro" /> -->
+  <xacro:include filename="$(find new)/xacro/robot.xacro" />
+  <xacro:include filename="$(find new)/xacro/gazebo.xacro" />
+  <xacro:include filename="$(find new)/xacro/transmission.xacro" />
+  <!-- <xacro:include filename="$(find new)/xacro/sensor.xacro" />  -->
+  <!-- <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" /> -->
+
+</robot>

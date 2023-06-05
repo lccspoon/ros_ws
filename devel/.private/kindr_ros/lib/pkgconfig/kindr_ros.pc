@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/kindr_ros
+
+Name: kindr_ros
+Description: Description of kindr_ros
+Version: 0.3.10
+Cflags: -I/home/zyt/zyt_0526/src/kindr_ros/kindr_ros/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs tf kindr

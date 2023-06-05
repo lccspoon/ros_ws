@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/elevation_mapping
+
+Name: elevation_mapping
+Description: Description of elevation_mapping
+Version: 0.7.14
+Cflags: -I/home/zyt/zyt_0526/src/elevation_mapping/elevation_mapping/include -I/usr/include
+Libs: -L${prefix}/lib -lelevation_mapping_library /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
+Requires: eigen_conversions grid_map_core grid_map_ros grid_map_msgs kindr kindr_ros message_filters message_logger pcl_ros roscpp sensor_msgs std_msgs tf tf_conversions

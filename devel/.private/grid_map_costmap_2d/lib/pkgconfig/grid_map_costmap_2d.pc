@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/grid_map_costmap_2d
+
+Name: grid_map_costmap_2d
+Description: Description of grid_map_costmap_2d
+Version: 1.7.5
+Cflags: -I/home/zyt/zyt_0526/src/grid_map/grid_map_costmap_2d/include
+Libs: -L${prefix}/lib 
+Requires: grid_map_core costmap_2d tf

@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/traversability_estimation
+
+Name: traversability_estimation
+Description: Description of traversability_estimation
+Version: 0.4.0
+Cflags: -I/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include
+Libs: -L${prefix}/lib -ltraversability_estimation
+Requires: grid_map_ros grid_map_core grid_map_msgs grid_map_filters roscpp tf tf_conversions traversability_estimation_filters traversability_msgs std_msgs geometry_msgs sensor_msgs param_io xmlrpcpp

@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/kindr/share/kindr/cmake/kindrConfig-version.cmake

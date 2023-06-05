@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/traversability_estimation_filters
+
+Name: traversability_estimation_filters
+Description: Description of traversability_estimation_filters
+Version: 0.4.0
+Cflags: -I/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/include
+Libs: -L${prefix}/lib -ltraversability_estimation_filters
+Requires: grid_map_core grid_map_ros grid_map_msgs filters

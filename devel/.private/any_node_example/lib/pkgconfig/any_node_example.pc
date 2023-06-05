@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/any_node_example
+
+Name: any_node_example
+Description: Description of any_node_example
+Version: 0.5.0
+Cflags: -I/home/zyt/zyt_0526/src/any_node/any_node_example/include
+Libs: -L${prefix}/lib -lany_node_example
+Requires: any_node std_msgs

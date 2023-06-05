@@ -1,0 +1,6 @@
+[35m[1mScanning dependencies of target main[0m
+[  6%] Built target foothold_planner
+[ 12%] Built target test_foothold_planner
+[ 15%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_controller.cpp.o[0m
+[ 18%] [32m[1mLinking CXX executable /home/zyt/zyt_0526/devel/.private/hexapod_master/lib/hexapod_master/main[0m
+[100%] Built target main

@@ -1,0 +1,4 @@
+Symlinking /home/zyt/zyt_0526/devel/share/multi_dof_joint_trajectory_rviz_plugins/cmake/multi_dof_joint_trajectory_rviz_pluginsConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/multi_dof_joint_trajectory_rviz_plugins/cmake/multi_dof_joint_trajectory_rviz_pluginsConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/libmulti_dof_joint_trajectory_rviz_plugins.so
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/multi_dof_joint_trajectory_rviz_plugins.pc

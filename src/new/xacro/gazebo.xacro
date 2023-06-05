@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="new"  xmlns:xacro="http://wiki.ros.org/xacro">
+<gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/new</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+</gazebo>
+
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+  	  <alwaysOn>true</alwaysOn>
+    	<bodyName>base_link</bodyName>
+    	<topicName>imu</topicName>
+    	<serviceName>imu_service</serviceName>
+    	<gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+    	<updateRate>500.0</updateRate>
+    </plugin>
+
+    <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>500.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>POS_COM</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+
+<gazebo>
+        <plugin name="3dplotTorso" filename="libLinkPlot3DPlugin.so">
+            <frequency>500</frequency>
+            <topicName>POS_COM</topicName>
+            <plot>
+             <link>base_link</link>
+             <pose>0 0 0 0 0 0</pose>
+             <material>Gazebo/Yellow</material>
+            </plot>
+        </plugin>
+
+        <!-- <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+          <alwaysOn>true</alwaysOn>
+          <bodyName>base_link</bodyName>
+          <topicName>imu</topicName>
+          <serviceName>imu_service</serviceName>
+          <gaussianNoise>0.0</gaussianNoise>
+          <frameName>base_link</frameName>
+          <xyzOffsets>0 0 0</xyzOffsets>
+          <rpyOffsets>0 0 0</rpyOffsets>
+          <updateRate>500.0</updateRate>
+        </plugin>
+
+        <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>500.0</updateRate>
+          <bodyName>base_link</bodyName>
+          <topicName>POS_COM</topicName>
+          <gaussianNoise>0.0</gaussianNoise>
+          <frameName>map</frameName>
+          <xyzOffsets>0 0 0</xyzOffsets>
+          <rpyOffsets>0 0 0</rpyOffsets>
+        </plugin> -->
+ </gazebo>
+
+ 
+
+<!-- Link setup-->
+  <!-- <xacro:macro name="link_setup_block" params="link_name">
+    <gazebo reference="${link_name}">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>0.6</mu1>
+      <mu2>0.6</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+  </xacro:macro>
+  <xacro:link_setup_block link_name="base_link"/>
+  <xacro:link_setup_block link_name="L1_1"/>
+  <xacro:link_setup_block link_name="L2_1"/>
+  <xacro:link_setup_block link_name="L3_1"/>
+  <xacro:link_setup_block link_name="R1_1"/>
+  <xacro:link_setup_block link_name="R2_1"/>
+  <xacro:link_setup_block link_name="R3_1"/>
+
+
+
+ <xacro:macro name="link_setup_block2" params="link_name">
+    <gazebo reference="${link_name}">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>0.6</mu1>
+      <mu2>0.6</mu2>
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
+  </xacro:macro>
+  <xacro:link_setup_block2 link_name="L1_2"/>
+  <xacro:link_setup_block2 link_name="L2_2"/>
+  <xacro:link_setup_block2 link_name="L3_2"/>
+  <xacro:link_setup_block2 link_name="R1_2"/>
+  <xacro:link_setup_block2 link_name="R2_2"/>
+  <xacro:link_setup_block2 link_name="R3_2"/>
+  <xacro:link_setup_block2 link_name="L1_3"/>
+  <xacro:link_setup_block2 link_name="L2_3"/>
+  <xacro:link_setup_block2 link_name="L3_3"/>
+  <xacro:link_setup_block2 link_name="R1_3"/>
+  <xacro:link_setup_block2 link_name="R2_3"/>
+  <xacro:link_setup_block2 link_name="R3_3"/>
+ -->
+
+  
+</robot>

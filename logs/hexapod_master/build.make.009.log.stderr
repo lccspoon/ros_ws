@@ -1,0 +1,4 @@
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:[m[K In function ‘[01m[Kvoid* TopicLisener(void*)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:57:9:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   57 |         [01;35m[K}[m[K
+      |         [01;35m[K^[m[K

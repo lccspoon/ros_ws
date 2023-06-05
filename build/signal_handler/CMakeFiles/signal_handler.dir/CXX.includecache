@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zyt/zyt_0526/src/any_node/signal_handler/include/signal_handler/SignalHandler.hpp
+csignal
+-
+functional
+-
+list
+-
+map
+-
+mutex
+-
+
+/home/zyt/zyt_0526/src/any_node/signal_handler/src/SignalHandler.cpp
+signal_handler/SignalHandler.hpp
+/home/zyt/zyt_0526/src/any_node/signal_handler/src/signal_handler/SignalHandler.hpp
+

@@ -1,0 +1,17 @@
+[  6%] Built target foothold_planner
+[ 12%] Built target test_foothold_planner
+[35m[1mScanning dependencies of target main[0m
+[ 15%] [32mBuilding CXX object CMakeFiles/main.dir/robot/main_helper.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_controller.cpp.o[0m
+[ 21%] [32mBuilding CXX object CMakeFiles/main.dir/robot/simulation/simulation_bridge.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_runner.cpp.o[0m
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:[m[K In function ‘[01m[Kvoid* TopicLisener(void*)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:57:9:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   57 |         [01;35m[K}[m[K
+      |         [01;35m[K^[m[K
+[ 34%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_utilities.cpp.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_motion.cpp.o[0m
+[ 34%] [32mBuilding CXX object CMakeFiles/main.dir/robot/robot_master/robot_main.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/main.dir/user/ada_control/ada_control.cpp.o[0m
+[ 40%] [32m[1mLinking CXX executable /home/zyt/zyt_0526/devel/.private/hexapod_master/lib/hexapod_master/main[0m
+[100%] Built target main

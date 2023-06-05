@@ -1,0 +1,5 @@
+Symlinking /home/zyt/zyt_0526/devel/share/traversability_estimation/cmake/traversability_estimationConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/traversability_estimation/cmake/traversability_estimationConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/libtraversability_estimation.so
+Symlinking /home/zyt/zyt_0526/devel/lib/traversability_estimation/traversability_estimation_node
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/traversability_estimation.pc

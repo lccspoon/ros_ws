@@ -1,0 +1,8 @@
+In file included from [01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_rviz_plugin/src/GridMapVisual.cpp:25[m[K:
+[01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_rviz_plugin/include/grid_map_rviz_plugin/GridMapColorMaps.hpp:67:33:[m[K [01;35m[Kwarning: [m[K‘[01m[Kstd::vector<std::__cxx11::basic_string<char> > grid_map_rviz_plugin::getColorMapNames()[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+   67 | static std::vector<std::string> [01;35m[KgetColorMapNames[m[K() {
+      |                                 [01;35m[K^~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_rviz_plugin/src/GridMapDisplay.cpp:11[m[K:
+[01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_rviz_plugin/include/grid_map_rviz_plugin/GridMapColorMaps.hpp:48:26:[m[K [01;35m[Kwarning: [m[K‘[01m[KOgre::ColourValue grid_map_rviz_plugin::getColorMap(float, const std::vector<std::vector<float> >&)[m[K’ defined but not used [[01;35m[K-Wunused-function[m[K]
+   48 | static Ogre::ColourValue [01;35m[KgetColorMap[m[K(float intensity, const std::vector<std::vector<float>>& ctable) {
+      |                          [01;35m[K^~~~~~~~~~~[m[K

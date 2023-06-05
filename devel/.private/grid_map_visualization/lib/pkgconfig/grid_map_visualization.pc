@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/grid_map_visualization
+
+Name: grid_map_visualization
+Description: Description of grid_map_visualization
+Version: 1.7.5
+Cflags: -I/home/zyt/zyt_0526/src/grid_map/grid_map_visualization/include
+Libs: -L${prefix}/lib 
+Requires: roscpp tf grid_map_core grid_map_ros grid_map_msgs visualization_msgs sensor_msgs nav_msgs

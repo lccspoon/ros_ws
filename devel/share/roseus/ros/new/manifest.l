@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/new/share/roseus/ros/new/manifest.l

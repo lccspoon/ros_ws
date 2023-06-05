@@ -1,0 +1,97 @@
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:[m[K In member function ‘[01m[Kvoid FootHoldPlanner::FootholdPlanner::gridmapCallback(grid_map_msgs::GridMap)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:35:9:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kvalidation[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   35 |    bool [01;35m[Kvalidation[m[K;
+      |         [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:[m[K In member function ‘[01m[Kvoid FootHoldPlanner::FootholdPlanner::odom_Callback(const ConstPtr&)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:42:14:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kodom_startTime[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   42 |      clock_t [01;35m[Kodom_startTime[m[K, odom_endTime;
+      |              [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:42:30:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kodom_endTime[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   42 |      clock_t odom_startTime, [01;35m[Kodom_endTime[m[K;
+      |                              [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:[m[K In member function ‘[01m[Kbool FootHoldPlanner::FootholdPlanner::checkFootholdUseCentroidMethod(grid_map::GridMap&, geometry_msgs::PointStamped)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:224:10:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KwholeRegionValid[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  224 |     bool [01;35m[KwholeRegionValid[m[K = false;
+      |          [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/foothold_planner.cpp:275:18:[m[K [01;35m[Kwarning: [m[Kthe address of ‘[01m[Kbool ros::ok()[m[K’ will never be NULL [[01;35m[K-Waddress[m[K]
+  275 |      while (ros::[01;35m[Kok[m[K)
+      |                  [01;35m[K^~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:[m[K In member function ‘[01m[Kvoid FootHoldPlanner::FootholdPlanner::odom_Callback(const ConstPtr&)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:14:14:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kodom_startTime[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   14 |      clock_t [01;35m[Kodom_startTime[m[K, odom_endTime;
+      |              [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:14:30:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kodom_endTime[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   14 |      clock_t odom_startTime, [01;35m[Kodom_endTime[m[K;
+      |                              [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:[m[K In member function ‘[01m[Kvoid FootHoldPlanner::FootholdPlanner::chatterCallback(const GridMap&)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:58:32:[m[K [01;35m[Kwarning: [m[Kleft operand of comma operator has no effect [[01;35m[K-Wunused-value[m[K]
+   58 |      std::string pointLayer = ([01;35m[K"elevation"[m[K, "upper_bound", "lower_bound") ;
+      |                                [01;35m[K^~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:58:60:[m[K [01;35m[Kwarning: [m[Kright operand of comma operator has no effect [[01;35m[K-Wunused-value[m[K]
+   58 |      std::string pointLayer = ("elevation", "upper_bound", [01;35m[K"lower_bound"[m[K) ;
+      |                                                            [01;35m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:50:13:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kchatter_startTime[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+   50 |     clock_t [01;35m[Kchatter_startTime[m[K, chatter_endTime;
+      |             [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:50:32:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kchatter_endTime[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   50 |     clock_t chatter_startTime, [01;35m[Kchatter_endTime[m[K;
+      |                                [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:70:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KsearchRadius_[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   70 |     double [01;35m[KsearchRadius_[m[K=0.1;
+      |            [01;35m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:77:10:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KisSuccess[m[K’ [[01;35m[K-Wunused-variable[m[K]
+   77 |     bool [01;35m[KisSuccess[m[K;
+      |          [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:[m[K In member function ‘[01m[Kvoid FootHoldPlanner::FootholdPlanner::foot_selection_part(grid_map::GridMap, grid_map::Position, grid_map::Position, grid_map::Length)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:174:18:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_step[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  174 |           double [01;35m[Ktemp_step[m[K = 0;
+      |                  [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:193:18:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Ktemp_step[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  193 |           double [01;35m[Ktemp_step[m[K = 0;
+      |                  [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:155:36:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmax_bump[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  155 |      double max_range_motion = 10, [01;35m[Kmax_bump[m[K, max_step, max_slope; //假设的最大运动范围
+      |                                    [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:155:46:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmax_step[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  155 |      double max_range_motion = 10, max_bump, [01;35m[Kmax_step[m[K, max_slope; //假设的最大运动范围
+      |                                              [01;35m[K^~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:155:56:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kmax_slope[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  155 |      double max_range_motion = 10, max_bump, max_step, [01;35m[Kmax_slope[m[K; //假设的最大运动范围
+      |                                                        [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:156:12:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdiff[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  156 |      float [01;35m[Kdiff[m[K = 1, crticle_val = 50;
+      |            [01;35m[K^~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/foothold/test_foothold_planner.cpp:427:18:[m[K [01;35m[Kwarning: [m[Kthe address of ‘[01m[Kbool ros::ok()[m[K’ will never be NULL [[01;35m[K-Waddress[m[K]
+  427 |      while (ros::[01;35m[Kok[m[K)
+      |                  [01;35m[K^~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:[m[K In function ‘[01m[Kvoid* TopicLisener(void*)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:57:9:[m[K [01;35m[Kwarning: [m[Kno return statement in function returning non-void [[01;35m[K-Wreturn-type[m[K]
+   57 |         [01;35m[K}[m[K
+      |         [01;35m[K^[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:[m[K In member function ‘[01m[Kvoid Hexapod::run(int, char**)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:399:33:[m[K [01;35m[Kwarning: [m[Kthis ‘[01m[Kif[m[K’ clause does not guard... [[01;35m[K-Wmisleading-indentation[m[K]
+  399 |                                 [01;35m[Kif[m[K(joint_pos_run_count>=3) pdController();wbcController();
+      |                                 [01;35m[K^~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/robot/robot_master/robot_runner.cpp:399:75:[m[K [01;36m[Knote: [m[K...this statement, but the latter is misleadingly indented as if it were guarded by the ‘[01m[Kif[m[K’
+  399 |                                 if(joint_pos_run_count>=3) pdController();[01;36m[KwbcController[m[K();
+      |                                                                           [01;36m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/user/wbc/QPForce712.cpp:[m[K In member function ‘[01m[KEigen::MatrixXd QPForce712::QPsolver(Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXd, Eigen::MatrixXd)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/user/wbc/QPForce712.cpp:176:16:[m[K [01;35m[Kwarning: [m[K‘[01m[Kbool OsqpEigen::Solver::solve()[m[K’ is deprecated: Use solveProblem() instead. [[01;35m[K-Wdeprecated-declarations[m[K]
+  176 |   solver.solve([01;35m[K)[m[K;
+      |                [01;35m[K^[m[K
+In file included from [01m[K/usr/local/include/OsqpEigen/OsqpEigen.h:13[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/hexapod_master/user/wbc/QPForce712.h:8[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/hexapod_master/user/wbc/QPForce712.cpp:1[m[K:
+[01m[K/usr/local/include/OsqpEigen/Solver.hpp:117:14:[m[K [01;36m[Knote: [m[Kdeclared here
+  117 |         bool [01;36m[Ksolve[m[K();
+      |              [01;36m[K^~~~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/common/estimator/state_estimator_yxy.cpp:[m[K In member function ‘[01m[Kvoid A1BasicEKF::init_state(Eigen::Matrix<double, 3, 6>, Eigen::Matrix<double, 3, 3>)[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/common/estimator/state_estimator_yxy.cpp:312:31:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kpos[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  312 |     Eigen::Matrix<double,3,1> [01;35m[Kpos[m[K=foot_act_pos_ref_body.block<3, 1>(0,0);
+      |                               [01;35m[K^~~[m[K
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/common/estimator/xzb_leg_odometer.cpp:[m[K In member function ‘[01m[Kvoid xzb_leg_odom::basespeedpredict()[m[K’:
+[01m[K/home/zyt/zyt_0526/src/hexapod_master/common/estimator/xzb_leg_odometer.cpp:180:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kgaittype_index[m[K’ [[01;35m[K-Wunused-variable[m[K]
+  180 |         int [01;35m[Kgaittype_index[m[K=0;
+      |             [01;35m[K^~~~~~~~~~~~~~[m[K

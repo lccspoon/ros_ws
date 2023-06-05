@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/param_io
+
+Name: param_io
+Description: Description of param_io
+Version: 0.5.0
+Cflags: -I/home/zyt/zyt_0526/src/any_node/param_io/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs roscpp std_msgs

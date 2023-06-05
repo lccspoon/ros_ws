@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/any_node/lib/pkgconfig/any_node.pc

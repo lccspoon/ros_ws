@@ -1,0 +1,17 @@
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/TraversabilityMap.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityEstimation.hpp:11[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/traversability_estimation_node.cpp:10[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityEstimation.hpp:11[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/TraversabilityEstimation.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K

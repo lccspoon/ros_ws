@@ -1,0 +1,8 @@
+In file included from [01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_filters/src/NormalVectorsFilter.cpp:15[m[K:
+[01m[K/usr/include/tbb/task_scheduler_init.h:21:154:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb/task_scheduler_init.h is deprecated. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                          [01;36m[K^[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/grid_map/grid_map_filters/src/NormalVectorsFilter.cpp:16[m[K:
+[01m[K/usr/include/tbb/tbb.h:21:154:[m[K [01;36m[Knote: [m[K#pragma message: TBB Warning: tbb.h contains deprecated functionality. For details, please see Deprecated Features appendix in the TBB reference manual.
+   21 | #pragma message("TBB Warning: tbb.h contains deprecated functionality. For details, please see Deprecated Features appendix in the TBB reference manual."[01;36m[K)[m[K
+      |                                                                                                                                                          [01;36m[K^[m[K

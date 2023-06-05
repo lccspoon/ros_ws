@@ -1,0 +1,5 @@
+[35m[1mScanning dependencies of target message_logger[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/message_logger.dir/src/time/Time.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/message_logger.dir/src/time/TimeStd.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/message_logger/lib/libmessage_logger.so[0m
+[100%] Built target message_logger

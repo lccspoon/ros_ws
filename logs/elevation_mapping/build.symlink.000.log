@@ -1,0 +1,6 @@
+Symlinking /home/zyt/zyt_0526/devel/share/elevation_mapping/cmake/elevation_mappingConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/elevation_mapping/cmake/elevation_mappingConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/libelevation_mapping_pcl_types.so
+Symlinking /home/zyt/zyt_0526/devel/lib/libelevation_mapping_library.so
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/elevation_mapping.pc
+Symlinking /home/zyt/zyt_0526/devel/lib/elevation_mapping/elevation_mapping

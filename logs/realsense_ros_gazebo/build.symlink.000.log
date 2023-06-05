@@ -1,0 +1,4 @@
+Symlinking /home/zyt/zyt_0526/devel/share/realsense_ros_gazebo/cmake/realsense_ros_gazeboConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/realsense_ros_gazebo/cmake/realsense_ros_gazeboConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/librealsense_gazebo_plugin.so
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/realsense_ros_gazebo.pc

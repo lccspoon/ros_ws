@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/grid_map_msgs
+
+Name: grid_map_msgs
+Description: Description of grid_map_msgs
+Version: 1.7.5
+Cflags: -I/home/zyt/zyt_0526/devel/.private/grid_map_msgs/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs message_runtime std_msgs

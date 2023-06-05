@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -std=c++14   -shared -Wl,-soname,libgmock.so -o ../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/zyt/zyt_0526/build/grid_map_sdf/gtest/lib ../lib/libgtest.so -lpthread 

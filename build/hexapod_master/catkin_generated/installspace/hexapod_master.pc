@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/install
+
+Name: hexapod_master
+Description: Description of hexapod_master
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

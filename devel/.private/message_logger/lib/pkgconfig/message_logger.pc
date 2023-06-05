@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/message_logger
+
+Name: message_logger
+Description: Description of message_logger
+Version: 0.2.10
+Cflags: -I/home/zyt/zyt_0526/src/message_logger/include -I/home/zyt/zyt_0526/devel/.private/message_logger/include
+Libs: -L${prefix}/lib -lmessage_logger
+Requires: roscpp

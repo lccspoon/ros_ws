@@ -1,0 +1,21 @@
+[35m[1mScanning dependencies of target traversability_estimation_filters[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/traversability_estimation_filters.dir/src/SlopeFilter.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/traversability_estimation_filters.dir/src/StepFilter.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/traversability_estimation_filters.dir/src/RoughnessFilter.cpp.o[0m
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/include/filters/SlopeFilter.hpp:12[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/src/SlopeFilter.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_base.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_base.h> is deprecated, include <filters/filter_base.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_base.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/include/filters/StepFilter.hpp:12[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/src/StepFilter.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_base.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_base.h> is deprecated, include <filters/filter_base.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_base.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/include/filters/RoughnessFilter.hpp:12[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation_filters/src/RoughnessFilter.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_base.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_base.h> is deprecated, include <filters/filter_base.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_base.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+[100%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/traversability_estimation_filters/lib/libtraversability_estimation_filters.so[0m
+[100%] Built target traversability_estimation_filters

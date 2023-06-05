@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target any_node[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/any_node.dir/src/Node.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/any_node/lib/libany_node.so[0m
+[100%] Built target any_node

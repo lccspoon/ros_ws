@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -ffast-math -fno-finite-math-only  -shared -Wl,-soname,libgtest_main.so -o ../lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/zyt/zyt_0526/build/grid_map_filters/gtest/lib ../lib/libgtest.so -lpthread 

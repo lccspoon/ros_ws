@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/install
+
+Name: multi_dof_joint_trajectory_rviz_plugins
+Description: Description of multi_dof_joint_trajectory_rviz_plugins
+Version: 0.3.10
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lmulti_dof_joint_trajectory_rviz_plugins
+Requires: rviz trajectory_msgs

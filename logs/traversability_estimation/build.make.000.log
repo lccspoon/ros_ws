@@ -1,0 +1,26 @@
+[35m[1mScanning dependencies of target traversability_estimation[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/traversability_estimation.dir/src/TraversabilityMap.cpp.o[0m
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/TraversabilityMap.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+[ 40%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/traversability_estimation/lib/libtraversability_estimation.so[0m
+[ 40%] Built target traversability_estimation
+[35m[1mScanning dependencies of target traversability_estimation_node[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/traversability_estimation_node.dir/src/traversability_estimation_node.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/traversability_estimation_node.dir/src/TraversabilityEstimation.cpp.o[0m
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityEstimation.hpp:11[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/traversability_estimation_node.cpp:10[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+In file included from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityMap.hpp:19[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/include/traversability_estimation/TraversabilityEstimation.hpp:11[m[K,
+                 from [01m[K/home/zyt/zyt_0526/src/traversability_estimation/traversability_estimation/src/TraversabilityEstimation.cpp:9[m[K:
+[01m[K/opt/ros/noetic/include/filters/filter_chain.h:40:2:[m[K [01;35m[Kwarning: [m[K#warning Including header <filters/filter_chain.h> is deprecated, include <filters/filter_chain.hpp> instead. [[01;35m[K-Wcpp[m[K]
+   40 | #[01;35m[Kwarning[m[K Including header <filters/filter_chain.h> is deprecated, \
+      |  [01;35m[K^~~~~~~[m[K
+[100%] [32m[1mLinking CXX executable /home/zyt/zyt_0526/devel/.private/traversability_estimation/lib/traversability_estimation/traversability_estimation_node[0m
+[100%] Built target traversability_estimation_node

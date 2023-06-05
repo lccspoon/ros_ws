@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target signal_handler[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/signal_handler.dir/src/SignalHandler.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/signal_handler/lib/libsignal_handler.so[0m
+[100%] Built target signal_handler

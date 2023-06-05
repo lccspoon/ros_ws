@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/kindr_rviz_plugins/share/kindr_rviz_plugins/cmake/kindr_rviz_pluginsConfig-version.cmake

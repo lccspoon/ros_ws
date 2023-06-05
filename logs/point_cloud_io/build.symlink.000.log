@@ -1,0 +1,5 @@
+Symlinking /home/zyt/zyt_0526/devel/share/point_cloud_io/cmake/point_cloud_ioConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/point_cloud_io/cmake/point_cloud_ioConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/point_cloud_io.pc
+Symlinking /home/zyt/zyt_0526/devel/lib/point_cloud_io/write
+Symlinking /home/zyt/zyt_0526/devel/lib/point_cloud_io/read

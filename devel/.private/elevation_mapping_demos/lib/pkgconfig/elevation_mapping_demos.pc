@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/elevation_mapping_demos
+
+Name: elevation_mapping_demos
+Description: Description of elevation_mapping_demos
+Version: 0.7.12
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: elevation_mapping grid_map_rviz_plugin rviz

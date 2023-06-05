@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -O3  -Wall -Ofast  -shared -Wl,-soname,libgmock.so -o ../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/zyt/zyt_0526/build/hexapod_master/gtest/lib ../lib/libgtest.so -lpthread 

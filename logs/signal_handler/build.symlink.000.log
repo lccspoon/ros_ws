@@ -1,0 +1,4 @@
+Symlinking /home/zyt/zyt_0526/devel/share/signal_handler/cmake/signal_handlerConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/signal_handler/cmake/signal_handlerConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/libsignal_handler.so
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/signal_handler.pc

@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/install
+
+Name: traversability_msgs
+Description: Description of traversability_msgs
+Version: 0.4.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

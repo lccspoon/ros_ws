@@ -1,0 +1,11 @@
+# CMake generated Testfile for 
+# Source directory: /home/zyt/zyt_0526/src/grid_map/grid_map_pcl
+# Build directory: /home/zyt/zyt_0526/build/grid_map_pcl
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(_ctest_grid_map_pcl_roslaunch-check_launch "/home/zyt/zyt_0526/build/grid_map_pcl/catkin_generated/env_cached.sh" "/usr/bin/python3" "/opt/ros/noetic/share/catkin/cmake/test/run_tests.py" "/home/zyt/zyt_0526/build/grid_map_pcl/test_results/grid_map_pcl/roslaunch-check_launch.xml" "--return-code" "/usr/bin/cmake -E make_directory /home/zyt/zyt_0526/build/grid_map_pcl/test_results/grid_map_pcl" "/opt/ros/noetic/share/roslaunch/cmake/../scripts/roslaunch-check -o \"/home/zyt/zyt_0526/build/grid_map_pcl/test_results/grid_map_pcl/roslaunch-check_launch.xml\" \"/home/zyt/zyt_0526/src/grid_map/grid_map_pcl/launch\" ")
+set_tests_properties(_ctest_grid_map_pcl_roslaunch-check_launch PROPERTIES  _BACKTRACE_TRIPLES "/opt/ros/noetic/share/catkin/cmake/test/tests.cmake;160;add_test;/opt/ros/noetic/share/roslaunch/cmake/roslaunch-extras.cmake;66;catkin_run_tests_target;/home/zyt/zyt_0526/src/grid_map/grid_map_pcl/CMakeLists.txt;190;roslaunch_add_file_check;/home/zyt/zyt_0526/src/grid_map/grid_map_pcl/CMakeLists.txt;0;")
+add_test(_ctest_grid_map_pcl_gtest_grid_map_pcl-test "/home/zyt/zyt_0526/build/grid_map_pcl/catkin_generated/env_cached.sh" "/usr/bin/python3" "/opt/ros/noetic/share/catkin/cmake/test/run_tests.py" "/home/zyt/zyt_0526/build/grid_map_pcl/test_results/grid_map_pcl/gtest-grid_map_pcl-test.xml" "--return-code" "/home/zyt/zyt_0526/devel/.private/grid_map_pcl/lib/grid_map_pcl/grid_map_pcl-test --gtest_output=xml:/home/zyt/zyt_0526/build/grid_map_pcl/test_results/grid_map_pcl/gtest-grid_map_pcl-test.xml")
+set_tests_properties(_ctest_grid_map_pcl_gtest_grid_map_pcl-test PROPERTIES  _BACKTRACE_TRIPLES "/opt/ros/noetic/share/catkin/cmake/test/tests.cmake;160;add_test;/opt/ros/noetic/share/catkin/cmake/test/gtest.cmake;98;catkin_run_tests_target;/opt/ros/noetic/share/catkin/cmake/test/gtest.cmake;37;_catkin_add_google_test;/home/zyt/zyt_0526/src/grid_map/grid_map_pcl/CMakeLists.txt;193;catkin_add_gtest;/home/zyt/zyt_0526/src/grid_map/grid_map_pcl/CMakeLists.txt;0;")
+subdirs("gtest")

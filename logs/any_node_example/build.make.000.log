@@ -1,0 +1,8 @@
+[35m[1mScanning dependencies of target any_node_example[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/any_node_example.dir/src/ExampleNode.cpp.o[0m
+[ 50%] [32m[1mLinking CXX shared library /home/zyt/zyt_0526/devel/.private/any_node_example/lib/libany_node_example.so[0m
+[ 50%] Built target any_node_example
+[35m[1mScanning dependencies of target any_node_example_node[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/any_node_example_node.dir/src/any_node_example_node.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/zyt/zyt_0526/devel/.private/any_node_example/lib/any_node_example/any_node_example_node[0m
+[100%] Built target any_node_example_node

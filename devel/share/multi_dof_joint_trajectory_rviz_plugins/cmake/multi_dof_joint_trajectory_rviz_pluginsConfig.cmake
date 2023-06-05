@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/multi_dof_joint_trajectory_rviz_plugins/share/multi_dof_joint_trajectory_rviz_plugins/cmake/multi_dof_joint_trajectory_rviz_pluginsConfig.cmake

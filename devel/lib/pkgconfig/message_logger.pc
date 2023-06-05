@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/message_logger/lib/pkgconfig/message_logger.pc

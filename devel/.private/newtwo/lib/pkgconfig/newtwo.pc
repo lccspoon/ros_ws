@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/newtwo
+
+Name: newtwo
+Description: Description of newtwo
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

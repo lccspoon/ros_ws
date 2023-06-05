@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/point_cloud_io
+
+Name: point_cloud_io
+Description: Description of point_cloud_io
+Version: 0.3.11
+Cflags: -I/home/zyt/zyt_0526/src/point_cloud_io/include
+Libs: -L${prefix}/lib 
+Requires: pcl_ros roscpp sensor_msgs

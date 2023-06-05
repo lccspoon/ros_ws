@@ -1,0 +1,6 @@
+Symlinking /home/zyt/zyt_0526/devel/share/grid_map_pcl/cmake/grid_map_pclConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/grid_map_pcl/cmake/grid_map_pclConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/lib/libgrid_map_pcl.so
+Symlinking /home/zyt/zyt_0526/devel/lib/grid_map_pcl/grid_map_pcl_loader_node
+Symlinking /home/zyt/zyt_0526/devel/lib/grid_map_pcl/pointcloud_publisher_node
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/grid_map_pcl.pc

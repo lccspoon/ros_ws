@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/new
+
+Name: new
+Description: Description of new
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lnew_library
+Requires: control_msgs control_toolbox controller_interface forward_command_controller geometry_msgs hardware_interface realtime_tools std_msgs sensor_msgs urdf roscpp rospy rosmsg message_runtime rviz joint_state_publisher robot_state_publisher

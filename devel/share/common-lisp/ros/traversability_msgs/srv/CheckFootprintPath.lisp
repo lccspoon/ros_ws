@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/traversability_msgs/share/common-lisp/ros/traversability_msgs/srv/CheckFootprintPath.lisp

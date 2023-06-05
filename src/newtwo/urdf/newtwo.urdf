@@ -1,0 +1,2179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="newtwo">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0021167 8.5198E-05 0.02981"
+        rpy="0 0 0" />
+      <mass
+        value="30.04" />
+      <!-- <inertia
+        ixx="0.093722"
+        ixy="0"
+        ixz="0"
+        iyy="0.1924"
+        iyz="0"
+        izz="0.24851" />
+    </inertial> -->
+      <inertia
+        ixx="2"
+        ixy="0"
+        ixz="0"
+        iyy="2"
+        iyz="0"
+        izz="2" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="L1_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L1_1J"
+    type="revolute">
+    <origin
+      xyz="0.1409 0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L1_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+
+           <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+
+  </joint>
+  <link
+    name="L1_2">
+    <inertial>
+      <origin
+        xyz="0.053805 0.056399 -1.903E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.048771" />
+      <inertia
+        ixx="0.00029989"
+        ixy="-3.6983E-05"
+        ixz="1.2493E-09"
+        iyy="3.8846E-05"
+        iyz="1.0017E-08"
+        izz="0.00029741" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L1_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="L1_1" />
+    <child
+      link="L1_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+
+           <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+
+  </joint>
+  <link
+    name="L1_3">
+    <inertial>
+      <origin
+        xyz="-0.002999999999999 0.0622516966511232 -1.11022302462516E-16"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889189" />
+      <inertia
+        ixx="4.32018502506037E-05"
+        ixy="-4.55469400514642E-21"
+        ixz="7.95695145424148E-16"
+        iyy="1.49204001297108E-06"
+        iyz="1.85061222337895E-20"
+        izz="4.24796588963243E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L1_3J"
+    type="revolute">
+    <origin
+      xyz="0.07025 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="L1_2" />
+    <child
+      link="L1_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L1_4">
+    <inertial>
+      <origin
+        xyz="0 5.55111512312578E-17 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L1_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L1_4J"
+    type="fixed">
+    <origin
+      xyz="-0.003 0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="L1_3" />
+    <child
+      link="L1_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R1_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R1_1J"
+    type="revolute">
+    <origin
+      xyz="0.1409 -0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="R1_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R1_2">
+    <inertial>
+      <origin
+        xyz="0.0538046935377517 -0.0563990041062734 1.90730046431553E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0487708538022157" />
+      <inertia
+        ixx="0.000299889172144516"
+        ixy="3.69830518373728E-05"
+        ixz="-1.24927529973815E-09"
+        iyy="3.88457597661671E-05"
+        iyz="1.00173051764211E-08"
+        izz="0.000297413215550296" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R1_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="R1_1" />
+    <child
+      link="R1_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R1_3">
+    <inertial>
+      <origin
+        xyz="-0.00299999999997458 -0.0622516966511238 0"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889189" />
+      <inertia
+        ixx="4.32018502506036E-05"
+        ixy="1.63940066433234E-20"
+        ixz="-7.95689960581737E-16"
+        iyy="1.49204001297108E-06"
+        iyz="4.10563851693299E-21"
+        izz="4.24796588963242E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R1_3J"
+    type="revolute">
+    <origin
+      xyz="0.07025 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="R1_2" />
+    <child
+      link="R1_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R1_4">
+    <inertial>
+      <origin
+        xyz="0 0 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R1_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R1_4J"
+    type="fixed">
+    <origin
+      xyz="-0.003 -0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="R1_3" />
+    <child
+      link="R1_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="L2_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L2_1J"
+    type="revolute">
+    <origin
+      xyz="0 0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L2_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L2_2">
+    <inertial>
+      <origin
+        xyz="0.0538046922300571 0.0563989886737328 -1.9029785984781E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0487708538022156" />
+      <inertia
+        ixx="0.00029988917214451"
+        ixy="-3.69830518373726E-05"
+        ixz="1.24927529976681E-09"
+        iyy="3.8845759766167E-05"
+        iyz="1.0017305176132E-08"
+        izz="0.00029741321555029" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L2_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="L2_1" />
+    <child
+      link="L2_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L2_3">
+    <inertial>
+      <origin
+        xyz="-0.00299999999999906 0.0622516966511231 -8.32667268468867E-17"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889189" />
+      <inertia
+        ixx="4.32018502506036E-05"
+        ixy="1.36690036184446E-20"
+        ixz="7.95694628348837E-16"
+        iyy="1.49204001297108E-06"
+        iyz="5.06013189596864E-21"
+        izz="4.24796588963242E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L2_3J"
+    type="revolute">
+    <origin
+      xyz="0.07025 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="L2_2" />
+    <child
+      link="L2_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L2_4">
+    <inertial>
+      <origin
+        xyz="0 5.55111512312578E-17 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L2_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L2_4J"
+    type="fixed">
+    <origin
+      xyz="-0.003 0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="L2_3" />
+    <child
+      link="L2_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R2_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R2_1J"
+    type="revolute">
+    <origin
+      xyz="0 -0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="R2_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R2_2">
+    <inertial>
+      <origin
+        xyz="0.0538046946845857 -0.0563990022332068 1.90730046428778E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0487708538022155" />
+      <inertia
+        ixx="0.000299889172144509"
+        ixy="3.69830518373726E-05"
+        ixz="-1.24927529972658E-09"
+        iyy="3.8845759766167E-05"
+        iyz="1.00173051763647E-08"
+        izz="0.000297413215550289" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R2_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="R2_1" />
+    <child
+      link="R2_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R2_3">
+    <inertial>
+      <origin
+        xyz="0.00300000000002526 -0.0622516966511241 5.55111512312578E-17"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889188" />
+      <inertia
+        ixx="4.32018502506033E-05"
+        ixy="2.03581739932966E-20"
+        ixz="-7.9568995539102E-16"
+        iyy="1.49204001297107E-06"
+        iyz="1.42314663326026E-20"
+        izz="4.24796588963239E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R2_3J"
+    type="revolute">
+    <origin
+      xyz="0.06425 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="R2_2" />
+    <child
+      link="R2_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R2_4">
+    <inertial>
+      <origin
+        xyz="0 0 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R2_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R2_4J"
+    type="fixed">
+    <origin
+      xyz="0.003 -0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="R2_3" />
+    <child
+      link="R2_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="L3_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L3_1J"
+    type="revolute">
+    <origin
+      xyz="-0.1409 0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="L3_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L3_2">
+    <inertial>
+      <origin
+        xyz="0.0538046880104125 0.0563989861203904 -1.90297859850586E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0487708538022157" />
+      <inertia
+        ixx="0.00029988917214451"
+        ixy="-3.69830518373724E-05"
+        ixz="1.24927529976658E-09"
+        iyy="3.88457597661669E-05"
+        iyz="1.0017305176145E-08"
+        izz="0.00029741321555029" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L3_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="L3_1" />
+    <child
+      link="L3_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L3_3">
+    <inertial>
+      <origin
+        xyz="0.00300000000000089 0.0622516966511229 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889188" />
+      <inertia
+        ixx="4.32018502506034E-05"
+        ixy="-4.55735197395866E-21"
+        ixz="7.95694843336323E-16"
+        iyy="1.49204001297108E-06"
+        iyz="1.33949260428333E-20"
+        izz="4.24796588963239E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L3_3J"
+    type="revolute">
+    <origin
+      xyz="0.06425 0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="L3_2" />
+    <child
+      link="L3_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="L3_4">
+    <inertial>
+      <origin
+        xyz="0 5.55111512312578E-17 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/L3_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="L3_4J"
+    type="fixed">
+    <origin
+      xyz="0.003 0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="L3_3" />
+    <child
+      link="L3_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="R3_1">
+    <inertial>
+      <origin
+        xyz="-0.00053881 2.4369E-08 -0.033509"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.050791" />
+      <inertia
+        ixx="5.4974E-05"
+        ixy="-5.5372E-12"
+        ixz="-1.008E-10"
+        iyy="4.3007E-05"
+        iyz="-7.5262E-11"
+        izz="5.3019E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R3_1J"
+    type="revolute">
+    <origin
+      xyz="-0.1409 -0.065 -0.02125"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="R3_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R3_2">
+    <inertial>
+      <origin
+        xyz="0.0538046946845857 -0.0563990022332066 1.90730046426002E-06"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0487708538022156" />
+      <inertia
+        ixx="0.000299889172144509"
+        ixy="3.69830518373724E-05"
+        ixz="-1.2492752997421E-09"
+        iyy="3.8845759766167E-05"
+        iyz="1.00173051763404E-08"
+        izz="0.000297413215550289" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R3_2J"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.06575"
+      rpy="0 0 0" />
+    <parent
+      link="R3_1" />
+    <child
+      link="R3_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R3_3">
+    <inertial>
+      <origin
+        xyz="0.00300000000002537 -0.0622516966511242 8.32667268468867E-17"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.0138735795889188" />
+      <inertia
+        ixx="4.32018502506033E-05"
+        ixy="1.62586269531289E-20"
+        ixz="-7.95690761766413E-16"
+        iyy="1.49204001297108E-06"
+        iyz="1.32690673823778E-20"
+        izz="4.24796588963239E-05" />
+    </inertial> -->
+            <mass
+        value="0.15" />
+      <inertia
+        ixx="0.15"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.15"
+        iyz="0.0"
+        izz="0.15" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R3_3J"
+    type="revolute">
+    <origin
+      xyz="0.06425 -0.216 0"
+      rpy="0 0 0" />
+    <parent
+      link="R3_2" />
+    <child
+      link="R3_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-6"
+      upper="6"
+      effort="100"
+      velocity="10" />
+                 <dynamics
+      damping="0.01"
+      friction="0.01"
+    />
+  </joint>
+  <link
+    name="R3_4">
+    <inertial>
+      <origin
+        xyz="0 -5.55111512312578E-17 0"
+        rpy="0 0 0" />
+      <!-- <mass
+        value="0.00754401115882028" /> -->
+            <mass
+        value="0.01" />
+      <inertia
+                ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://newtwo/meshes/R3_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="R3_4J"
+    type="fixed">
+    <origin
+      xyz="0.003 -0.196 0"
+      rpy="0 0 0" />
+    <parent
+      link="R3_3" />
+    <child
+      link="R3_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+<transmission name="trans_L1_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L1_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L1_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_L1_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L1_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L1_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_L1_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L1_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L1_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_L2_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L2_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L2_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_L2_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L2_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L2_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_L2_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L2_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L2_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_L3_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L3_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L3_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_L3_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L3_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L3_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_L3_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="L3_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="L3_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+<transmission name="trans_R1_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R1_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R1_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_R1_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R1_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R1_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_R1_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R1_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R1_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_R2_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R2_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R2_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+<transmission name="trans_R2_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R2_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R2_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_R2_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R2_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R2_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_R3_1_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R3_1J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R3_1_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_R3_2_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R3_2J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R3_2_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+  <transmission name="trans_R3_3_joint">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="R3_3J">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="R3_3_joint_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    
+ <gazebo reference="L1_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+ <gazebo reference="L2_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+ <gazebo reference="L3_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+ <gazebo reference="R1_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+ <gazebo reference="R2_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+ <gazebo reference="R3_4J">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+ </gazebo>
+
+  <gazebo>
+    <plugin name="L1_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>L1_4J_ft</topicName>
+        <jointName>L1_4J</jointName>
+    </plugin>
+    <plugin name="L2_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>L2_4J_ft</topicName>
+        <jointName>L2_4J</jointName>
+    </plugin>
+    <plugin name="L3_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>L3_4J_ft</topicName>
+        <jointName>L3_4J</jointName>
+    </plugin>
+    <plugin name="R1_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>R1_4J_ft</topicName>
+        <jointName>R1_4J</jointName>
+    </plugin>
+    <plugin name="R2_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>R2_4J_ft</topicName>
+        <jointName>R2_4J</jointName>
+    </plugin>
+    <plugin name="R3_4J_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>500.0</updateRate>
+        <topicName>R3_4J_ft</topicName>
+        <jointName>R3_4J</jointName>
+    </plugin>
+   </gazebo>
+
+<!-- xzb230512 设置gazebo中足端连杆属性 -->
+    <gazebo reference="R1_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>
+      <gazebo reference="R2_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>
+    <gazebo reference="R3_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>
+      <gazebo reference="L1_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="L2_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>
+  <gazebo reference="L3_4">
+    <material>Gazebo/Black</material>
+    <collision>
+      <surface>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <friction>
+          <torsional>
+            <coefficient>0.3</coefficient>
+          </torsional>
+          <ode>
+            <mu>100.0</mu>
+            <mu2>50.0</mu2>
+          </ode>
+          <bullet>
+            <rolling_friction>0.3</rolling_friction>
+            <friction2>50.0</friction2>
+          </bullet>
+        </friction>
+        <contact>
+          <bullet>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </bullet>
+          <ode>
+            <kp>30000.0</kp>
+            <kd>1000.0</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </gazebo>  
+
+  <!-- fix the model  -->
+  <link name="world"/>
+  <joint name="fix" type="fixed">
+  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+  <parent link="world"/>
+  <child link="base_link"/>
+  </joint>
+
+  <!-- lcc 20230426 -->
+  <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+  	  <alwaysOn>true</alwaysOn>
+    	<bodyName>base_link</bodyName>
+    	<topicName>imu</topicName>
+    	<serviceName>imu_service</serviceName>
+    	<gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>base_link</frameName>
+    	<updateRate>500.0</updateRate>
+    </plugin>
+
+    <plugin name="POS_COM" filename="libgazebo_ros_p3d.so">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>500.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>POS_COM</topicName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <frameName>map</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/newtwo</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+  </gazebo>
+
+</robot>

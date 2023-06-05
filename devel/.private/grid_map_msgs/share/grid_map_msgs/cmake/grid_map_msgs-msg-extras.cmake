@@ -1,0 +1,2 @@
+set(grid_map_msgs_MESSAGE_FILES "/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/msg/GridMapInfo.msg;/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/msg/GridMap.msg")
+set(grid_map_msgs_SERVICE_FILES "/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/srv/SetGridMap.srv;/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/srv/GetGridMap.srv;/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/srv/GetGridMapInfo.srv;/home/zyt/zyt_0526/src/grid_map/grid_map_msgs/srv/ProcessFile.srv")

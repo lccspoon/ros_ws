@@ -1,0 +1,5 @@
+Symlinking /home/zyt/zyt_0526/devel/share/message_logger/cmake/message_loggerConfig-version.cmake
+Symlinking /home/zyt/zyt_0526/devel/share/message_logger/cmake/message_loggerConfig.cmake
+Symlinking /home/zyt/zyt_0526/devel/include/message_logger/log/log_messages_backend_config.hpp
+Symlinking /home/zyt/zyt_0526/devel/lib/libmessage_logger.so
+Symlinking /home/zyt/zyt_0526/devel/lib/pkgconfig/message_logger.pc

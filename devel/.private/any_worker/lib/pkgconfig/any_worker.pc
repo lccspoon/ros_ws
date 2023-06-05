@@ -1,0 +1,8 @@
+prefix=/home/zyt/zyt_0526/devel/.private/any_worker
+
+Name: any_worker
+Description: Description of any_worker
+Version: 0.5.0
+Cflags: -I/home/zyt/zyt_0526/src/any_node/any_worker/include
+Libs: -L${prefix}/lib -lany_worker -lpthread
+Requires: message_logger

@@ -1,0 +1,2 @@
+set(traversability_msgs_MESSAGE_FILES "/home/zyt/zyt_0526/src/traversability_estimation/traversability_msgs/msg/FootprintPath.msg;/home/zyt/zyt_0526/src/traversability_estimation/traversability_msgs/msg/TraversabilityResult.msg")
+set(traversability_msgs_SERVICE_FILES "/home/zyt/zyt_0526/src/traversability_estimation/traversability_msgs/srv/CheckFootprintPath.srv;/home/zyt/zyt_0526/src/traversability_estimation/traversability_msgs/srv/Overwrite.srv")

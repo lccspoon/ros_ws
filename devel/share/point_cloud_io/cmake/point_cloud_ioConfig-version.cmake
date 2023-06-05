@@ -1,0 +1,1 @@
+/home/zyt/zyt_0526/devel/.private/point_cloud_io/share/point_cloud_io/cmake/point_cloud_ioConfig-version.cmake

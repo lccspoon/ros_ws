@@ -1,0 +1,8 @@
+<launch>
+  
+  <include file="$(find new)/launch/Positioncontroller.launch"/>
+  
+  <include file="$(find new)/launch/gazebo.launch"/>
+  
+</launch>
+

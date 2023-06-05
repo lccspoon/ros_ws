@@ -1,0 +1,27 @@
+input_sources:
+# robot_pose_with_covariance_topic:           /base_link_pose
+  ground_truth_cloud: # A name to identify the input source
+    type: pointcloud # Supported types: pointcloud
+    topic: /camera/depth/color/points
+    queue_size: 1
+    publish_on_update: true # Whether to publish the elevation map after a callback from this source.
+    sensor_processor:
+      type: perfect
+map_frame_id: "map"
+robot_base_frame_id: "base_link"
+robot_pose_with_covariance_topic: "" # Leaving this empty skipps pose covariance updates.
+robot_pose_cache_size: 200
+track_point_frame_id: "base_link"
+track_point_x: 0.0
+track_point_y: 0.0
+track_point_z: 0.0
+
+
+
+initialize_elevation_map:                   false
+initialization_method:                      0
+length_in_x_init_submap:                    1.6
+length_in_y_init_submap:                    1.6
+init_submap_height_offset:                  0.01
+init_submap_variance:                       0.001
+target_frame_init_submap:                   base_link

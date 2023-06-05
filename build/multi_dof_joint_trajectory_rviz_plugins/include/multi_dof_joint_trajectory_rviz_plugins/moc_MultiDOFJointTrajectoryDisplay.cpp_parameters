@@ -1,0 +1,7 @@
+-DROS_BUILD_SHARED_LIBS=1
+-DROS_PACKAGE_NAME="multi_dof_joint_trajectory_rviz_plugins"
+-DROSCONSOLE_BACKEND_LOG4CXX
+-DQT_NO_KEYWORDS
+-o
+/home/zyt/zyt_0526/build/multi_dof_joint_trajectory_rviz_plugins/include/multi_dof_joint_trajectory_rviz_plugins/moc_MultiDOFJointTrajectoryDisplay.cpp
+/home/zyt/zyt_0526/src/kindr_ros/multi_dof_joint_trajectory_rviz_plugins/include/multi_dof_joint_trajectory_rviz_plugins/MultiDOFJointTrajectoryDisplay.hpp

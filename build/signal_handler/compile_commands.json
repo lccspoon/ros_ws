@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/zyt/zyt_0526/build/signal_handler",
+  "command": "/usr/bin/c++  -DROS_BUILD_SHARED_LIBS=1 -I/home/zyt/zyt_0526/src/any_node/signal_handler/include -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest    -std=c++11 -Wall -DGTEST_HAS_PTHREAD=1 -o CMakeFiles/test_signal_handler.dir/test/EmptyTests.cpp.o -c /home/zyt/zyt_0526/src/any_node/signal_handler/test/EmptyTests.cpp",
+  "file": "/home/zyt/zyt_0526/src/any_node/signal_handler/test/EmptyTests.cpp"
+},
+{
+  "directory": "/home/zyt/zyt_0526/build/signal_handler",
+  "command": "/usr/bin/c++  -DROS_BUILD_SHARED_LIBS=1 -Dsignal_handler_EXPORTS -I/home/zyt/zyt_0526/src/any_node/signal_handler/include  -fPIC   -std=c++11 -Wall -o CMakeFiles/signal_handler.dir/src/SignalHandler.cpp.o -c /home/zyt/zyt_0526/src/any_node/signal_handler/src/SignalHandler.cpp",
+  "file": "/home/zyt/zyt_0526/src/any_node/signal_handler/src/SignalHandler.cpp"
+}
+]
