@@ -241,7 +241,25 @@ void Hexapod::dowmwardReaction(void)
     }
 
     //----------以下是 foot_dowmward_traj 的重置--------------//
-    // // 如果所有腿降都超过了2cm
+    //  单腿恢复:
+    // for( int i=0; i<6; i++ )
+    // {
+    //     if( cpg_touch_down_scheduler(i)==1 ) // 如果处于摆动态
+    //     {
+    //         Eigen::Vector3d Zero;
+    //         Zero.setZero();
+    //         int tt=int(1/set_cpg_ctrl_cycle)*1;
+    //         leg_root.foot_dowmward_traj.block<3,1>(0,i)=
+    //                     foot_dowmward_traj_res[i].linearConvert(leg_root.foot_dowmward_traj.block<3,1>(0,i),Zero, tt);
+
+    //         leg_root.foot_dowm_traj.block<3,1>(0,i)=
+    //                     foot_dowm_traj_res[i].linearConvert(leg_root.foot_dowm_traj.block<3,1>(0,i), Zero, tt);
+
+    //         leg_root.foot_ditch_deepth_est(i)=foot_ditch_deepth_est_res[i].linearConvert(leg_root.foot_ditch_deepth_est(i), 0, tt);
+    //     }
+    // }
+
+    //  所有腿恢复:  如果所有腿降都超过了2cm
     if( fabs( leg_root.foot_dowmward_traj(2,0) )>2*0.01 &&  fabs( leg_root.foot_dowmward_traj(2,1) )>2*0.01 && fabs( leg_root.foot_dowmward_traj(2,2) )>2*0.01 &&
         fabs( leg_root.foot_dowmward_traj(2,3) )>2*0.01 &&  fabs( leg_root.foot_dowmward_traj(2,4) )>2*0.01 && fabs( leg_root.foot_dowmward_traj(2,5) )>2*0.01 &&
         down_stage_flag==0 )

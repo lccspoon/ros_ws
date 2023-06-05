@@ -63,7 +63,7 @@ class ROSLegTopicHandle
         Eigen::Matrix<double,3,1>  retImuLinAcc(void);
         int retImuSeq(void);
 
-        double * retOdoPostion(void);
+        Eigen::Vector3d retOdoPostion(void);
         double * retOdoTwistLinear(void);
         int retOdoSeq(void);
 

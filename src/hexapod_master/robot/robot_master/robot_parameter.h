@@ -39,11 +39,7 @@ class RobotParam  //robot_param
         Eigen::Matrix<double,1,6> set_step_length_k;
         double set_cpg_ctrl_cycle=0;
         double set_para_init_flag=1;
-        double step_length=0;
 
-        double des_vel=0;
-        double des_pos=0;
-        
         int movement_mode;  //lcc 用不同的整数来表示机器人的运动模式
         int lift_adaptiv_init_flag=0;  //lcc 用不同的整数来表示机器人的运动模式
         int dowm_adaptiv_init_flag=0;  //lcc 用不同的整数来表示机器人的运动模式
@@ -91,6 +87,9 @@ class RobotParam  //robot_param
 
         struct body_root
         {
+            Eigen::Matrix<double, 3, 1> des_vel;
+            Eigen::Matrix<double, 3, 1> des_pos;
+
             Eigen::Matrix<double,3,1> imu_ang_vel;
             Eigen::Matrix<double,3,1> imu_lin_acc;
             Eigen::Matrix<double,4,1> imu_qua_ori;

@@ -303,13 +303,16 @@ void Hexapod::run(int argc, char *argv[])
                 pubMsgTopicName foot_traj("foot_traj");
                 pubMsgTopicName cpg_pub("cpg_pub");
 
-                // ros::Rate rate(250);
+                pubMsgTopicName body_des_vel("body_des_vel");
+                pubMsgTopicName body_des_pos("body_des_pos");
         #endif  
 
         while(1)
         {       
+                _Tim1.update();
                 signal(SIGINT, MySigintHandlera );//lcc 20230329: 所使用快捷键ctrl+c，中断程序运行。
-                printf("");
+                // printf("");
+
                 /**
                 * @details 设置机器人运动参数，接受键盘控制机器人运动
                 */
@@ -346,9 +349,6 @@ void Hexapod::run(int argc, char *argv[])
                                 // printf(" 4.0-dt_ms:%f \n",4.0-dt_ms);
                         }
                 #elif HARD_WARE==2  //lcc 20230329: 开启仿真
-                        dt_ms=_Tim1.getTimerMilliSec();
-                        dt_s=_Tim1.getTimerSecond();
-                        _Tim1.update();
                         // printf("000000\n");
                         #if SIM_CTRL_MODE==1  //lcc 20230329: 切换机器人在仿真中的控制方式
                                 if(joint_pos_run_count>=3) positionController();
@@ -359,11 +359,6 @@ void Hexapod::run(int argc, char *argv[])
                         // printf("0a0a0aa\n");
                         //lcc 20230329: 以下是pub的程序
                         simMsgPub();
-                        if(dt_ms<=3)
-                        {
-                                usleep( (3-dt_ms)*1000 );
-                                // printf(" 3-dt_ms:%f \n",3-dt_ms);
-                        }
                         // LfForce.msgPubRun(_Lf.m.robot_velocity);
                         // LmForce.msgPubRun(_Lm.m.robot_velocity);
                         // LbForce.msgPubRun(_Lb.m.robot_velocity);
@@ -382,7 +377,8 @@ void Hexapod::run(int argc, char *argv[])
 
                         staest_vel.msgPubRun(state.root_lin_vel);
                         staest_pos.msgPubRun(state.root_pos);
-
+                        body_des_vel.msgPubRun(body_root.des_vel);
+                        body_des_pos.msgPubRun(body_root.des_pos);
                         //xzb230512
                         // vel_legodom_pub.msgPubRun(vel_legodom);
                         // vel_ekf_pub.msgPubRun(vel_ekf);
@@ -593,6 +589,15 @@ void Hexapod::run(int argc, char *argv[])
 
                 #endif
                 // printf("--------next-------------\n");
+
+                dt_ms=_Tim1.getTimerMilliSec();
+                dt_s=_Tim1.getTimerSecond();
+                // printf(" dt_ms%f \n",dt_ms);
+                if(dt_ms<=3)
+                {
+                        usleep( (3-dt_ms)*1000 );
+                        // printf(" 3-dt_ms:%f \n",3-dt_ms);
+                }
         }
 }
 
@@ -613,6 +618,7 @@ void Hexapod::parSeting(void)
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人
         parInit();
         setStepSize();  // 设置步长和步高
+        getDesPosAndVel();
 
         if(t_test_key==1 )
         {       

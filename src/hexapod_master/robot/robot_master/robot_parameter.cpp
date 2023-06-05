@@ -86,5 +86,85 @@ void Hexapod::parInit()
             printf("init\n");
 
             cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+
+        #if HARD_WARE==2  //lcc 20230329: 开启仿真
+                body_root.des_pos=GazeboSim.retOdoPostion();
+        #endif
     }
+}
+
+Eigen::Matrix<double, 3, 6> foot_des_pos_last;
+Eigen::Matrix<double,1,6>  cpg_phase_last;
+Eigen::Matrix<double,1,6>  phase_count;
+Eigen::Matrix<double,1,6>  caculate_flag;
+Eigen::Matrix<double, 3, 6> foot_des_vel;
+Eigen::Matrix<double, 3, 1> body_des_vel;
+int leg_number;
+void Hexapod::getDesPosAndVel()
+{
+        int tt=int(1/set_cpg_ctrl_cycle);
+        for(int i=0; i<6; i++)
+        {
+
+                if( cpg_touch_down_scheduler(i)==0 &&  cpg_phase_last(i)==1 ) // 如果当前是支撑态　且上一时刻是摆动态
+                {       
+                        caculate_flag(i)=1;
+                }
+                else if( cpg_touch_down_scheduler(i)==1 &&  cpg_phase_last(i)==1  )
+                {
+                        caculate_flag(i)=0;
+                }
+
+                if( caculate_flag(i)==1 )
+                {
+                        phase_count(i)++;
+                        if( phase_count(i)>=2 )
+                        {
+                             foot_des_vel.block<3,1>(0,i) = -( leg_root.foot_des_pos.block<3,1>(0,i) - foot_des_pos_last.block<3,1>(0,i) ) / dt_s;
+                        }
+                        foot_des_pos_last.block<3,1>(0,i) = leg_root.foot_des_pos.block<3,1>(0,i);
+                }
+                else
+                {       
+                        phase_count(i)=0;
+                        foot_des_vel.block<3,1>(0,i).setZero();
+                        foot_des_pos_last.block<3,1>(0,i).setZero();
+                }
+                cpg_phase_last(i)=cpg_touch_down_scheduler(i);
+        }
+
+        for(int i=0; i<6;i++)
+        {       
+                if( foot_des_vel(0,i)!=0 )
+                        leg_number++;
+        }
+        if( leg_number!=0 )
+                body_des_vel=   (foot_des_vel.block<3,1>(0,0)+ foot_des_vel.block<3,1>(0,1) +  foot_des_vel.block<3,1>(0,2) +
+                        foot_des_vel.block<3,1>(0,3) +  foot_des_vel.block<3,1>(0,4) +  foot_des_vel.block<3,1>(0,5) )/leg_number;
+        else 
+                body_des_vel.setZero();
+
+        body_root.des_vel=body_des_vel; //得到期望速度
+
+        body_root.des_pos= body_des_vel*dt_s + body_root.des_pos; //得到期望位置
+
+
+
+
+
+        std::cout<<"dt_s"<<std::endl;
+        std::cout<<dt_s<<std::endl;
+        std::cout<<"leg_number"<<std::endl;
+        std::cout<<leg_number<<std::endl;
+        std::cout<<"phase_count"<<std::endl;
+        std::cout<<phase_count<<std::endl;
+        std::cout<<"foot_des_pos_last"<<std::endl;
+        std::cout<<foot_des_pos_last<<std::endl;
+        std::cout<<"foot_des_vel"<<std::endl;
+        std::cout<<foot_des_vel<<std::endl;
+        std::cout<<"body_des_vel"<<std::endl;
+        std::cout<<body_des_vel<<std::endl;
+        std::cout<<"body_root.des_pos"<<std::endl;
+        std::cout<<body_root.des_pos<<std::endl;
+        leg_number=0;
 }

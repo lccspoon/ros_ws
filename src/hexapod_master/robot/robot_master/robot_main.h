@@ -142,7 +142,7 @@ class Hexapod:public RobotParam
         void parSeting(void);
         void parInit(void);
         void setStepSize();
-
+        void getDesPosAndVel();
 
         /**
         * @brief 以下接口声明了机器人的控制函数
