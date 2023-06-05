@@ -183,6 +183,8 @@ void doMsg_nav_odometry(const nav_msgs::Odometry::ConstPtr& nav_odometry )
         odometry.position[1]=nav_odometry->pose.pose.position.y;
         odometry.position[2]=nav_odometry->pose.pose.position.z;
 
+        printf(" odometry.position: %f,  %f,  %f \n",odometry.position[0],odometry.position[1],odometry.position[2]);
+
         odometry.twist_linear[0]=nav_odometry->twist.twist.linear.x;
         odometry.twist_linear[1]=nav_odometry->twist.twist.linear.y;
         odometry.twist_linear[2]=nav_odometry->twist.twist.linear.z;
@@ -190,9 +192,11 @@ void doMsg_nav_odometry(const nav_msgs::Odometry::ConstPtr& nav_odometry )
     mux_odometry.unlock();
 }
 
-double * ROSLegTopicHandle::retOdoPostion(void)
+Eigen::Vector3d odometry_position;
+Eigen::Vector3d ROSLegTopicHandle::retOdoPostion(void)
 {
-    return odometry.position;
+    odometry_position<<odometry.position[0], odometry.position[1], odometry.position[2];
+    return odometry_position;
 }
 double * ROSLegTopicHandle::retOdoTwistLinear(void)
 {

@@ -10,116 +10,36 @@
 * @date date at : 20230329
 */
 Eigen::Matrix<double,3,6>  joi_des_pos_vice;
-Eigen::Matrix<double,1,6>  swing_touch_leg_number;//
-Eigen::Matrix<double,1,6>  suporting_slip_leg_number;//
-Eigen::Matrix<double,3,6>  foot_lift_traj;
-Eigen::Matrix<double,3,6>  foot_dowm_traj;
-
-void Hexapod::adaptive_control(void)
-{
- // for (int i = 0; i < 6; i++)
-            // {
-            //     if(ContactSimple.leg_swingphase_contact_est(i)==1)  //lcc 
-            //     {
-            //         swing_touch_leg_number(i)=1;
-            //     }
-            //     if(swing_touch_leg_number(i)==1) 
-            //     {     
-            //         // printf("swing_touch_leg_number:%d   inininini\n",swing_touch_leg_number(0));
-            //         _Cpg.cpg_stop_flag=1;
-
-            //         leg_root.foot_cross_traj.block<3,1>(0,i)= foot_lift_traj.block<3,1>(0,i)+
-            //                             _LagrangeInterpolator[i].liftLegOne_cm(0.001, 0.25, _SimpleScheduler[i].retSimpleScheduler(1, 0.1) );
-
-            //         leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-
-            //         if(_SimpleScheduler[i].retTime()==1)
-            //         {   
-            //             foot_lift_traj.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i);  // 这个变量用于累加腿的抬升高度
-            //             leg_root.foot_cross_object_est(i)=foot_lift_traj(2,i);  //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
-                        
-            //             _SimpleScheduler[i].reSet();
-            //             swing_touch_leg_number(i)=0;
-            //             _Cpg.cpg_stop_flag=0;
-            //         }
-            //     }
-            //     else 
-            //     {   
-            //         leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-            //     }
-            // }
-
-            std::cout<<"leg_root.foot_swing_traj: "<<std::endl;
-            std::cout<<leg_root.foot_swing_traj<<std::endl;
-
-            for (int i = 0; i < 1; i++)
-            {
-                Eigen::Vector3d temp1, temp2;
-                temp1=leg_root.foot_swing_traj.block<3,1>(0,0);
-                temp2=leg_root.foot_swing_traj.block<3,1>(0,1);
-                if( ContactSimple.leg_suportingphase_contact_est(i)==0 && cpg_touch_down_scheduler(i)==0 ) //lcc 
-                {
-                    if( temp1(2)>=0.5*0.01 || temp2(2)>=0.5*0.01 ) // 如果其中任意一条腿已经抬高了　xxxx　厘米
-                    {
-                        suporting_slip_leg_number(i)=1;
-                        printf("leg(%d) touch dowm silp!!\n ",i);
-                        exit(0);
-                    }
-                }
-                // if(suporting_slip_leg_number(i)==1) 
-                // {   
-                //     _Cpg.cpg_stop_flag=1;
-                //     leg_root.foot_dowmward_traj.block<3,1>(0,i)= foot_dowm_traj.block<3,1>(0,i)+
-                //         _LagrangeInterpolator[i].liftLegOne_cm(0.0001, -0.05, _SimpleScheduler[i].retSimpleScheduler(1, 0.5) );
-
-                //     leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-
-                //     if(_SimpleScheduler[i].retTime()==1)
-                //     {   
-                //         foot_dowm_traj.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i);  
-                //         leg_root.foot_ditch_deepth_est(i)=foot_dowm_traj(2,i);  
-                        
-                //         _SimpleScheduler[i].reSet();
-                //         suporting_slip_leg_number(i)=0;
-                //         _Cpg.cpg_stop_flag=0;
-                //     }
-                //     printf(" inininin\n ");
-                // }
-                // else 
-                {   
-                    // printf(" outoutout\n ");
-                    // leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_dowmward_traj.block<3,1>(0,i)+leg_root.foot_swing_traj.block<3,1>(0,i); 
-                    leg_root.foot_trajectory.block<3,1>(0,i)=leg_root.foot_swing_traj.block<3,1>(0,i); 
-                } 
-
-            }
-
-            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5);
-}
 
 void Hexapod::trajectoryPlaning(void) 
 {
+    #if ONLY_Quadruped==1  //机器人不不可切换步态，仅仅可用四足步态
+        _Cpg.gait=_Cpg.GaitLinTran.linearConvert(_Cpg.gait,0.666,100); 
+        leg_root.foot_swing_traj.block<3,1>(0,0)=neur_bezier[0].bezierCurve(cpg_scheduler(0,4),cpg_scheduler(1,4) )*_FooBodAdjMap[0].step_amplitude;  
+        leg_root.foot_swing_traj.block<3,1>(0,1)=neur_bezier[1].bezierCurve(cpg_scheduler(0,3),cpg_scheduler(1,3) )*_FooBodAdjMap[1].step_amplitude;  
+        leg_root.foot_swing_traj.block<3,1>(0,2)=neur_bezier[2].bezierCurve(cpg_scheduler(0,5),cpg_scheduler(1,5) )*_FooBodAdjMap[2].step_amplitude;
+        leg_root.foot_swing_traj.block<3,1>(0,3)=neur_bezier[3].bezierCurve(cpg_scheduler(0,2),cpg_scheduler(1,2) )*_FooBodAdjMap[3].step_amplitude; 
+        leg_root.foot_swing_traj.block<3,1>(0,4)=neur_bezier[4].bezierCurve(cpg_scheduler(0,1),cpg_scheduler(1,1) )*_FooBodAdjMap[4].step_amplitude;
+        leg_root.foot_swing_traj.block<3,1>(0,5)=neur_bezier[5].bezierCurve(cpg_scheduler(0,0),cpg_scheduler(1,0) )*_FooBodAdjMap[5].step_amplitude;
+    #elif ONLY_Quadruped==0
         leg_root.foot_swing_traj.block<3,1>(0,0)=neur_bezier[0].bezierCurve(cpg_scheduler(0,3),cpg_scheduler(1,3) )*_FooBodAdjMap[0].step_amplitude;  
         leg_root.foot_swing_traj.block<3,1>(0,1)=neur_bezier[1].bezierCurve(cpg_scheduler(0,4),cpg_scheduler(1,4) )*_FooBodAdjMap[1].step_amplitude;  
         leg_root.foot_swing_traj.block<3,1>(0,2)=neur_bezier[2].bezierCurve(cpg_scheduler(0,5),cpg_scheduler(1,5) )*_FooBodAdjMap[2].step_amplitude;
         leg_root.foot_swing_traj.block<3,1>(0,3)=neur_bezier[3].bezierCurve(cpg_scheduler(0,2),cpg_scheduler(1,2) )*_FooBodAdjMap[3].step_amplitude; 
         leg_root.foot_swing_traj.block<3,1>(0,4)=neur_bezier[4].bezierCurve(cpg_scheduler(0,1),cpg_scheduler(1,1) )*_FooBodAdjMap[4].step_amplitude;
         leg_root.foot_swing_traj.block<3,1>(0,5)=neur_bezier[5].bezierCurve(cpg_scheduler(0,0),cpg_scheduler(1,0) )*_FooBodAdjMap[5].step_amplitude;
+    #endif
 
-        #if ADAPTIV_FLAG==1
-          adaptive_control();
-        #endif
-
-        leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
-        leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-        leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-        leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-        leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-        leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5);
+        // #if ADAPTIV_FLAG==1
+        //   adaptive_control();
+        // #else
+            leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
+            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
+            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
+            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
+            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
+            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
+        // #endif
 
         _FooBodAdjMap[0].setInitEndEfforeAndPBias
         (leg_root.foot_static_pos.block<3,1>(0,0),NULL, fuselage_length/2,fuselage_width/2);

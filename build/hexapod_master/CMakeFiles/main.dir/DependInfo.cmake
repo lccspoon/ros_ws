@@ -24,6 +24,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lcc/ros_ws/src/hexapod_master/robot/main_helper.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/main_helper.cpp.o"
   "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_controller.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_controller.cpp.o"
   "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_kinematic.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_kinematic.cpp.o"
+  "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_lift_dowm_relex.cpp.o"
   "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_main.cpp.o"
   "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_motion.cpp.o"
   "/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.cpp" "/home/lcc/ros_ws/build/hexapod_master/CMakeFiles/main.dir/robot/robot_master/robot_parameter.cpp.o"

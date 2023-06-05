@@ -13,8 +13,6 @@
 #include <Eigen/Dense>
 
 //lcc 20230329:一些类中静态全局变量的赋初始值
-double FooTipAndBodAdjMap::RRR_YAW=0;double FooTipAndBodAdjMap::RRR_ROLL=0;double FooTipAndBodAdjMap::RRR_PITCH=0;
-double FooTipAndBodAdjMap::X_DEVIATION=0;double FooTipAndBodAdjMap::Y_DEVIATION=0;double FooTipAndBodAdjMap::Z_DEVIATION=0;
 double kinematic::LEG_DH_PARAM1=0;double kinematic::LEG_DH_PARAM2=0;double kinematic::LEG_DH_PARAM3=0;
 
 //xzb230512  全局变量用于存储需要发布的话题信息
@@ -83,7 +81,6 @@ void Hexapod::run(int argc, char *argv[])
                 robot_force.open("./robot_force.txt", ios::out | ios::trunc);
                 robot_velocity.open("./robot_velocity.txt", ios::out | ios::trunc);
                 robot_postion.open("./robot_postion.txt", ios::out | ios::trunc);
-
         #endif
 
         #if HARD_WARE==1
@@ -302,13 +299,20 @@ void Hexapod::run(int argc, char *argv[])
                 pubMsgTopicName vel_ekf_pub("vel_ekf");
                 pubMsgTopicName pos_ekf_pub("pos_ekf");
 
-                // ros::Rate rate(250);
+                //lcc 20230603
+                pubMsgTopicName foot_traj("foot_traj");
+                pubMsgTopicName cpg_pub("cpg_pub");
+
+                pubMsgTopicName body_des_vel("body_des_vel");
+                pubMsgTopicName body_des_pos("body_des_pos");
         #endif  
 
         while(1)
         {       
+                _Tim1.update();
                 signal(SIGINT, MySigintHandlera );//lcc 20230329: 所使用快捷键ctrl+c，中断程序运行。
-                printf("");
+                // printf("");
+
                 /**
                 * @details 设置机器人运动参数，接受键盘控制机器人运动
                 */
@@ -345,9 +349,6 @@ void Hexapod::run(int argc, char *argv[])
                                 // printf(" 4.0-dt_ms:%f \n",4.0-dt_ms);
                         }
                 #elif HARD_WARE==2  //lcc 20230329: 开启仿真
-                        dt_ms=_Tim1.getTimerMilliSec();
-                        dt_s=_Tim1.getTimerSecond();
-                        _Tim1.update();
                         // printf("000000\n");
                         #if SIM_CTRL_MODE==1  //lcc 20230329: 切换机器人在仿真中的控制方式
                                 if(joint_pos_run_count>=3) positionController();
@@ -358,11 +359,6 @@ void Hexapod::run(int argc, char *argv[])
                         // printf("0a0a0aa\n");
                         //lcc 20230329: 以下是pub的程序
                         simMsgPub();
-                        if(dt_ms<=3)
-                        {
-                                usleep( (3-dt_ms)*1000 );
-                                // printf(" 3-dt_ms:%f \n",3-dt_ms);
-                        }
                         // LfForce.msgPubRun(_Lf.m.robot_velocity);
                         // LmForce.msgPubRun(_Lm.m.robot_velocity);
                         // LbForce.msgPubRun(_Lb.m.robot_velocity);
@@ -381,11 +377,21 @@ void Hexapod::run(int argc, char *argv[])
 
                         staest_vel.msgPubRun(state.root_lin_vel);
                         staest_pos.msgPubRun(state.root_pos);
-
+                        body_des_vel.msgPubRun(body_root.des_vel);
+                        body_des_pos.msgPubRun(body_root.des_pos);
                         //xzb230512
-                        vel_legodom_pub.msgPubRun(vel_legodom);
-                        vel_ekf_pub.msgPubRun(vel_ekf);
-                        pos_ekf_pub.msgPubRun(pos_ekf);
+                        // vel_legodom_pub.msgPubRun(vel_legodom);
+                        // vel_ekf_pub.msgPubRun(vel_ekf);
+                        // pos_ekf_pub.msgPubRun(pos_ekf);
+
+                        //lcc 20230602
+                        Eigen::Vector3d teeempt;
+                        teeempt=leg_root.foot_trajectory.block<3,1>(0,0) ;
+                        foot_traj.msgPubRun( teeempt );
+
+                        Eigen::Vector3d cpg_temp;
+                        cpg_temp<< cpg_scheduler(0,0),cpg_scheduler(1,0),0;
+                        cpg_pub.msgPubRun(cpg_temp);
                 #endif
 
                 if(start_thread_flag)
@@ -433,15 +439,22 @@ void Hexapod::run(int argc, char *argv[])
                                         if(movement_mode=='w' || movement_mode=='q' || movement_mode=='e' ||   //lcc　表示机器人运动模式
                                                 movement_mode=='a' || movement_mode=='s' || movement_mode=='d' )
                                         {
-                                                //lcc 20230513: 腿默认顺序为: lf lm lb rf rm rb -> 0 1 2 3 4 5
-                                                cpg_touch_down_scheduler<<cpg_scheduler(1,3), cpg_scheduler(1,4),
-                                                                        cpg_scheduler(1,5), cpg_scheduler(1,2), cpg_scheduler(1,1), cpg_scheduler(1,0);
+
+                                                #if ONLY_Quadruped==1  //机器人不不可切换步态，仅仅可用四足步态
+                                                                //lcc 20230513: 腿默认顺序为: lf lm lb rf rm rb -> 0 1 2 3 4 5
+                                                                cpg_touch_down_scheduler<<cpg_scheduler(1,4), cpg_scheduler(1,3),
+                                                                                        cpg_scheduler(1,5), cpg_scheduler(1,2), cpg_scheduler(1,1), cpg_scheduler(1,0);
+                                                #elif ONLY_Quadruped==0
+                                                                //lcc 20230513: 腿默认顺序为: lf lm lb rf rm rb -> 0 1 2 3 4 5
+                                                                cpg_touch_down_scheduler<<cpg_scheduler(1,3), cpg_scheduler(1,4),
+                                                                                        cpg_scheduler(1,5), cpg_scheduler(1,2), cpg_scheduler(1,1), cpg_scheduler(1,0);
+                                                #endif
                                         }
                                         else if(movement_mode=='c')  //lcc　机器人蹲
                                                 cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
                                         else                        //lcc　机器人站立，六腿着地
-                                                // cpg_touch_down_scheduler<< 0, 0, 0, 0, 0, 0;  //lcc 0 表示cpg_scheduler触地
-                                                cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+                                                cpg_touch_down_scheduler<< 0, 0, 0, 0, 0, 0;  //lcc 0 表示cpg_scheduler触地
+                                                // cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
                                         ContactSimple.swingphase_contact_est(leg_root.foot_ret_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj);
                                 #endif
 
@@ -576,6 +589,15 @@ void Hexapod::run(int argc, char *argv[])
 
                 #endif
                 // printf("--------next-------------\n");
+
+                dt_ms=_Tim1.getTimerMilliSec();
+                dt_s=_Tim1.getTimerSecond();
+                // printf(" dt_ms%f \n",dt_ms);
+                if(dt_ms<=3)
+                {
+                        usleep( (3-dt_ms)*1000 );
+                        // printf(" 3-dt_ms:%f \n",3-dt_ms);
+                }
         }
 }
 
@@ -589,109 +611,93 @@ void Hexapod::parSeting(void)
 
         #if HARD_WARE==1
                 _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数
-                _Cpg.T=_Cpg.TLinTran.linearConvert(_Cpg.T,1,180);
         #elif HARD_WARE==2
                 _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
         #endif
-        //  std::cout<<_Cpg.control_cycle<<std::endl;
 
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人
+        parInit();
+        setStepSize();  // 设置步长和步高
+        getDesPosAndVel();
 
-        if(set_para_init_flag==1)   //lcc 初始设置步长和步高的ｋ值
-        {
-                set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
-                set_yaw=0; set_roll=0; set_pitch=0;
-                set_step_length_k=1.3;
-                set_step_hight_k=1.3;
-                set_para_init_flag=0;
-                #if HARD_WARE==1
-                        set_cpg_ctrl_cycle=0.0025;
-                #elif HARD_WARE==2
-                        set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
-                #endif
-                printf("init\n");
+        if(t_test_key==1 )
+        {       
+                // 姿态控制,pid实现闭环姿态控制.
+                double roll, pitch;
 
-                cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
-        }
-        
-        neur_bezier[0].length_k=_step_length_k_conver[0].linearConvert(neur_bezier[0].length_k,set_step_length_k,60);
-        neur_bezier[1].length_k=_step_length_k_conver[1].linearConvert(neur_bezier[1].length_k,set_step_length_k,60);
-        neur_bezier[2].length_k=_step_length_k_conver[2].linearConvert(neur_bezier[2].length_k,set_step_length_k,60);
-        neur_bezier[3].length_k=_step_length_k_conver[3].linearConvert(neur_bezier[3].length_k,set_step_length_k,60);
-        neur_bezier[4].length_k=_step_length_k_conver[4].linearConvert(neur_bezier[4].length_k,set_step_length_k,60);
-        neur_bezier[5].length_k=_step_length_k_conver[5].linearConvert(neur_bezier[5].length_k,set_step_length_k,60);
+                // -- 以下是x轴转角的调整 --//
+                //lcc 20230531:set_roll极其不稳定，不可用
+                // if(-body_root.eulerAngle(2)*_RAD2>=10) roll=10*_RAD1;
+                // else if(-body_root.eulerAngle(2)*_RAD2<=-10) roll=-10*_RAD1;
+                // else    roll=-body_root.eulerAngle(2);
 
-        neur_bezier[0].height_k=_step_hight_k_conver[0].linearConvert(neur_bezier[0].height_k,set_step_hight_k,60);
-        neur_bezier[1].height_k=_step_hight_k_conver[1].linearConvert(neur_bezier[1].height_k,set_step_hight_k,60);
-        neur_bezier[2].height_k=_step_hight_k_conver[2].linearConvert(neur_bezier[2].height_k,set_step_hight_k,60);
-        neur_bezier[3].height_k=_step_hight_k_conver[3].linearConvert(neur_bezier[3].height_k,set_step_hight_k,60);
-        neur_bezier[4].height_k=_step_hight_k_conver[4].linearConvert(neur_bezier[4].height_k,set_step_hight_k,60);
-        neur_bezier[5].height_k=_step_hight_k_conver[5].linearConvert(neur_bezier[5].height_k,set_step_hight_k,60);
+                // attitude_pid_ctrl[2].setKpKiKd(3, 0.003, 0.3);
+                // set_roll=attitude_pid_ctrl[2].positonPidTau( 0.0, -body_root.eulerAngle(2) );
 
-        #if ADAPTIV_FLAG==1
-                if(t_test_key==1)
-                {       // 姿态控制,pid实现闭环姿态控制.
+                // if(set_roll>=35) set_roll=35;
+                // else if(set_roll<=-35) set_roll=-35;
 
-                        double roll, pitch;
-                        if(-body_root.eulerAngle(2)*_RAD2>=10) roll=10*_RAD1;
-                        else if(-body_root.eulerAngle(2)*_RAD2<=-10) roll=-10*_RAD1;
-                        else    roll=-body_root.eulerAngle(2);
+                // -- 以下是y轴转角的调整 --//
+                if(-body_root.eulerAngle(1)*_RAD2>=10) pitch=10*_RAD1;
+                else if(-body_root.eulerAngle(1)*_RAD2<=-10) pitch=-10*_RAD1;
+                else    pitch=-body_root.eulerAngle(1);
 
-                        attitude_pid_ctrl[2].setKpKiKd(1, 0.0000, 0.1);
-                        set_roll=attitude_pid_ctrl[2].positonPidTau( 0.0, roll );
+                attitude_pid_ctrl[1].setKpKiKd(2, 0.002, 0.2);
+                set_pitch=attitude_pid_ctrl[1].positonPidTau( 0.0, -body_root.eulerAngle(1) );
 
-                        if(set_roll>=35) set_roll=35;
-                        else if(set_roll<=-35) set_roll=-35;
+                // if(set_pitch>=35) set_pitch=35;
+                // else if(set_pitch<=-35) set_pitch=-35;
 
+                for(int i=0; i<6; i++)
+                {
+                        // if( cpg_touch_down_scheduler(i)==0 )  // cpg_touch_down_scheduler = 0 表示cpg_scheduler触地; 触地腿才可以参与姿态控制
+                        {
+                                _FooBodAdjMap[i].rrr_yaw=_FooBodAdjMap[i].YawLinTran.linearConvert(_FooBodAdjMap[i].rrr_yaw,set_yaw,1);
+                                _FooBodAdjMap[i].rrr_roll=_FooBodAdjMap[i].RolLinTran.linearConvert(_FooBodAdjMap[i].rrr_roll,set_roll,1);
+                                _FooBodAdjMap[i].rrr_pitch=_FooBodAdjMap[i].PitLinTran.linearConvert(_FooBodAdjMap[i].rrr_pitch,set_pitch,1);
+                                _FooBodAdjMap[i].fuselageAttiuCtrl(set_yaw, set_roll, set_pitch);
 
-                        if(-body_root.eulerAngle(1)*_RAD2>=10) pitch=10*_RAD1;
-                        else if(-body_root.eulerAngle(1)*_RAD2<=-10) pitch=-10*_RAD1;
-                        else    pitch=-body_root.eulerAngle(1);
-
-                        attitude_pid_ctrl[1].setKpKiKd(1, 0.0000, 0.1);
-                        set_pitch=attitude_pid_ctrl[1].positonPidTau( 0.0, pitch );
-
-                        if(set_pitch>=35) set_pitch=35;
-                        else if(set_pitch<=-35) set_pitch=-35;
+                                _FooBodAdjMap[i].x_deviation=_FooBodAdjMap[i].XdeLinTran.linearConvert(_FooBodAdjMap[i].x_deviation,set_x_deviation,1);
+                                _FooBodAdjMap[i].y_deviation=_FooBodAdjMap[i].YdeLinTran.linearConvert(_FooBodAdjMap[i].y_deviation,set_y_deviation,1);
+                                _FooBodAdjMap[i].z_deviation=_FooBodAdjMap[i].ZdeLinTran.linearConvert(_FooBodAdjMap[i].z_deviation,set_z_deviation,1);
+                                _FooBodAdjMap[i].fuselageDeviCtrl(set_x_deviation,set_y_deviation,set_z_deviation);    
+                        }
                 }
-                std::cout<<"set_pitch*_RAD2"<<std::endl;
-                std::cout<<set_pitch*_RAD2<<std::endl;
-                std::cout<<"body_root.eulerAngle(1)*_RAD2"<<std::endl;
-                std::cout<<body_root.eulerAngle(1)*_RAD2<<std::endl;
-                std::cout<<"set_roll*_RAD2"<<std::endl;
-                std::cout<<set_roll*_RAD2<<std::endl;
-                std::cout<<"body_root.eulerAngle(2)*_RAD2"<<std::endl;
-                std::cout<<body_root.eulerAngle(2)*_RAD2<<std::endl;
-
-                // leg_root.foot_cross_object_est=foot_cross_hight.sort(leg_root.foot_cross_object_est);
-                // std::cout<<"leg_root.foot_cross_object_est"<<std::endl;
-                // std::cout<<leg_root.foot_cross_object_est<<std::endl;
-                Eigen::Matrix<double, 1, 6> temp_hight;
-                temp_hight=foot_cross_hight.sort(leg_root.foot_cross_object_est);  //lcc 20230519:通过冒泡排序，将跨越高度提出来，将来用做机身高度调节
-                // std::cout<<"foot_cross_hight.sort(leg_root.foot_cross_object_est)"<<std::endl;
-                // std::cout<<temp_hight<<std::endl;
-
-
-                set_z_deviation=deviation_conver[2].linearConvert(set_z_deviation, temp_hight(5), 10);
-                // std::cout<<"set_z_deviation"<<std::endl;
-                // std::cout<<set_z_deviation<<std::endl;
-
-                FooTipAndBodAdjMap::fuselageAttiuCtrl(set_yaw, set_roll, set_pitch);
-                FooTipAndBodAdjMap::fuselageDeviCtrl(set_x_deviation, set_y_deviation, set_z_deviation);
-
-        #else
+                // FooTipAndBodAdjMap::fuselageAttiuCtrl(set_yaw, set_roll, set_pitch);
+                // FooTipAndBodAdjMap::fuselageDeviCtrl(set_x_deviation, set_y_deviation, set_z_deviation);
+        }
+        else if(t_test_key==0)
+        {
+                //lcc 这一块是手动控制模式，所有有姿态的调整接口;上面那一块是自适应控制模式;
                 //  lcc 20230330:机器人yaw,roll,pitch姿态的调整
-                _FooBodAdjMap[5].rrr_yaw=_FooBodAdjMap[5].YawLinTran.linearConvert(_FooBodAdjMap[5].rrr_yaw,set_yaw,120);
-                _FooBodAdjMap[5].rrr_roll=_FooBodAdjMap[5].RolLinTran.linearConvert(_FooBodAdjMap[5].rrr_roll,set_roll,120);
-                _FooBodAdjMap[5].rrr_pitch=_FooBodAdjMap[5].PitLinTran.linearConvert(_FooBodAdjMap[5].rrr_pitch,set_pitch,120);
-                FooTipAndBodAdjMap::fuselageAttiuCtrl(_FooBodAdjMap[5].rrr_yaw,_FooBodAdjMap[5].rrr_roll,_FooBodAdjMap[5].rrr_pitch);
+                for(int i=0; i<6; i++)
+                {
+                        _FooBodAdjMap[i].rrr_yaw=_FooBodAdjMap[i].YawLinTran.linearConvert(_FooBodAdjMap[i].rrr_yaw,set_yaw,120);
+                        _FooBodAdjMap[i].rrr_roll=_FooBodAdjMap[i].RolLinTran.linearConvert(_FooBodAdjMap[i].rrr_roll,set_roll,120);
+                        _FooBodAdjMap[i].rrr_pitch=_FooBodAdjMap[i].PitLinTran.linearConvert(_FooBodAdjMap[i].rrr_pitch,set_pitch,120);
+                        _FooBodAdjMap[i].fuselageAttiuCtrl(_FooBodAdjMap[i].rrr_yaw,_FooBodAdjMap[i].rrr_roll,_FooBodAdjMap[i].rrr_pitch);
 
-                // lcc 20230330:机器人姿态的平移调整
-                _FooBodAdjMap[5].x_deviation=_FooBodAdjMap[5].XdeLinTran.linearConvert(_FooBodAdjMap[5].x_deviation,set_x_deviation,120);
-                _FooBodAdjMap[5].y_deviation=_FooBodAdjMap[5].YdeLinTran.linearConvert(_FooBodAdjMap[5].y_deviation,set_y_deviation,120);
-                _FooBodAdjMap[5].z_deviation=_FooBodAdjMap[5].ZdeLinTran.linearConvert(_FooBodAdjMap[5].z_deviation,set_z_deviation,120);
-                FooTipAndBodAdjMap::fuselageDeviCtrl(_FooBodAdjMap[5].x_deviation,_FooBodAdjMap[5].y_deviation,_FooBodAdjMap[5].z_deviation);
-        #endif
+                        _FooBodAdjMap[i].x_deviation=_FooBodAdjMap[i].XdeLinTran.linearConvert(_FooBodAdjMap[i].x_deviation,set_x_deviation,120);
+                        _FooBodAdjMap[i].y_deviation=_FooBodAdjMap[i].YdeLinTran.linearConvert(_FooBodAdjMap[i].y_deviation,set_y_deviation,120);
+                        _FooBodAdjMap[i].z_deviation=_FooBodAdjMap[i].ZdeLinTran.linearConvert(_FooBodAdjMap[i].z_deviation,set_z_deviation,120);
+                        _FooBodAdjMap[i].fuselageDeviCtrl(_FooBodAdjMap[i].x_deviation,_FooBodAdjMap[i].y_deviation,_FooBodAdjMap[i].z_deviation);
+                }
+        }
+
+        // std::cout<<"set_z_deviation"<<std::endl;
+        // std::cout<<set_z_deviation<<std::endl;
+
+        // std::cout<<"set_pitch*_RAD2"<<std::endl;
+        // std::cout<<set_pitch*_RAD2<<std::endl;
+        // std::cout<<"body_root.eulerAngle(1)*_RAD2"<<std::endl;
+        // std::cout<<body_root.eulerAngle(1)*_RAD2<<std::endl;
+
+        // std::cout<<"set_roll*_RAD2"<<std::endl;
+        // std::cout<<set_roll*_RAD2<<std::endl;
+        // std::cout<<"body_root.eulerAngle(2)*_RAD2"<<std::endl;
+        // std::cout<<body_root.eulerAngle(2)*_RAD2<<std::endl;
+
+        // std::cout<<"--------next aa------"<<std::endl;
 }
 
 

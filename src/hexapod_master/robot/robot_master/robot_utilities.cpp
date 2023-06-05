@@ -133,12 +133,6 @@ void Hexapod::recData()
 
 void Hexapod::recDataHandling(void)
 {
-        step_length=neur_bezier[5].retDesStepLength();  //步长
-        des_vel=step_length/dt_s;    //期望速度＝步长/时间　　　
-        // std::cout<<"step_length: "<<step_length<<std::endl;
-        // std::cout<<"des_vel: "<<des_vel<<std::endl;
-        // std::cout<<"retDesStepHight: "<<neur_bezier[5].retDesStepHight()<<std::endl;
-
         //机器坐标系方向跟据右手定则： 向前为x正，向左为y正，向上为z正。
         //lcc 20230513: 跟关节下真实足端位置
         #if HARD_WARE==1

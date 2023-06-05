@@ -35,15 +35,14 @@ class RobotParam  //robot_param
 
         double set_x_deviation=0, set_y_deviation=0, set_z_deviation=0; 
         double set_yaw=0, set_roll=0, set_pitch=0;
-        double set_step_length_k=0,set_step_hight_k=0;
+        Eigen::Matrix<double,1,6> set_step_hight_k;
+        Eigen::Matrix<double,1,6> set_step_length_k;
         double set_cpg_ctrl_cycle=0;
         double set_para_init_flag=1;
-        double step_length=0;
 
-        double des_vel=0;
-        double des_pos=0;
-        
         int movement_mode;  //lcc 用不同的整数来表示机器人的运动模式
+        int lift_adaptiv_init_flag=0;  //lcc 用不同的整数来表示机器人的运动模式
+        int dowm_adaptiv_init_flag=0;  //lcc 用不同的整数来表示机器人的运动模式
 
         Eigen::Matrix<double,2,6> cpg_scheduler;  //lcc 20230513: 第一行为x  ;第二行为y
         Eigen::Matrix<double,1,6> cpg_touch_down_scheduler;  //lcc 20230513: 其实就是cpg的y值
@@ -72,13 +71,25 @@ class RobotParam  //robot_param
             Eigen::Matrix<double,3,6> foot_dowmward_traj;      //　下探轨迹
             Eigen::Matrix<double,1,6> foot_cross_object_est;    //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
             Eigen::Matrix<double,1,6> foot_ditch_deepth_est;    //　
+            Eigen::Matrix<double,3,6> foot_lift_traj;    //　
+            Eigen::Matrix<double,3,6> foot_dowm_traj;    //　
 
             Eigen::Matrix<double,3,6> foot_trajectory;
             Eigen::Matrix<double,3,6> foot_traj_mapping_to_body;
+
+            Eigen::Matrix<double,1,6> step_set_length; 
+            Eigen::Matrix<double,1,6> step_set_hight; 
+            // Eigen::Matrix<double,1,6> step_des_length; 
+            // Eigen::Matrix<double,1,6> step_des_hight; 
+            Eigen::Matrix<double,1,6> step_original_length; 
+            Eigen::Matrix<double,1,6> step_original_hight; 
         }leg_root;
 
         struct body_root
         {
+            Eigen::Matrix<double, 3, 1> des_vel;
+            Eigen::Matrix<double, 3, 1> des_pos;
+
             Eigen::Matrix<double,3,1> imu_ang_vel;
             Eigen::Matrix<double,3,1> imu_lin_acc;
             Eigen::Matrix<double,4,1> imu_qua_ori;

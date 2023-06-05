@@ -39,7 +39,8 @@
 #define HARD_WARE 2  // 1：开硬件，不开gazebo 2：关硬件;开gazebo  
 #define SEQ_CHOKE 2  // 1:开启时序阻塞，如果接收消息的时序不更新，那么就会让线程死在 Hexapod::recData()中等待时序更新  2：不开启时序阻塞
 #define DEBUG 0  // 1 在调试   ； 0 不调试
-#define ADAPTIV_FLAG 0  // 自适应控制算法　0 关   ； 1 开
+#define ADAPTIV_FLAG 1  // 自适应控制算法　0 关   ； 1 开
+#define ONLY_Quadruped 0  // 只能用四足步态　0 关   ； 1 开
 
 #define SIM_CTRL_MODE 1   // 仿真算法：1 -> position control  2-> pd control
 #define SIM_PROTECT 2 // 1:开启保护　　２：不保护
@@ -113,7 +114,11 @@ class Hexapod:public RobotParam
         linear_trans attitude_conver[3];
         linear_trans deviation_conver[3];
 
-        BubbleSort foot_cross_hight;
+        BubbleSort foot_cross_hight_sort, foot_ditch_deepth_sort;
+        BubbleSort get_original_step_higtt_sort[6], get_original_step_length_sort[6];
+        BubbleSort get_des_step_hight_sort[6], get_des_step_length_sort[6];
+
+        neural_bezier_curve neur_bezier_lift_curve[6];
     public:
 
         /**
@@ -124,12 +129,20 @@ class Hexapod:public RobotParam
         int  joint_pos_run_count=0,motor_pos_set_count=0,motor_pos_ach_count_flag=0;
         int  t_test_key=0;
         void run(int argc, char *argv[]);
-        void parSeting(void);
         void recData();
         void recDataHandling(void);
         void msgShow(void);
         void simMsgPub(void);
         void realRobMsgPub(void);
+
+        /**
+        * @brief 以下接口声明了机器人的参数设置函数
+        * @author lcc
+        */
+        void parSeting(void);
+        void parInit(void);
+        void setStepSize();
+        void getDesPosAndVel();
 
         /**
         * @brief 以下接口声明了机器人的控制函数
@@ -165,6 +178,8 @@ class Hexapod:public RobotParam
         void robTurnLeftAround(double amplitude);
 
         void adaptive_control(void);
+        void liftReaction(void);
+        void dowmwardReaction(void);
 };
 
 #endif
