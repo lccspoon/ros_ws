@@ -365,7 +365,7 @@ void Hexapod::run(int argc, char *argv[])
                         // RfForce.msgPubRun(_Rf.m.robot_velocity);
                         // RmForce.msgPubRun(_Rm.m.robot_velocity);
                         // RbForce.msgPubRun(_Rb.m.robot_velocity);
-                        // LfVel.msgPubRun(_Lf.m.robot_force);
+                        // LfVel.msgPubRun(_Lf.m.robot_force);world_root
                         // LmVel.msgPubRun(_Lm.m.robot_force);
                         // LbVel.msgPubRun(_Lb.m.robot_force);
                         // RfVel.msgPubRun(_Rf.m.robot_force);
@@ -377,8 +377,8 @@ void Hexapod::run(int argc, char *argv[])
 
                         staest_vel.msgPubRun(state.root_lin_vel);
                         staest_pos.msgPubRun(state.root_pos);
-                        body_des_vel.msgPubRun(body_root.des_vel);
-                        body_des_pos.msgPubRun(body_root.des_pos);
+                        body_des_vel.msgPubRun(world_root.body_des_vel);
+                        body_des_pos.msgPubRun(world_root.body_des_pos);
                         //xzb230512
                         // vel_legodom_pub.msgPubRun(vel_legodom);
                         // vel_ekf_pub.msgPubRun(vel_ekf);
@@ -419,7 +419,7 @@ void Hexapod::run(int argc, char *argv[])
                 */
                 recData();     
                 recDataHandling();  //lcc 20230329: 对得到的数据进行转换和处理
-                // msgShow(); //lcc 20230329: 打印机器人的信息数
+                msgShow(); //lcc 20230329: 打印机器人的信息数
 
                 // _LagrangeInterpolator.eg_bytime( _SimpleScheduler.retSimpleScheduler(1, 0.01) );
 

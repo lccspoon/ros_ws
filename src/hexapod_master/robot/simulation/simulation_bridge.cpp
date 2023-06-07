@@ -183,7 +183,7 @@ void doMsg_nav_odometry(const nav_msgs::Odometry::ConstPtr& nav_odometry )
         odometry.position[1]=nav_odometry->pose.pose.position.y;
         odometry.position[2]=nav_odometry->pose.pose.position.z;
 
-        printf(" odometry.position: %f,  %f,  %f \n",odometry.position[0],odometry.position[1],odometry.position[2]);
+        // printf(" odometry.position: %f,  %f,  %f \n",odometry.position[0],odometry.position[1],odometry.position[2]);
 
         odometry.twist_linear[0]=nav_odometry->twist.twist.linear.x;
         odometry.twist_linear[1]=nav_odometry->twist.twist.linear.y;

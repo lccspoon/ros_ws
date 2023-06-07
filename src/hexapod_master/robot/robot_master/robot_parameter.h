@@ -87,9 +87,6 @@ class RobotParam  //robot_param
 
         struct body_root
         {
-            Eigen::Matrix<double, 3, 1> des_vel;
-            Eigen::Matrix<double, 3, 1> des_pos;
-
             Eigen::Matrix<double,3,1> imu_ang_vel;
             Eigen::Matrix<double,3,1> imu_lin_acc;
             Eigen::Matrix<double,4,1> imu_qua_ori;
@@ -106,6 +103,12 @@ class RobotParam  //robot_param
 
         struct world_root
         {
+            Eigen::Matrix<double, 3, 1> body_des_vel;
+            Eigen::Matrix<double, 3, 1> body_des_pos;
+
+            Eigen::Matrix<double, 3, 6> foot_des_vel;
+            Eigen::Matrix<double, 3, 6> foot_des_pos;
+
             Eigen::Matrix<double,3,1> bod_des_pos_ref_world, bod_des_vel_ref_world;
             Eigen::Matrix<double,3,1> bod_act_pos_ref_world, bod_act_vel_ref_world;
             Eigen::Matrix<double,3,3> root_rot_mat;   //世界系机器人旋转矩阵

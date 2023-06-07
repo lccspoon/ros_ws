@@ -30,7 +30,6 @@ void Hexapod::setStepSize()
                         // exit(0);
                 }
 
-
         for(int i=0; i<6; i++)
         {
                 // leg_root.step_des_hight(i)=get_des_step_hight_sort[i].sort_continuet(  leg_root.foot_swing_traj(2,i) );
@@ -51,7 +50,6 @@ void Hexapod::setStepSize()
         // std::cout<<leg_root.step_set_hight<<std::endl;
         // std::cout<<"leg_root.step_set_length"<<std::endl;      
         // std::cout<<leg_root.step_set_length<<std::endl;
-
 
         // std::cout<<"leg_root.step_des_hight"<<std::endl;      
         // std::cout<<leg_root.step_des_hight<<std::endl;
@@ -88,7 +86,7 @@ void Hexapod::parInit()
             cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
 
         #if HARD_WARE==2  //lcc 20230329: 开启仿真
-                body_root.des_pos=GazeboSim.retOdoPostion();
+                world_root.body_des_pos=GazeboSim.retOdoPostion();
         #endif
     }
 }
@@ -144,27 +142,25 @@ void Hexapod::getDesPosAndVel()
         else 
                 body_des_vel.setZero();
 
-        body_root.des_vel=body_des_vel; //得到期望速度
+        world_root.body_des_vel=body_des_vel; //得到期望速度
+        world_root.body_des_pos= body_des_vel*dt_s + world_root.body_des_pos; //得到期望位置
 
-        body_root.des_pos= body_des_vel*dt_s + body_root.des_pos; //得到期望位置
+        for(int i=0;i<6;i++)
+                world_root.foot_des_pos.block<3,1>(0,i)  = body_root.foot_des_pos.block<3,1>(0,i) + world_root.body_des_pos;
 
-
-
-
-
-        std::cout<<"dt_s"<<std::endl;
-        std::cout<<dt_s<<std::endl;
-        std::cout<<"leg_number"<<std::endl;
-        std::cout<<leg_number<<std::endl;
-        std::cout<<"phase_count"<<std::endl;
-        std::cout<<phase_count<<std::endl;
-        std::cout<<"foot_des_pos_last"<<std::endl;
-        std::cout<<foot_des_pos_last<<std::endl;
-        std::cout<<"foot_des_vel"<<std::endl;
-        std::cout<<foot_des_vel<<std::endl;
-        std::cout<<"body_des_vel"<<std::endl;
-        std::cout<<body_des_vel<<std::endl;
-        std::cout<<"body_root.des_pos"<<std::endl;
-        std::cout<<body_root.des_pos<<std::endl;
+        // std::cout<<"dt_s"<<std::endl;
+        // std::cout<<dt_s<<std::endl;
+        // std::cout<<"leg_number"<<std::endl;
+        // std::cout<<leg_number<<std::endl;
+        // std::cout<<"phase_count"<<std::endl;
+        // std::cout<<phase_count<<std::endl;
+        // std::cout<<"foot_des_pos_last"<<std::endl;
+        // std::cout<<foot_des_pos_last<<std::endl;
+        // std::cout<<"foot_des_vel"<<std::endl;
+        // std::cout<<foot_des_vel<<std::endl;
+        // std::cout<<"world_root.des_vel"<<std::endl;
+        // std::cout<<world_root.des_vel<<std::endl;
+        // std::cout<<"body_root.des_pos"<<std::endl;
+        // std::cout<<world_root.des_pos<<std::endl;
         leg_number=0;
 }

@@ -2,17 +2,25 @@
 #include "ros/ros.h"
 void Hexapod::msgShow(void)
 {
-        cout << "cost time:" << dt_ms <<"ms     "<< "rec_data_seq" << rec_data_seq << endl;
+        // cout << "cost time:" << dt_ms <<"ms     "<< "rec_data_seq" << rec_data_seq << endl;
 
-        std::cout<<"leg_root.foot_des_pos"<<std::endl;
-        std::cout<<leg_root.foot_des_pos<<std::endl;
-        std::cout<<"leg_root.foot_act_pos"<<std::endl;
-        std::cout<<leg_root.foot_act_pos<<std::endl;
+        // std::cout<<"leg_root.foot_des_pos"<<std::endl;
+        // std::cout<<leg_root.foot_des_pos<<std::endl;
+        // std::cout<<"leg_root.foot_act_pos"<<std::endl;
+        // std::cout<<leg_root.foot_act_pos<<std::endl;
 
-        std::cout<<"body_root.foot_des_pos"<<std::endl;
-        std::cout<<body_root.foot_des_pos<<std::endl;
-        std::cout<<"body_root.foot_act_pos"<<std::endl;
-        std::cout<<body_root.foot_act_pos<<std::endl;
+        // std::cout<<"body_root.foot_des_pos"<<std::endl;
+        // std::cout<<body_root.foot_des_pos<<std::endl;
+        // std::cout<<"body_root.foot_act_pos"<<std::endl;
+        // std::cout<<body_root.foot_act_pos<<std::endl;
+
+        // std::cout<<"world_root.body_des_vel"<<std::endl;
+        // std::cout<<world_root.body_des_vel<<std::endl;
+        // std::cout<<"world_root.body_des_pos"<<std::endl;
+        // std::cout<<world_root.body_des_pos<<std::endl;
+
+        // std::cout<<"world_root.foot_des_pos"<<std::endl;
+        // std::cout<<world_root.foot_des_pos<<std::endl;
 
         // std::cout<<"state.root_pos"<<std::endl;
         // std::cout<<state.root_pos<<std::endl;
@@ -20,6 +28,8 @@ void Hexapod::msgShow(void)
         // std::cout<<state.root_lin_vel<<std::endl;
         // std::cout<<"state.foot_pos_ref_world"<<std::endl;
         // std::cout<<state.foot_pos_ref_world<<std::endl;
+
+        // printf("\n -------next-----\n");
 }
 
 /**
