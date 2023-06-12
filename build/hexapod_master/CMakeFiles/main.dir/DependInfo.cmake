@@ -51,7 +51,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/lcm"
   "/opt/ros/noetic/include"
   "/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
-  "/home/lcc/ros_ws/src/hexapod_master/./xspublic/include/xspublic"
   )
 
 # Targets to which this target links.

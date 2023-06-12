@@ -4,13 +4,20 @@
 #include <sys/time.h>
 #include <time.h>
 #include <stdio.h>
-
+#include <iostream>
+#include <eigen3/Eigen/Core>
+#include <Eigen/Dense>
 class Clock
 {
     private:
         int _year,_month,_day,_hour,_min,_sec,_ms,_us;
         int _record_ms;
         struct timeval tTimeVal;
+
+
+        Eigen::Matrix<double,1,6> cpg_period_count;
+        Eigen::Matrix<double,1,6> cpg_scheduler_last;
+
     public:
 
         Clock(/* args */)
@@ -54,6 +61,21 @@ class Clock
             return _record_ms;
         }
 
+        Eigen::Matrix<double,1,6> retSchedulerCount( Eigen::Matrix<double,1,6> cpg_scheduler )
+        {
+            for(int i=0;i<6;i++)
+            {
+
+                if( cpg_scheduler(i)==0 && cpg_scheduler_last(i)==1 )
+                {
+                    cpg_period_count(i)++;
+                }
+
+                cpg_scheduler_last(i) = cpg_scheduler(i);
+
+            }
+        }
+
 };
 
 
@@ -67,7 +89,8 @@ class TimeMteter
 {
     private:
         time_point<high_resolution_clock>_start;
-
+        Eigen::Matrix<double,1,6> cpg_period_count;
+        Eigen::Matrix<double,1,6> cpg_scheduler_last;
     public:
     TimeMteter()
     {
@@ -103,9 +126,23 @@ class TimeMteter
         return duration_cast<microseconds>(high_resolution_clock::now() - _start).count();
     }
 
+    Eigen::Matrix<double,1,6> retSchedulerCount( Eigen::Matrix<double,1,6> cpg_scheduler )
+    {
+        for(int i=0;i<6;i++)
+        {
+            if( cpg_scheduler(i)==0 && cpg_scheduler_last(i)==1 )
+            {
+                cpg_period_count(i)++;
+            }
+            cpg_scheduler_last(i) = cpg_scheduler(i);
+        }
+        // std::cout<<cpg_period_count<<std::endl;
+        return cpg_period_count;
+    }
 };
  
 
 
 
 #endif
+

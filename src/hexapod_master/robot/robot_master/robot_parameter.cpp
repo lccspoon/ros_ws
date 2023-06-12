@@ -37,7 +37,9 @@ void Hexapod::setStepSize()
                 // 此处得到的是轨迹x方向的最大值，注意最大值不一定是步长，但差不多
                 // leg_root.step_des_length(i)=get_des_step_length_sort[i].sort_continuet( leg_root.foot_swing_traj(0,i) ) * 2 ; // 步长关于0点左右对称,所以*2，
 
-                double des_step_l=leg_root.step_set_length(i) * 0.01, des_step_h=leg_root.step_set_hight(i) * 0.01;  
+
+                // /2是因为设计的补偿值其实是直接覆给　摆动长度和支撑长度的．一个周期的补偿＝摆动长度＋支撑长度
+                double des_step_l=leg_root.step_set_length(i)/2 , des_step_h=leg_root.step_set_hight(i) ;  
                 set_step_length_k(i)= des_step_l / leg_root.step_original_length(i);
                 set_step_hight_k(i)= des_step_h / leg_root.step_original_hight(i);
         }
@@ -72,8 +74,8 @@ void Hexapod::parInit()
 
             Eigen::Matrix<double,1,6> one;
             one.setOnes();
-            leg_root.step_set_length=one*3;  //lcc 步长３cm
-            leg_root.step_set_hight=one*4;   //lcc　步高４cm
+            leg_root.step_set_length=one* 7*0.01;  //lcc 步长6cm
+            leg_root.step_set_hight=one*5  * 0.01;   //lcc　步高４cm
 
             set_para_init_flag=0;
             #if HARD_WARE==1

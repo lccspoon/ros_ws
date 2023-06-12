@@ -167,10 +167,10 @@ include_directories(
 
 
 #xzb230522
-include_directories(./xspublic/include/xspublic) 
-add_subdirectory(./xspublic/xscommon)
-add_subdirectory(./xspublic/xscontroller)
-add_subdirectory(./xspublic/xstypes)
+# include_directories(./xspublic/include/xspublic) 
+# add_subdirectory(./xspublic/xscommon)
+# add_subdirectory(./xspublic/xscontroller)
+# add_subdirectory(./xspublic/xstypes)
 #xzb230522
 # add_subdirectory(./user ./common ./robot)
 # aux_source_directory(. SRC_LIST)

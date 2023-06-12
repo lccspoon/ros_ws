@@ -52,11 +52,3 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/hexapod_master" TYPE FILE FILES "/home/lcc/ros_ws/src/hexapod_master/package.xml")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/lcc/ros_ws/build/hexapod_master/xspublic/xscommon/cmake_install.cmake")
-  include("/home/lcc/ros_ws/build/hexapod_master/xspublic/xscontroller/cmake_install.cmake")
-  include("/home/lcc/ros_ws/build/hexapod_master/xspublic/xstypes/cmake_install.cmake")
-
-endif()
-

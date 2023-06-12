@@ -586,10 +586,14 @@ void Hexapod::run(int argc, char *argv[])
                         // leg_root.joint_rec_pos(15) <<" "<< 
                         // leg_root.joint_rec_pos(16) <<" "<< 
                         // leg_root.joint_rec_pos(17) << endl;
-
                 #endif
                 // printf("--------next-------------\n");
 
+                // Eigen::Matrix<double,1,6> cpg_touch_down_scheduler;  //lcc 20230513: 其实就是cpg的y值
+                // Eigen::Matrix<double,1,6> cpg_period_count;  //lcc 20230609
+
+                cpg_period_count = _Tim1.retSchedulerCount(cpg_touch_down_scheduler);
+                // std::cout<<cpg_period_count<<std::endl;
                 dt_ms=_Tim1.getTimerMilliSec();
                 dt_s=_Tim1.getTimerSecond();
                 // printf(" dt_ms%f \n",dt_ms);

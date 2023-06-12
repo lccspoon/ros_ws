@@ -19,9 +19,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/lcc/ros_ws/src/CMakeLists.txt"
   "/home/lcc/ros_ws/src/hexapod_master/CMakeLists.txt"
   "/home/lcc/ros_ws/src/hexapod_master/package.xml"
-  "/home/lcc/ros_ws/src/hexapod_master/xspublic/xscommon/CMakeLists.txt"
-  "/home/lcc/ros_ws/src/hexapod_master/xspublic/xscontroller/CMakeLists.txt"
-  "/home/lcc/ros_ws/src/hexapod_master/xspublic/xstypes/CMakeLists.txt"
   "/home/lcc/ros_ws/src/newtwo/CMakeLists.txt"
   "/home/lcc/ros_ws/src/newtwo/package.xml"
   "/opt/ros/noetic/share/actionlib_msgs/cmake/actionlib_msgs-extras.cmake"
@@ -238,9 +235,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "gtest/googletest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "hexapod_master/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "hexapod_master/xspublic/xscommon/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "hexapod_master/xspublic/xscontroller/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "hexapod_master/xspublic/xstypes/CMakeFiles/CMakeDirectoryInformation.cmake"
   "newtwo/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -306,8 +300,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "hexapod_master/CMakeFiles/geometry_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "hexapod_master/CMakeFiles/nav_msgs_generate_messages_eus.dir/DependInfo.cmake"
   "hexapod_master/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/DependInfo.cmake"
-  "hexapod_master/xspublic/xscommon/CMakeFiles/XsCommon.dir/DependInfo.cmake"
-  "hexapod_master/xspublic/xscontroller/CMakeFiles/XsController.dir/DependInfo.cmake"
-  "hexapod_master/xspublic/xstypes/CMakeFiles/XsTypes.dir/DependInfo.cmake"
   "newtwo/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake"
   )

@@ -14,19 +14,19 @@
         <model name="static_environment">
             <static>true</static>
             <link name="floor3">
-                <pose>1.2 0 0 0 0 0</pose>
+                <pose>0 0 0 0 0 0</pose>
                 <!-- <pose>2 0 0 0 0 0</pose> -->
                 <collision name="floor3_collision">
                     <geometry>
                         <box>
-                            <size>1.2 4 0.12</size>
+                            <size>1.2 4 0.16</size>
                         </box>
                     </geometry>
                 </collision>
                 <visual name="floor3_visual">
                     <geometry>
                         <box>
-                            <size>1.2 4 0.12</size>
+                            <size>1.2 4 0.16</size>
                         </box>
                     </geometry>
                     <material>

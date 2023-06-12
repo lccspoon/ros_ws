@@ -6,5 +6,5 @@ CXX_FLAGS =  -O3  -Wall -Ofast   -std=c++11
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"hexapod_master\"
 
-CXX_INCLUDES = -I/usr/include/eigen3 -I/usr/local/include/lcm -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/home/lcc/ros_ws/src/hexapod_master/./xspublic/include/xspublic 
+CXX_INCLUDES = -I/usr/include/eigen3 -I/usr/local/include/lcm -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

@@ -948,45 +948,6 @@ actionlib_msgs_generate_messages_lisp/fast:
 .PHONY : actionlib_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named XsCommon
-
-# Build rule for target.
-XsCommon: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 XsCommon
-.PHONY : XsCommon
-
-# fast build rule for target.
-XsCommon/fast:
-	$(MAKE) -f hexapod_master/xspublic/xscommon/CMakeFiles/XsCommon.dir/build.make hexapod_master/xspublic/xscommon/CMakeFiles/XsCommon.dir/build
-.PHONY : XsCommon/fast
-
-#=============================================================================
-# Target rules for targets named XsController
-
-# Build rule for target.
-XsController: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 XsController
-.PHONY : XsController
-
-# fast build rule for target.
-XsController/fast:
-	$(MAKE) -f hexapod_master/xspublic/xscontroller/CMakeFiles/XsController.dir/build.make hexapod_master/xspublic/xscontroller/CMakeFiles/XsController.dir/build
-.PHONY : XsController/fast
-
-#=============================================================================
-# Target rules for targets named XsTypes
-
-# Build rule for target.
-XsTypes: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 XsTypes
-.PHONY : XsTypes
-
-# fast build rule for target.
-XsTypes/fast:
-	$(MAKE) -f hexapod_master/xspublic/xstypes/CMakeFiles/XsTypes.dir/build.make hexapod_master/xspublic/xstypes/CMakeFiles/XsTypes.dir/build
-.PHONY : XsTypes/fast
-
-#=============================================================================
 # Target rules for targets named _catkin_empty_exported_target
 
 # Build rule for target.
@@ -1072,9 +1033,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_lisp"
-	@echo "... XsCommon"
-	@echo "... XsController"
-	@echo "... XsTypes"
 	@echo "... _catkin_empty_exported_target"
 .PHONY : help
 

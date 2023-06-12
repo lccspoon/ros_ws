@@ -180,8 +180,11 @@ class Hexapod:public RobotParam
         void adaptive_control(void);
         void liftReaction(void);
         void liftFollowReaction(void);
+        void liftFollowTraject(void);
+        void changeBezierShape(int i);
         void dowmwardReaction(void);
         void dowmwardFollowReaction(void);
+        void dowmwardFollowTraject(void);
 };
 
 #endif

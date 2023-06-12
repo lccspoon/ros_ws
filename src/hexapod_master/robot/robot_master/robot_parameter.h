@@ -23,7 +23,6 @@ class RobotParam  //robot_param
         double fuselage_length=30*0.01,fuselage_width=15*0.01;
         double LEG_DH_PARAM1=7.3*0.01, LEG_DH_PARAM2=21.1*0.01, LEG_DH_PARAM3=23*0.01;
 
-
         double _RAD1=3.1415926/180;
         double _RAD2=180/3.1415926;
         double _lf_start_pos_coe=0,_lm_start_pos_coe=0,_lb_start_pos_coe=0;  //lcc 20230514:用于机器人启动的系数
@@ -46,6 +45,7 @@ class RobotParam  //robot_param
 
         Eigen::Matrix<double,2,6> cpg_scheduler;  //lcc 20230513: 第一行为x  ;第二行为y
         Eigen::Matrix<double,1,6> cpg_touch_down_scheduler;  //lcc 20230513: 其实就是cpg的y值
+        Eigen::Matrix<double,1,6> cpg_period_count;  //lcc 20230609
 
         struct leg_root
         {
@@ -81,10 +81,13 @@ class RobotParam  //robot_param
             Eigen::Matrix<double,1,6> step_set_hight; 
             // Eigen::Matrix<double,1,6> step_des_length; 
             // Eigen::Matrix<double,1,6> step_des_hight; 
+            // leg_root.step_set_length=one*6 * 0.01;  //lcc 步长6cm
+            // leg_root.step_set_hight=one*4  * 0.01;   //lcc　步高４cm
             Eigen::Matrix<double,1,6> step_original_length; 
             Eigen::Matrix<double,1,6> step_original_hight; 
+            
         }leg_root;
-
+ 
         struct body_root
         {
             Eigen::Matrix<double,3,1> imu_ang_vel;
