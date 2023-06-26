@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/hexapod/ros_ws/devel/setup.sh

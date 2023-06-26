@@ -1,0 +1,8 @@
+prefix=/home/hexapod/ros_ws/devel
+
+Name: hexapod_master
+Description: Description of hexapod_master
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
