@@ -448,9 +448,9 @@ linear_trans joint_kp_conver[6], joint_kd_conver[6];
 void Hexapod::kpkdSwitch(void)
 {
     int tt=int(1/set_cpg_ctrl_cycle);
-    leg_root.joint_supor_kp<<320,320,320;
+    leg_root.joint_supor_kp<<360,360,360;
     leg_root.joint_supor_kd<<3,3,3;
-    leg_root.joint_swing_kp<<80,80,80;
+    leg_root.joint_swing_kp<<90,90,90;
     leg_root.joint_swing_kd<<2 ,2 ,2;
 
     // std::cout<<"leg_real_cpg_signal"<<std::endl;
@@ -470,7 +470,7 @@ void Hexapod::kpkdSwitch(void)
             {
                     leg_root.joint_kp.block<3,1>(0,i)=joint_kp_conver[i].linearConvert(leg_root.joint_kp.block<3,1>(0,i),leg_root.joint_swing_kp, tt*0.5*0.5*0.2);
                     leg_root.joint_kd.block<3,1>(0,i)=joint_kd_conver[i].linearConvert(leg_root.joint_kd.block<3,1>(0,i),leg_root.joint_swing_kd, tt*0.5*0.5*0.2);
-                    printf("qiqiqiqiqiqiqi\n");
+                    // printf("qiqiqiqiqiqiqi\n");
             }
 
             if( cpg_touch_down_scheduler(i)==1 && leg_real_cpg_signal(i)>=0.0 && leg_real_cpg_signal(i)<=0.1 )
@@ -483,7 +483,7 @@ void Hexapod::kpkdSwitch(void)
             {
                     leg_root.joint_kp.block<3,1>(0,i)=joint_kp_conver[i].linearConvert(leg_root.joint_kp.block<3,1>(0,i),leg_root.joint_supor_kp, tt*0.5*0.5*0.2);
                     leg_root.joint_kd.block<3,1>(0,i)=joint_kd_conver[i].linearConvert(leg_root.joint_kd.block<3,1>(0,i),leg_root.joint_supor_kd, tt*0.5*0.5*0.2);      
-                    printf("luoluoluoluo\n");
+                    // printf("luoluoluoluo\n");
             }
             cpg_scheduler_last(i) = cpg_touch_down_scheduler(i);
     }

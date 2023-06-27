@@ -124,8 +124,9 @@ class Hexapod:public RobotParam
         neural_bezier_curve neur_bezier_lift_curve[6];
 
         Eigen::Matrix<double,1,6> leg_real_cpg_signal;
+        Eigen::Matrix<double,1,6> swing_contact_threadhold;
+        double cpg_switch_period=80;
 
-        // Eigen::Matrix<double,6,1> foot_sum_force;
 
     public:
 

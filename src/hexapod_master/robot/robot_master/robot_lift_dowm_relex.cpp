@@ -191,9 +191,10 @@ Eigen::Matrix<double,3,6> rec_foot_lift_pos;
 Eigen::Matrix<double,1,6> rec_foot_lift_pos_flag;
 Eigen::Matrix<double,1,6> reset_rec_foot_lift_pos_flag;
 Eigen::Matrix<double,3,6> rec_foot_cross_traj;
+Eigen::Matrix<double,1,6> enter_lift_count;
 void Hexapod::liftFollowReaction(void)
 {
-    printf(" ---next--- \n");
+    // printf(" ---next--- \n");
     //----  以下是抬升反应 ----//
     for (int j = 0; j < 2; j++)
     {   
@@ -218,25 +219,30 @@ void Hexapod::liftFollowReaction(void)
         // std::cout<< neur_bezier[i].lamdaX<<std::endl;
         neur_bezier_lift_curve[i].Set_PX<< 0 , -1 , -3 , -5 , -7 , -5 , -3 , -1 , -0.5;  //输入单位cm 设置态升轨迹
         neur_bezier_lift_curve[i].Set_PY<< -3 + 3,-2.5 + 3, -2.3 + 3, -0.5 + 3, 1 + 3, 2.7 + 3, 3 + 3, 4.0 + 3, 3.75 + 3;  //输入单位cm　设置态升轨迹
-        neur_bezier_lift_curve[i].Set_PX=neur_bezier_lift_curve[i].Set_PX*0.01  *0.15;   // *0.15 -> 轨迹缩小10倍,　
-        neur_bezier_lift_curve[i].Set_PY=neur_bezier_lift_curve[i].Set_PY*0.01  *0.05;  // *0.05-> 大概抬高0.4cm
+        neur_bezier_lift_curve[i].Set_PX=neur_bezier_lift_curve[i].Set_PX*0.01  *0.15  *0.1;   // *0.15 -> 轨迹缩小10倍,　
+        neur_bezier_lift_curve[i].Set_PY=neur_bezier_lift_curve[i].Set_PY*0.01  *0.05  *2.6;  // *0.05-> 大概抬高0.4cm
 
-        if(swing_touch_leg_number(i)==1  && lift_stage_switching_flag==0) // 若　lift_stage_switching_flag==1　表示轨迹正在复原，此时不可调整轨迹
+        if( swing_touch_leg_number(i)==1  && lift_stage_switching_flag==0 ) // 若　lift_stage_switching_flag==1　表示轨迹正在复原，此时不可调整轨迹
         {  
             _Cpg.cpg_stop_flag=1;
 
             double ttt;
-            ttt=-1.0+_SimpleScheduler[i].retSimpleScheduler(1, 0.05)* 2.0;
+            ttt=-1.0+_SimpleScheduler[i].retSimpleScheduler(1, 0.0125)* 2.0;
 
             leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
                                 neur_bezier_lift_curve[i].bezierCurve( ttt , 1);
             // exit(0);
 
+            set_cpg_ctrl_cycle=0.001;//lcc 20230626
+            swing_contact_threadhold(i)=5;//lcc 20230626
+
             if( ttt>=0.9 )  // 因为大于0.9后，轨迹会返回-nan,也不知道为什么
             {   
                 leg_root.foot_lift_traj.block<3,1>(0,i)=leg_root.foot_cross_traj.block<3,1>(0,i);  // 这个变量用于累加腿的抬升高度
                 leg_root.foot_cross_object_est(i)=leg_root.foot_lift_traj(2,i);  //　记录腿的抬升高度并且用这个高度来估计腿遇到的障碍物．
-                
+                enter_lift_count(i)=enter_lift_count(i)+1;
+                // set_cpg_ctrl_cycle=0.0025;//lcc 20230626
+
                 _SimpleScheduler[i].reSet();
                 swing_touch_leg_number(i)=0;
                 _Cpg.cpg_stop_flag=0;
@@ -244,6 +250,21 @@ void Hexapod::liftFollowReaction(void)
                 rec_foot_lift_pos_flag(i)=1;
             }
         }
+        
+
+        if(cpg_touch_down_scheduler(i)==0)
+        {
+            swing_contact_threadhold(i)=14;//lcc 20230626
+        }
+
+        //lcc 20230626: 如果lf 和rf抬高超过1cm且都处于摆动态度，那么cpg速度恢复
+        if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01  &&  fabs( leg_root.foot_cross_traj(2,3) )>1*0.01  &&  cpg_touch_down_scheduler(i)==0 )
+        {
+            int tt=int(1/set_cpg_ctrl_cycle)*0.5;
+            cpg_switch_period=tt;
+            set_cpg_ctrl_cycle=0.0025;//lcc 20230626
+        }
+
     }
 
     liftFollowTraject(); //后面的4条腿跟随前面两条腿的轨迹来越障
@@ -340,11 +361,11 @@ void Hexapod::changeBezierShape(int i)
     }
     lift_cpg_phase_last(i)=cpg_touch_down_scheduler(i);
 
-    if( fabs( lift_x_traj_rec(i)- temp_x(0) ) >=1.5 *0.01 ) //如果在支撑态下，轨迹前进了　1.5 厘米, 那么复原 lamdaX lamdaY
+    if( fabs( lift_x_traj_rec(i)- temp_x(0) ) >=1.5 *0.01 ) //如果在支撑态下，轨迹前进了　1 厘米, 那么复原 lamdaX lamdaY
     { 
         if( cpg_touch_down_scheduler(i)==0 && changeBezierShape_flag[i]==0) //如果cpg是触地态
         {
-            int tt=int(1/set_cpg_ctrl_cycle)*0.5*0.25;
+            int tt=int(1/set_cpg_ctrl_cycle)*0.5*0.75;
             neur_bezier[i].lamdaX(0)=neur_bezier[i].lamdaX_conver[0].linearConvert( neur_bezier[i].lamdaX(0), 0, tt);
             neur_bezier[i].lamdaX(1)=neur_bezier[i].lamdaX_conver[1].linearConvert( neur_bezier[i].lamdaX(1), 0, tt);
             neur_bezier[i].lamdaX(2)=neur_bezier[i].lamdaX_conver[2].linearConvert( neur_bezier[i].lamdaX(2), 0, tt);
@@ -371,16 +392,16 @@ void Hexapod::changeBezierShape(int i)
 Eigen::Matrix<double,1,6> leg_follow_cross_traj_flag;
 void Hexapod::liftFollowTraject(void)
 {
-    std::cout<<" cpg_touch_down_scheduler "<<std::endl;
-    std::cout<< cpg_touch_down_scheduler <<std::endl;
-    std::cout<<" rec_foot_lift_pos_flag "<<std::endl;
-    std::cout<< rec_foot_lift_pos_flag <<std::endl;
-    std::cout<<" rec_foot_lift_pos "<<std::endl;
-    std::cout<< rec_foot_lift_pos <<std::endl;
-    std::cout<<"world_root.foot_des_pos"<<std::endl;
-    std::cout<<world_root.foot_des_pos<<std::endl;
-    std::cout<<"leg_root.step_set_length"<<std::endl;
-    std::cout<<leg_root.step_set_length<<std::endl;
+    // std::cout<<" cpg_touch_down_scheduler "<<std::endl;
+    // std::cout<< cpg_touch_down_scheduler <<std::endl;
+    // std::cout<<" rec_foot_lift_pos_flag "<<std::endl;
+    // std::cout<< rec_foot_lift_pos_flag <<std::endl;
+    // std::cout<<" rec_foot_lift_pos "<<std::endl;
+    // std::cout<< rec_foot_lift_pos <<std::endl;
+    // std::cout<<"world_root.foot_des_pos"<<std::endl;
+    // std::cout<<world_root.foot_des_pos<<std::endl;
+    // std::cout<<"leg_root.step_set_length"<<std::endl;
+    // std::cout<<leg_root.step_set_length<<std::endl;
 
     for (int j = 0; j < 2; j++)  // 获得lf rf越障时的起始足端位置　　
     {   
@@ -406,7 +427,7 @@ void Hexapod::liftFollowTraject(void)
         else if(cpg_touch_down_scheduler(i)==1 && reset_rec_foot_lift_pos_flag(i)==1)
         {
             rec_foot_lift_pos_flag(i)==0;   
-            printf("%d bbb\n",i);
+            // printf("%d bbb\n",i);
             // exit(0);
         }
     }
@@ -749,7 +770,7 @@ void Hexapod::dowmwardFollowTraject(void)
         else if(cpg_touch_down_scheduler(i)==0 && reset_rec_foot_dowm_pos_flag(i)==1)
         {
             rec_foot_dowm_pos_flag(i)==0;   
-            printf("%d bbb\n",i);
+            // printf("%d bbb\n",i);
             // exit(0);
         }
     }
@@ -826,7 +847,7 @@ void Hexapod::dowmwardFollowTraject(void)
 
 void Hexapod::adaptive_control(void)
 {
-    printf("\n ----------liftReaction---------- \n");
+    printf(" ----------liftReaction---------- \n");
     // liftReaction();
     liftFollowReaction();
     std::cout<<"leg_root.foot_cross_traj*100"<<std::endl;
@@ -835,6 +856,29 @@ void Hexapod::adaptive_control(void)
         printf(" %f ",leg_root.foot_cross_traj(2,i)*100);
     }
     printf(" \n");
+    
+    std::cout<<"enter_lift_count"<<std::endl;
+    std::cout<<enter_lift_count<<std::endl;
+    std::cout<<"swing_contact_threadhold"<<std::endl;
+    std::cout<<swing_contact_threadhold<<std::endl;
+
+
+    // std::cout<<"leg_root.foot_trajectory*100"<<std::endl;
+    // for (int i = 0; i < 6; i++)
+    // {
+    //     printf(" %f ",leg_root.foot_trajectory(0,i)*100);
+    // }
+    // printf(" \n");
+    // for (int i = 0; i < 6; i++)
+    // {
+    //     printf(" %f ",leg_root.foot_trajectory(1,i)*100);
+    // }
+    // printf(" \n");
+    // for (int i = 0; i < 6; i++)
+    // {
+    //     printf(" %f ",leg_root.foot_trajectory(2,i)*100);
+    // }
+    // printf(" \n");
 
     // printf("\n ----------dowmwardReaction---------- \n");
     // dowmwardReaction();

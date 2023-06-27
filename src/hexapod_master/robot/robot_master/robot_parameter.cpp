@@ -69,23 +69,24 @@ void Hexapod::parInit()
 {
     if(set_para_init_flag==1)   
     {
-            set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
-            set_yaw=0; set_roll=0; set_pitch=0;
+        set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
+        set_yaw=0; set_roll=0; set_pitch=0;
 
-            Eigen::Matrix<double,1,6> one;
-            one.setOnes();
-            leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
-            leg_root.step_set_hight=one*5  * 0.01;   //lcc　步高5cm
+        Eigen::Matrix<double,1,6> one;
+        one.setOnes();
+        leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
+        leg_root.step_set_hight=one*5  * 0.01;   //lcc　步高5cm
 
-            set_para_init_flag=0;
-            #if HARD_WARE==1
-                    set_cpg_ctrl_cycle=0.0025;
-            #elif HARD_WARE==2
-                    set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
-            #endif
-            printf("init\n");
+        set_para_init_flag=0;
+        #if HARD_WARE==1
+                set_cpg_ctrl_cycle=0.0025;
+        #elif HARD_WARE==2
+                set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+        #endif
+        printf("init\n");
 
-            cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+        cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+        cpg_switch_period=80;
 
         #if HARD_WARE==2  //lcc 20230329: 开启仿真
                 world_root.body_des_pos=GazeboSim.retOdoPostion();

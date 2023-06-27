@@ -563,6 +563,7 @@ void Hexapod::run(int argc, char *argv[])
                                         leg_root.joint_kp.block<3,1>(0,i)=kp;
                                         leg_root.joint_kd.block<3,1>(0,i)=kd;
                                 }
+                                swing_contact_threadhold<< 14,14,14,14,14,14;
                         #elif HARD_WARE==2
                                 GazeboSim.legMsgSUb();
                                 GazeboSim.imuMsgSUb();
@@ -626,7 +627,8 @@ void Hexapod::run(int argc, char *argv[])
                                                         // cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
                                                 }
                                         #if HARD_WARE==1 
-                                                ContactSimple.simple_contact_est(leg_root.foot_act_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,14,12,2);
+
+                                                ContactSimple.simple_contact_est(leg_root.foot_act_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,swing_contact_threadhold,12,2);
                                         #elif HARD_WARE==2
                                                 ContactSimple.simple_contact_est(leg_root.foot_ret_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,2,1,3);
                                         #endif
@@ -726,10 +728,10 @@ void Hexapod::parSeting(void)
         if(start_thread_flag)  //lcc 20230330:仅仅在机器人启动时会进入，robStand(1)表上一个时间点机器人就得到
                 robSquat(1);   //lcc 20230330:robSquat(1)表示一个时间点机器人就得到了要蹲下姿态所需点所有电机的角度
         #if HARD_WARE==1
-                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数
+                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,80); //lcc 20230418:设计一个周期点数
                 kpkdSwitch();
         #elif HARD_WARE==2
-                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,80); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
         #endif
 
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人
