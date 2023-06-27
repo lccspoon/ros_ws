@@ -29,7 +29,7 @@ class contact_detection_simple
         Eigen::Matrix<double,1,6> simple_contact_est(Eigen::Matrix<double,3,6> footend_force,
                                                         Eigen::Matrix<double,1,6> plan_touch_down_scheduler,
                                                         Eigen::Matrix<double,3,6> foot_swing_traj,
-                                                        double swing_contact_threadhold,
+                                                        Eigen::Matrix<double,1,6> swing_contact_threadhold,
                                                         double supor_contact_threadhold,
                                                         double swing_hight_threadhold);
 

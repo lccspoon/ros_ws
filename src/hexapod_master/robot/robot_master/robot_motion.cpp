@@ -129,20 +129,20 @@ void Hexapod::robStand(double switch_period)
     setSixLegSteAmplitude(0,0,0,  0,0,0,  400);
     setSixLegRzz(0,0,0,  0,0,0,  400);
 }
+
 void Hexapod::robSquat(double switch_period)
 {
-
-    static_pos<< 7.3*0.01, 11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, 12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,0)=static_pos;
-    static_pos<< 6.3*0.01, 11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, 12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,1)=static_pos;
-    static_pos<< 5.3*0.01, 11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, 12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,2)=static_pos;
-    static_pos<< 7.3*0.01, -11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, -12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,3)=static_pos;
-    static_pos<< 6.3*0.01, -11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, -12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,4)=static_pos;
-    static_pos<< 5.3*0.01, -11.5*0.01, -5*0.01;
+    static_pos<< 7.3*0.01, -12.5*0.01, -4*0.01;
     leg_root.foot_set_static_pos.block<3,1>(0,5)=static_pos;
 
     leg_root.foot_static_pos.block<3,1>(0,0)=_set_static_pos_conver[0].linearConvert(
@@ -172,6 +172,7 @@ void Hexapod::robSquat(double switch_period)
     setSixLegSteAmplitude(0,0,0,  0,0,0,  400);
     setSixLegRzz(0,0,0,  0,0,0,  400);
 }
+
 void Hexapod::robGoAhead(double amplitude)
 {
     setStandPose();

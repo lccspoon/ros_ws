@@ -1136,6 +1136,16 @@ eigen3/Eigen/Core
 Eigen/Dense
 -
 
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.cpp
+robot_lift_dowm_relex.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.h
+algorithm
+-
+
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_lift_dowm_relex.h
+robot_main.h
+/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
+
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
 ../main_helper.h
 /home/lcc/ros_ws/src/hexapod_master/robot/main_helper.h
@@ -1183,14 +1193,6 @@ robot_parameter.h
 /home/lcc/ros_ws/src/hexapod_master/robot/simulation/simulation_bridge.h
 ../hardware/imu/imu_main.h
 /home/lcc/ros_ws/src/hexapod_master/robot/hardware/imu/imu_main.h
-
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.cpp
-robot_motion.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.h
-
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_motion.h
-robot_main.h
-/home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_main.h
 
 /home/lcc/ros_ws/src/hexapod_master/robot/robot_master/robot_parameter.h
 iostream

@@ -45,7 +45,7 @@
 
 #define SIM_CTRL_MODE 1   // 仿真算法：1 -> position control  2-> pd control
 #define SIM_PROTECT 2 // 1:开启保护　　２：不保护
-#define TXT_FLAGE 1   // 1 -> load  0-> no load
+#define TXT_FLAGE 0   // 1 -> load  0-> no load
 #define STRUCT 3 // 选择仿真模型 1: yobotics   ； 2: new  3:newtwo
 
 #if HARD_WARE==1
@@ -124,6 +124,10 @@ class Hexapod:public RobotParam
         neural_bezier_curve neur_bezier_lift_curve[6];
 
         Eigen::Matrix<double,1,6> leg_real_cpg_signal;
+        Eigen::Matrix<double,1,6> swing_contact_threadhold;
+        double cpg_switch_period=80;
+
+
     public:
 
         /**

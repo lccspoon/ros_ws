@@ -288,14 +288,14 @@ void Hexapod::run(int argc, char *argv[])
                 initialXsens();
 
                 // lcc 20230616: 以下是rqt画图
-                ros::init(argc,argv,"LegPositionPubInit");
-                ros::NodeHandle ROSLegTopicHandle;
+                // ros::init(argc,argv,"LegPositionPubInit");
+                // ros::NodeHandle ROSLegTopicHandle;
 
-                pubMsgTopicName ang_vel("ang_vel");
-                pubMsgTopicName lin_acc("lin_acc");
-                pubMsgTopicName eulerAngle("eulerAngle");
-                pubMsgTopicName adp_eulerAngle("adp_eulerAngle");
-                pubMsgTopicName set_eulerAngle("set_eulerAngle");
+                // pubMsgTopicName ang_vel("ang_vel");
+                // pubMsgTopicName lin_acc("lin_acc");
+                // pubMsgTopicName eulerAngle("eulerAngle");
+                // pubMsgTopicName adp_eulerAngle("adp_eulerAngle");
+                // pubMsgTopicName set_eulerAngle("set_eulerAngle");
 
                 // pubMsgTopicName LfPos("LfPos");
                 // pubMsgTopicName LmPos("LmPos");
@@ -457,9 +457,9 @@ void Hexapod::run(int argc, char *argv[])
                         // // std::cout<< "set_eulerAngle"<<std::endl;
                         // std::cout<< set_angle.transpose() <<std::endl;
 
-                        Eigen::Vector3d imu_eulerA;
-                        imu_eulerA=body_root.eulerAngle*_RAD2;
-                        eulerAngle.msgPubRun(imu_eulerA);
+                        // Eigen::Vector3d imu_eulerA;
+                        // imu_eulerA=body_root.eulerAngle*_RAD2;
+                        // eulerAngle.msgPubRun(imu_eulerA);
                         // std::cout<< "eulerAngle"<<std::endl;
                         // std::cout<< imu_eulerA.transpose()<<std::endl;
 
@@ -503,19 +503,19 @@ void Hexapod::run(int argc, char *argv[])
                         // RmVel.msgPubRun(rmv);
                         // RbVel.msgPubRun(rbv);
 
-                        // Eigen::Vector3d lfp,lmp,lbp,rfp,rmp,rbp;
-                        // lfp=leg_root.foot_act_pos.block<3,1>(0,0);
-                        // lmp=leg_root.foot_act_pos.block<3,1>(0,1);
-                        // lbp=leg_root.foot_act_pos.block<3,1>(0,2);
-                        // rfp=leg_root.foot_act_pos.block<3,1>(0,3);
-                        // rmp=leg_root.foot_act_pos.block<3,1>(0,4);
-                        // rbp=leg_root.foot_act_pos.block<3,1>(0,5);
-                        // LfPos.msgPubRun(lfp);
-                        // LmPos.msgPubRun(lmp);
-                        // LbPos.msgPubRun(lbp);
-                        // RfPos.msgPubRun(rfp);
-                        // RmPos.msgPubRun(rmp);
-                        // RbPos.msgPubRun(rbp);
+                        Eigen::Vector3d lfp,lmp,lbp,rfp,rmp,rbp;
+                        lfp=leg_root.foot_act_pos.block<3,1>(0,0);
+                        lmp=leg_root.foot_act_pos.block<3,1>(0,1);
+                        lbp=leg_root.foot_act_pos.block<3,1>(0,2);
+                        rfp=leg_root.foot_act_pos.block<3,1>(0,3);
+                        rmp=leg_root.foot_act_pos.block<3,1>(0,4);
+                        rbp=leg_root.foot_act_pos.block<3,1>(0,5);
+                        LfPos.msgPubRun(lfp);
+                        LmPos.msgPubRun(lmp);
+                        LbPos.msgPubRun(lbp);
+                        RfPos.msgPubRun(rfp);
+                        RmPos.msgPubRun(rmp);
+                        RbPos.msgPubRun(rbp);
 
                         // staest_vel.msgPubRun(state.root_lin_vel);
                         // staest_pos.msgPubRun(state.root_pos);
@@ -563,9 +563,11 @@ void Hexapod::run(int argc, char *argv[])
                                         leg_root.joint_kp.block<3,1>(0,i)=kp;
                                         leg_root.joint_kd.block<3,1>(0,i)=kd;
                                 }
+                                swing_contact_threadhold<< 14,14,14,14,14,14;
                         #elif HARD_WARE==2
                                 GazeboSim.legMsgSUb();
                                 GazeboSim.imuMsgSUb();
+                                swing_contact_threadhold<< 2,2,2,2,2,2;
                                 #if SEQ_CHOKE==1
                                         pthread_t TopicLisenerThr;
                                         pthread_create(&TopicLisenerThr,NULL,TopicLisener,NULL);
@@ -584,8 +586,6 @@ void Hexapod::run(int argc, char *argv[])
                 recData();     
                 recDataHandling();  //lcc 20230329: 对得到的数据进行转换和处理
                 msgShow(); //lcc 20230329: 打印机器人的信息数
-
-                // _LagrangeInterpolator.eg_bytime( _SimpleScheduler.retSimpleScheduler(1, 0.01) );
 
                 if(motor_pos_ach_count_flag==1 ) // motor_pos_ach_count_flag==1表示机器人已经完成启动动作
                 {
@@ -628,9 +628,10 @@ void Hexapod::run(int argc, char *argv[])
                                                         // cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
                                                 }
                                         #if HARD_WARE==1 
-                                                ContactSimple.simple_contact_est(leg_root.foot_act_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,10,10,2);
+
+                                                ContactSimple.simple_contact_est(leg_root.foot_act_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,swing_contact_threadhold,12,2);
                                         #elif HARD_WARE==2
-                                                ContactSimple.simple_contact_est(leg_root.foot_ret_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,2,1,3);
+                                                ContactSimple.simple_contact_est(leg_root.foot_ret_force, cpg_touch_down_scheduler, leg_root.foot_swing_traj,swing_contact_threadhold,1,3);
                                         #endif
                                 // #endif
 
@@ -728,10 +729,10 @@ void Hexapod::parSeting(void)
         if(start_thread_flag)  //lcc 20230330:仅仅在机器人启动时会进入，robStand(1)表上一个时间点机器人就得到
                 robSquat(1);   //lcc 20230330:robSquat(1)表示一个时间点机器人就得到了要蹲下姿态所需点所有电机的角度
         #if HARD_WARE==1
-                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数
+                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,cpg_switch_period); //lcc 20230418:设计一个周期点数
                 kpkdSwitch();
         #elif HARD_WARE==2
-                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,180); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                _Cpg.control_cycle=_Cpg.CtrlCyclLinTran.linearConvert(_Cpg.control_cycle,set_cpg_ctrl_cycle,cpg_switch_period); //lcc 20230418:设计一个周期点数  一个步态周期的点数＝１／set_cpg_ctrl_cycle
         #endif
 
         keyBoardControl(KeyBoardCtrl.retKeyValue()); //lcc 20230409:跟据键盘指令，控制机器人

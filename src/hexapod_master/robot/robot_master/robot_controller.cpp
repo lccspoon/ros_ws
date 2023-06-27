@@ -31,14 +31,14 @@ void Hexapod::trajectoryPlaning(void)
     #endif
 
         // #if ADAPTIV_FLAG==1
-            // adaptive_control();
+            adaptive_control();
         // #else
-            leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
-            leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
-            leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
-            leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
-            leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
-            leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
+            // leg_root.foot_trajectory.block<3,1>(0,0)=leg_root.foot_swing_traj.block<3,1>(0,0);
+            // leg_root.foot_trajectory.block<3,1>(0,1)=leg_root.foot_swing_traj.block<3,1>(0,1);
+            // leg_root.foot_trajectory.block<3,1>(0,2)=leg_root.foot_swing_traj.block<3,1>(0,2);
+            // leg_root.foot_trajectory.block<3,1>(0,3)=leg_root.foot_swing_traj.block<3,1>(0,3);
+            // leg_root.foot_trajectory.block<3,1>(0,4)=leg_root.foot_swing_traj.block<3,1>(0,4);
+            // leg_root.foot_trajectory.block<3,1>(0,5)=leg_root.foot_swing_traj.block<3,1>(0,5); 
         // #endif
 
         _FooBodAdjMap[0].setInitEndEfforeAndPBias
@@ -60,8 +60,12 @@ void Hexapod::trajectoryPlaning(void)
         leg_root.foot_traj_mapping_to_body.block<3,1>(0,2)=_FooBodAdjMap[2].trajAndAdjustMapping(leg_root.foot_trajectory.block<3,1>(0,2));
         leg_root.foot_traj_mapping_to_body.block<3,1>(0,1)=_FooBodAdjMap[1].trajAndAdjustMapping(leg_root.foot_trajectory.block<3,1>(0,1));
         leg_root.foot_traj_mapping_to_body.block<3,1>(0,0)=_FooBodAdjMap[0].trajAndAdjustMapping(leg_root.foot_trajectory.block<3,1>(0,0));
+
         // std::cout<<"leg_root.foot_traj_mapping_to_body: "<<std::endl;
         // std::cout<<leg_root.foot_traj_mapping_to_body<<std::endl;
+
+        // std::cout<<"before invKinematic  : leg_root.joint_des_pos"<<std::endl;
+        // std::cout<<leg_root.joint_des_pos*_RAD2<<std::endl;
 
         joi_des_pos_vice.block<3,1>(0,5)=_kinematic[5].invKinematic(5, leg_root.foot_traj_mapping_to_body.block<3,1>(0,5));
         joi_des_pos_vice.block<3,1>(0,4)=_kinematic[4].invKinematic(4, leg_root.foot_traj_mapping_to_body.block<3,1>(0,4));
@@ -69,6 +73,9 @@ void Hexapod::trajectoryPlaning(void)
         joi_des_pos_vice.block<3,1>(0,2)=_kinematic[2].invKinematic(2, leg_root.foot_traj_mapping_to_body.block<3,1>(0,2));
         joi_des_pos_vice.block<3,1>(0,1)=_kinematic[1].invKinematic(1, leg_root.foot_traj_mapping_to_body.block<3,1>(0,1));
         joi_des_pos_vice.block<3,1>(0,0)=_kinematic[0].invKinematic(0, leg_root.foot_traj_mapping_to_body.block<3,1>(0,0));
+
+        // std::cout<<"after invKinematic  : leg_root.joint_des_pos"<<std::endl;
+        // std::cout<<leg_root.joint_des_pos*_RAD2<<std::endl;
 
     //lcc 20230405:      以下程序让机器人能在启动时，读去当前角度并且从当前角度缓慢启动到站立姿态
     #if HARD_WARE==1
@@ -84,9 +91,11 @@ void Hexapod::trajectoryPlaning(void)
             // joi_des_pos_vice.block<3,1>(0,3)=joi_des_pos_vice.block<3,1>(0,3);
             // joi_des_pos_vice.block<3,1>(0,4)=joi_des_pos_vice.block<3,1>(0,4);
             // joi_des_pos_vice.block<3,1>(0,5)=joi_des_pos_vice.block<3,1>(0,5);
-    #elif HARD_WARE==2
-
     #endif
+
+    // std::cout<<"before linearConvert  : leg_root.joint_des_pos"<<std::endl;
+    // std::cout<<leg_root.joint_des_pos*_RAD2<<std::endl;
+
     motor_pos_set_count=1200;
     if(get_joint_pos_flag==true && joint_pos_run_count!=motor_pos_set_count)
     {
@@ -104,6 +113,9 @@ void Hexapod::trajectoryPlaning(void)
         leg_root.joint_des_pos=joi_des_pos_vice;
     }
 
+    // std::cout<<"after linearConvert  :leg_root.joint_des_pos"<<std::endl;
+    // std::cout<<leg_root.joint_des_pos*_RAD2<<std::endl;
+
     //lcc 20230405:如接motor_pos_get_flag==true 意味着所有电机都接收到了消息，那么对joi_des_pos的连续性进行保护
     if(get_joint_pos_flag==true) 
     {
@@ -114,6 +126,9 @@ void Hexapod::trajectoryPlaning(void)
         leg_root.joint_des_pos.block<3,1>(0,1)=_dataUnuProtect[1].sendDataConPro(1,leg_root.joint_des_pos.block<3,1>(0,1),10*_RAD1);
         leg_root.joint_des_pos.block<3,1>(0,0)=_dataUnuProtect[0].sendDataConPro(0,leg_root.joint_des_pos.block<3,1>(0,0),10*_RAD1);
     }
+
+    // std::cout<<"after sendDataConPro  :leg_root.joint_des_pos"<<std::endl;
+    // std::cout<<leg_root.joint_des_pos*_RAD2<<std::endl;
 
     //lcc 20230405: 对joi_des_pos的连续性进行保护时，但凡有一个电机的joi_des_pos的相邻两次角度差值过大，所有电机都会stop
     if(_dataUnuProtect[5].StopFlag==false or _dataUnuProtect[4].StopFlag==false or _dataUnuProtect[3].StopFlag==false
@@ -448,9 +463,9 @@ linear_trans joint_kp_conver[6], joint_kd_conver[6];
 void Hexapod::kpkdSwitch(void)
 {
     int tt=int(1/set_cpg_ctrl_cycle);
-    leg_root.joint_supor_kp<<280,280,280;
+    leg_root.joint_supor_kp<<360,360,360;
     leg_root.joint_supor_kd<<3,3,3;
-    leg_root.joint_swing_kp<<80,80,80;
+    leg_root.joint_swing_kp<<90,90,90;
     leg_root.joint_swing_kd<<2 ,2 ,2;
 
     // std::cout<<"leg_real_cpg_signal"<<std::endl;
@@ -470,7 +485,7 @@ void Hexapod::kpkdSwitch(void)
             {
                     leg_root.joint_kp.block<3,1>(0,i)=joint_kp_conver[i].linearConvert(leg_root.joint_kp.block<3,1>(0,i),leg_root.joint_swing_kp, tt*0.5*0.5*0.2);
                     leg_root.joint_kd.block<3,1>(0,i)=joint_kd_conver[i].linearConvert(leg_root.joint_kd.block<3,1>(0,i),leg_root.joint_swing_kd, tt*0.5*0.5*0.2);
-                    printf("qiqiqiqiqiqiqi\n");
+                    // printf("qiqiqiqiqiqiqi\n");
             }
 
             if( cpg_touch_down_scheduler(i)==1 && leg_real_cpg_signal(i)>=0.0 && leg_real_cpg_signal(i)<=0.1 )
@@ -483,13 +498,13 @@ void Hexapod::kpkdSwitch(void)
             {
                     leg_root.joint_kp.block<3,1>(0,i)=joint_kp_conver[i].linearConvert(leg_root.joint_kp.block<3,1>(0,i),leg_root.joint_supor_kp, tt*0.5*0.5*0.2);
                     leg_root.joint_kd.block<3,1>(0,i)=joint_kd_conver[i].linearConvert(leg_root.joint_kd.block<3,1>(0,i),leg_root.joint_supor_kd, tt*0.5*0.5*0.2);      
-                    printf("luoluoluoluo\n");
+                    // printf("luoluoluoluo\n");
             }
             cpg_scheduler_last(i) = cpg_touch_down_scheduler(i);
     }
 
-    std::cout<<"leg_root.joint_kp"<<std::endl;
-    std::cout<<leg_root.joint_kp<<std::endl;
+    // std::cout<<"leg_root.joint_kp"<<std::endl;
+    // std::cout<<leg_root.joint_kp<<std::endl;
 
     // std::cout<<"kpkd_adjust_qiqiqi_flag"<<std::endl;
     // std::cout<<kpkd_adjust_qiqiqi_flag<<std::endl;

@@ -4,7 +4,7 @@
 Eigen::Matrix<double,1,6> contact_detection_simple::simple_contact_est(Eigen::Matrix<double,3,6> footend_force,
                                                         Eigen::Matrix<double,1,6> plan_touch_down_scheduler,
                                                         Eigen::Matrix<double,3,6> foot_swing_traj,
-                                                        double swing_contact_threadhold,
+                                                        Eigen::Matrix<double,1,6> swing_contact_threadhold,
                                                         double supor_contact_threadhold,
                                                         double swing_hight_threadhold)
 {
@@ -27,7 +27,7 @@ Eigen::Matrix<double,1,6> contact_detection_simple::simple_contact_est(Eigen::Ma
         //法二：　直接通过合力来判断
         double f_sum;
         f_sum=  sqrt( foot_for(0)*foot_for(0)+foot_for(1)*foot_for(1)+foot_for(2)*foot_for(2) );
-        if(f_sum>=swing_contact_threadhold)
+        if(f_sum>=swing_contact_threadhold(i))
             contact_estimate_schedual(i)=0;   // 0 :即合理大于２，用０表示触碰
         else
             contact_estimate_schedual(i)=1;
@@ -110,7 +110,7 @@ Eigen::Matrix<double,1,6> contact_detection_simple::simple_contact_est(Eigen::Ma
     // std::cout<<"leg_swingphase_contact_est"<<std::endl;
     // std::cout<<leg_swingphase_contact_est<<std::endl;
 
-    // // printf("\n-----next------\n");
+    // printf("\n-----next------\n");
 
     // for (int i = 0; i < 6; i++)
     // {

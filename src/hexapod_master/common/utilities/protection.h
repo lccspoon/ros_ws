@@ -163,14 +163,14 @@ class DataUnusualProtect
                 // if(i==2)
                     // printf("i:%d StopFlag:%d _enable:%d threshold:%f _last:%f  dataIn:%f \n",
                     //         i,StopFlag,_enable[i],threshold*_RAD2,_last[i]*_RAD2,dataIn(i)*_RAD2);
-                if( isnan(dataIn(i)) or isnanf(dataIn(i)) 
+                if( isnan(dataIn(i)) or isnanf(dataIn(i))  // 如果传进来的素据是 nan 或其他问题，那么 StopFlag=false -> 进入保护
                     or isinf(dataIn(i)) or isinff(dataIn(i)) or fabs(dataIn(i))>=3.14) StopFlag=false;
 
                 if(_first_enable[i]==0)
                 {
                     _last[i]=dataIn(i);
                     _first_enable[i]=1;
-
+                    _datda_out_=dataIn;  //lcc 20230627: 保证第一次进来返回值不为0,直接把输入值当成返回值
                     // printf("_first_enable:%d  dataIn:%f _last:%f \n", _first_enable[i],dataIn(i),_last[i]);
                 }
                 else if(_enable[i]==0)
@@ -187,8 +187,15 @@ class DataUnusualProtect
                         _rec_last[i]=_last[i];
                         _rec_datain[i]=dataIn(i);
 
+
+
                         StopFlag=false;
                         _datda_out_(i)=_last[i];
+
+                        printf("exit at sendDataConPro() !!!\n");
+
+                        exit(0);
+
                     }
                     else
                     {

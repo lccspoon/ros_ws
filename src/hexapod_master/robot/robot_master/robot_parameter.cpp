@@ -69,23 +69,25 @@ void Hexapod::parInit()
 {
     if(set_para_init_flag==1)   
     {
-            set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
-            set_yaw=0; set_roll=0; set_pitch=0;
+        set_x_deviation=0; set_y_deviation=0; set_z_deviation=0; 
+        set_yaw=0; set_roll=0; set_pitch=0;
 
-            Eigen::Matrix<double,1,6> one;
-            one.setOnes();
-            leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
-            leg_root.step_set_hight=one*5  * 0.01;   //lcc　步高5cm
+        Eigen::Matrix<double,1,6> one;
+        one.setOnes();
+        leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
+        leg_root.step_set_hight=one*5  * 0.01;   //lcc　步高5cm
 
-            set_para_init_flag=0;
-            #if HARD_WARE==1
-                    set_cpg_ctrl_cycle=0.0025;
-            #elif HARD_WARE==2
-                    set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
-            #endif
-            printf("init\n");
+        set_para_init_flag=0;
+        #if HARD_WARE==1
+                set_cpg_ctrl_cycle=0.0025;
+        #elif HARD_WARE==2
+                // set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                set_cpg_ctrl_cycle=0.00075;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+        #endif
+        printf("init\n");
 
-            cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+        cpg_touch_down_scheduler<< 404, 404, 404, 404, 404, 404;
+        cpg_switch_period=120;
 
         #if HARD_WARE==2  //lcc 20230329: 开启仿真
                 world_root.body_des_pos=GazeboSim.retOdoPostion();
@@ -108,11 +110,11 @@ void Hexapod::getDesPosAndVel()
 
                 if( cpg_touch_down_scheduler(i)==0 &&  cpg_phase_last(i)==1 ) // 如果当前是支撑态　且上一时刻是摆动态
                 {       
-                        caculate_flag(i)=1;
+                        caculate_flag(i)=1;  // 那么允许该腿i参与速度的计算
                 }
                 else if( cpg_touch_down_scheduler(i)==1 &&  cpg_phase_last(i)==1  )
                 {
-                        caculate_flag(i)=0;
+                        caculate_flag(i)=0;  
                 }
 
                 if( caculate_flag(i)==1 )
@@ -120,6 +122,7 @@ void Hexapod::getDesPosAndVel()
                         phase_count(i)++;
                         if( phase_count(i)>=2 )
                         {
+                                // 足端期望速度 = （本次足端期望位置 - 上次足端期望位置）/ 时间
                              foot_des_vel.block<3,1>(0,i) = -( leg_root.foot_des_pos.block<3,1>(0,i) - foot_des_pos_last.block<3,1>(0,i) ) / dt_s;
                         }
                         foot_des_pos_last.block<3,1>(0,i) = leg_root.foot_des_pos.block<3,1>(0,i);
@@ -136,10 +139,10 @@ void Hexapod::getDesPosAndVel()
         for(int i=0; i<6;i++)
         {       
                 if( foot_des_vel(0,i)!=0 )
-                        leg_number++;
+                        leg_number++;  //得到参与速度计算的腿速度
         }
-        if( leg_number!=0 )
-                body_des_vel=   (foot_des_vel.block<3,1>(0,0)+ foot_des_vel.block<3,1>(0,1) +  foot_des_vel.block<3,1>(0,2) +
+        if( leg_number!=0 ) 
+                body_des_vel=   (foot_des_vel.block<3,1>(0,0)+ foot_des_vel.block<3,1>(0,1) +  foot_des_vel.block<3,1>(0,2) +     //求平均
                         foot_des_vel.block<3,1>(0,3) +  foot_des_vel.block<3,1>(0,4) +  foot_des_vel.block<3,1>(0,5) )/leg_number;
         else 
                 body_des_vel.setZero();
