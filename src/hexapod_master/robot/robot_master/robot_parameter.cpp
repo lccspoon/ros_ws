@@ -89,10 +89,17 @@ void Hexapod::parInit()
 
         set_para_init_flag=0;
         #if HARD_WARE==1
-                set_cpg_ctrl_cycle=0.0025;
+                #if ADAPTIV_FLAG==1
+                        set_cpg_ctrl_cycle=0.00075;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                #else
+                        set_cpg_ctrl_cycle=0.0025;
+                #endif
         #elif HARD_WARE==2
-                // set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
-                set_cpg_ctrl_cycle=0.00075;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                #if ADAPTIV_FLAG==1
+                        set_cpg_ctrl_cycle=0.00075;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                #else
+                        set_cpg_ctrl_cycle=0.0015;   //lcc 一个步态周期的点数＝１／set_cpg_ctrl_cycle
+                #endif
         #endif
         printf("init\n");
 

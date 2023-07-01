@@ -244,15 +244,24 @@ void Hexapod::liftFollowReaction(void)
 
         if( swing_touch_leg_number(i)==1  && lift_stage_switching_flag==0 ) // 若　lift_stage_switching_flag==1　表示轨迹正在复原，此时不可调整轨迹
         {  
+            double ttt;
+            ttt=-1.0+_SimpleScheduler[i].retSimpleScheduler(1, 0.05)* 2.0;
 
             #if HARD_WARE==1
-
                 swing_contact_threadhold(i)=5;//lcc 20230626
 
-            #elif HARD_WARE==2
+                //停止cpg来越过障碍
+                _Cpg.cpg_stop_flag=1;
+                leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
+                                    neur_bezier_lift_curve[i].bezierCurve( ttt , 1);
 
-                double ttt;
-                ttt=-1.0+_SimpleScheduler[i].retSimpleScheduler(1, 0.05)* 2.0;
+                //不停cpg来越过障碍
+                // Eigen::Vector3d temtemtemtemp;
+                // temtemtemtemp.setZero();
+                // temtemtemtemp(0) =  rec_foot_swing_traj(0,i) - leg_root.foot_swing_traj(0,i) - world_root.body_des_vel(0) * dt_s;
+                // leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
+                //                     neur_bezier_lift_curve[i].bezierCurve( ttt , 1) + temtemtemtemp;
+            #elif HARD_WARE==2
 
                 //停止cpg来越过障碍
                 _Cpg.cpg_stop_flag=1;
@@ -317,9 +326,9 @@ void Hexapod::liftFollowReaction(void)
         if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01  &&  fabs( leg_root.foot_cross_traj(2,3) )>1*0.01  &&  cpg_touch_down_scheduler(i)==0 )
         {
             #if HARD_WARE==1
-                int tt=int(1/set_cpg_ctrl_cycle)*0.5;
-                cpg_switch_period=tt;
-                set_cpg_ctrl_cycle=0.0025;//lcc 20230626
+                // int tt=int(1/set_cpg_ctrl_cycle)*0.5;
+                // cpg_switch_period=tt;
+                // set_cpg_ctrl_cycle=0.0025;//lcc 20230626
             #endif
         }
 

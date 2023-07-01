@@ -707,7 +707,11 @@ void Hexapod::run(int argc, char *argv[])
                 double dt_ms_temp=0;
                 dt_ms_temp=_Tim1.getTimerMilliSec();
                 #if HARD_WARE==1
-                        double period_ttt=4;
+                        #if ADAPTIV_FLAG==1
+                                double period_ttt=8;
+                        #else
+                                double period_ttt=4;
+                        #endif
                 #elif HARD_WARE==2
                         double period_ttt=3;
                 #endif
