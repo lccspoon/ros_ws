@@ -18,7 +18,7 @@ void Hexapod::setStepSize()
 
                         get_step_size=neur_bezier[i].bezierCurve( 0.99, 1.0);
                         leg_root.step_original_length(i)=get_original_step_length_sort[i].sort_continuet( get_step_size(0) ) * 2 ; // 步长关于0点左右对称,所以*2
-        
+
                         // std::cout<<"des_step_l / leg_root.step_original_length(i)"<<std::endl;      
                         // std::cout<<des_step_l / leg_root.step_original_length(i)<<std::endl;
                         // std::cout<<"des_step_h / leg_root.step_original_hight(i)"<<std::endl;      
@@ -38,10 +38,20 @@ void Hexapod::setStepSize()
                 // leg_root.step_des_length(i)=get_des_step_length_sort[i].sort_continuet( leg_root.foot_swing_traj(0,i) ) * 2 ; // 步长关于0点左右对称,所以*2，
 
 
-                // /2是因为设计的补偿值其实是直接覆给　摆动长度和支撑长度的．一个周期的补偿＝摆动长度＋支撑长度
+
+
+                // /2是因为设计的步长值其实是直接覆给　摆动长度和支撑长度的．一个周期的补偿＝摆动长度＋支撑长度
                 double des_step_l=leg_root.step_set_length(i)/2 , des_step_h=leg_root.step_set_hight(i) ;  
                 set_step_length_k(i)= des_step_l / leg_root.step_original_length(i);
                 set_step_hight_k(i)= des_step_h / leg_root.step_original_hight(i);
+
+                // if(i==0)  // 打印实际上期望的步长
+                // {
+                //         Eigen::Vector3d step_real_set_l;
+                //         step_real_set_l=neur_bezier[i].bezierCurve( 0.99, 1.0);
+                //         std::cout<<"step_real_set_l"<<std::endl;      
+                //         std::cout<<step_real_set_l.transpose()*4<<std::endl;   
+                // }
         }
         // std::cout<<"leg_root.step_original_hight"<<std::endl;      
         // std::cout<<leg_root.step_original_hight<<std::endl;
@@ -60,8 +70,8 @@ void Hexapod::setStepSize()
 
         for(int i=0; i<6; i++)
         {
-                neur_bezier[i].length_k=_step_length_k_conver[i].linearConvert(neur_bezier[i].length_k,set_step_length_k(i),60);
-                neur_bezier[i].height_k=_step_hight_k_conver[i].linearConvert(neur_bezier[i].height_k,set_step_hight_k(i),60);   
+                neur_bezier[i].length_k=_step_length_k_conver[i].linearConvert(neur_bezier[i].length_k,set_step_length_k(i),30);
+                neur_bezier[i].height_k=_step_hight_k_conver[i].linearConvert(neur_bezier[i].height_k,set_step_hight_k(i),30);   
         }
 }
 

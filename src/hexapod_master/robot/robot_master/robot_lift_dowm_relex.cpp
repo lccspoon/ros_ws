@@ -219,6 +219,13 @@ void Hexapod::liftFollowReaction(void)
         if( swing_touch_leg_number(i)==1 && fabs( leg_root.foot_cross_traj(2,i) )>1*0.01)  
         {
             changeBezierShape_flag[i]=1;
+
+            // Eigen::Matrix<double,1,6> one;
+            // one.setOnes();
+            // leg_root.step_set_length=one* 9*0.01;  //lcc 步长7cm
+
+            // leg_root.step_set_length(i) = 9*0.01;  //lcc 步长7cm
+
         }
         changeBezierShape(i);
 
@@ -243,18 +250,21 @@ void Hexapod::liftFollowReaction(void)
                 swing_contact_threadhold(i)=5;//lcc 20230626
 
             #elif HARD_WARE==2
-                // _Cpg.cpg_stop_flag=1;
+
                 double ttt;
                 ttt=-1.0+_SimpleScheduler[i].retSimpleScheduler(1, 0.05)* 2.0;
 
-                // leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
-                                    // neur_bezier_lift_curve[i].bezierCurve( ttt , 1);
-
-                Eigen::Vector3d temtemtemtemp;
-                temtemtemtemp.setZero();
-                temtemtemtemp(0) =  rec_foot_swing_traj(0,i) - leg_root.foot_swing_traj(0,i) - world_root.body_des_vel(0) * dt_s;
+                //停止cpg来越过障碍
+                _Cpg.cpg_stop_flag=1;
                 leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
-                                    neur_bezier_lift_curve[i].bezierCurve( ttt , 1) + temtemtemtemp;
+                                    neur_bezier_lift_curve[i].bezierCurve( ttt , 1);
+
+                //不停cpg来越过障碍
+                // Eigen::Vector3d temtemtemtemp;
+                // temtemtemtemp.setZero();
+                // temtemtemtemp(0) =  rec_foot_swing_traj(0,i) - leg_root.foot_swing_traj(0,i) - world_root.body_des_vel(0) * dt_s;
+                // leg_root.foot_cross_traj.block<3,1>(0,i)= leg_root.foot_lift_traj.block<3,1>(0,i)+
+                //                     neur_bezier_lift_curve[i].bezierCurve( ttt , 1) + temtemtemtemp;
 
             #endif
 
@@ -281,16 +291,29 @@ void Hexapod::liftFollowReaction(void)
             {   
                 int i=0;
                 i=j*3;
-                if(cpg_touch_down_scheduler(i)==1 && fabs( leg_root.foot_cross_traj(2,i) )>1*0.01 && ( cpg_period_count(i)-rec_cpg_period_number(i) ) >1 )
+
+                // 如果前两腿其中的一腿 处于摆动态度 且 抬升高度大于1cm 且 距离抬升已经超过一个cpg周期
+                if(cpg_touch_down_scheduler(i)==1 && fabs( leg_root.foot_cross_traj(2,i) )>1*0.01 && ( cpg_period_count(i)-rec_cpg_period_number(i) ) >=2 )
                 {
                     int tttt=int(1/set_cpg_ctrl_cycle)*0.5*0.75;
                     leg_root.foot_cross_traj(0,i) = reset_cross_traj_X[i].linearConvert(leg_root.foot_cross_traj(0,i),0, tttt);
+
+                    // Eigen::Matrix<double,1,6> one;
+                    // one.setOnes();
+                    // leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
+
+                    // leg_root.step_set_length(i) = 5*0.01;  //lcc 步长7cm
+
+
                     // exit(0);
                 }
             }
         #endif
 
-        //lcc 20230626: 如果lf 和rf抬高超过1cm且都处于摆动态度，那么cpg速度恢复
+        std::cout<< " leg_root.step_set_length"<<std::endl;
+        std::cout<< leg_root.step_set_length<<std::endl;
+
+        //lcc 20230626: 如果lf 和rf抬高超过1cm且都处于摆动态度
         if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01  &&  fabs( leg_root.foot_cross_traj(2,3) )>1*0.01  &&  cpg_touch_down_scheduler(i)==0 )
         {
             #if HARD_WARE==1
@@ -300,7 +323,24 @@ void Hexapod::liftFollowReaction(void)
             #endif
         }
 
+        //lcc 20230626: 如果lf 和rf抬高超过1cm且都处于
+        if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01  &&  fabs( leg_root.foot_cross_traj(2,3) )>1*0.01  && 
+          ( cpg_period_count(i)-rec_cpg_period_number(i) ) >=1 && ( cpg_period_count(i)-rec_cpg_period_number(i) ) <2)
+        {
+            Eigen::Matrix<double,1,6> one;
+            one.setOnes();
+            leg_root.step_set_length=one* 5*0.01;  //lcc 步长7cm
+        }
+        else if( fabs( leg_root.foot_cross_traj(2,0) )>1*0.01  &&  fabs( leg_root.foot_cross_traj(2,3) )>1*0.01  && 
+          ( cpg_period_count(i)-rec_cpg_period_number(i) ) >=3 && ( cpg_period_count(i)-rec_cpg_period_number(i) ) <4)
+        {
+            Eigen::Matrix<double,1,6> one;
+            one.setOnes();
+            leg_root.step_set_length=one* 7*0.01;  //lcc 步长7cm
+        }
+
     }
+
 
     liftFollowTraject(); //后面的4条腿跟随前面两条腿的轨迹来越障
     
@@ -370,7 +410,7 @@ void Hexapod::changeBezierShape(int i)
         // lamdaX=[10, -20, 10, 10, 10, 10, 10, 10, 40];
         // lamdaY=[10, 10, 1, 30, 30, 10, 60, 30, 10];
         int tt=int(1/set_cpg_ctrl_cycle)*0.5*0.1;
-        int lamdaX_k=2, lamdaY_k=2;
+        int lamdaX_k=2.5, lamdaY_k=2.5;
         neur_bezier[i].lamdaX(0)=neur_bezier[i].lamdaX_conver[0].linearConvert( neur_bezier[i].lamdaX(0), 10 * lamdaX_k, tt);
         neur_bezier[i].lamdaX(1)=neur_bezier[i].lamdaX_conver[1].linearConvert( neur_bezier[i].lamdaX(1), -20 * lamdaX_k, tt);
         neur_bezier[i].lamdaX(2)=neur_bezier[i].lamdaX_conver[2].linearConvert( neur_bezier[i].lamdaX(2), 10 * lamdaX_k, tt);

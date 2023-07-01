@@ -701,7 +701,9 @@ void Hexapod::run(int argc, char *argv[])
                         body_root.foot_act_vel(2,5) << endl;
                 #endif
 
-                cpg_period_count = _Tim1.retSchedulerCount(cpg_touch_down_scheduler); //lcc 得到cpg已经跑过的周期数
+                cpg_period_count = _Tim1.retSchedulerCount(cpg_touch_down_scheduler); //lcc 得到cpg已经跑过的周期数; 以腿支撑态运动开始为新的cpg周期来计数
+                // if(cpg_period_count(0)==7) exit(0);
+
                 double dt_ms_temp=0;
                 dt_ms_temp=_Tim1.getTimerMilliSec();
                 #if HARD_WARE==1
@@ -767,6 +769,9 @@ void Hexapod::parSeting(void)
         // printf(" body_root.eulerAngle(2):%f \n", body_root.eulerAngle(2) *_RAD2 );
         // std::cout<<"--------next aa------"<<std::endl;
 }
+
+
+
 
 
 
